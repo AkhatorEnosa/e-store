@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Allison&family=Assistant&family=Bebas+Neue&family=Ms+Madi&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&family=Raleway:wght@100;200;300;400;500;600;700&display=swap');
+
+body {
+      /* font-family: 'Montserrat', sans-serif; */
+
+    font-family: 'Raleway', sans-serif;
+  color: rgb(52, 39, 24);
+}
+
+.logo,.fiesta, .countdown {
+  font-family: 'Allison', cursive;
+}
+
+.countdown {
+  font-family: 'Montserrat';
+}
+
+.cart-h {
+  font-family: 'Bebas Neue', cursive;
+}
+
+/* .big-sale{
+  background-image: url('./assets/happy2.png');
+} */
