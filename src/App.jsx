@@ -30,9 +30,9 @@ function App() {
     handleNumAdd, handleNumMinus} = useContext(AppContext)
 
   const headerProduct = {
+    id: 26,
     category: "men's clothing",
     description: "Legendary Air gets lifted First lifestyle Air Max brings you styke, comfort and 270 degrees of Air. Its tinted Air winddow lets you showcase one of our greatest innovations.",
-    id: 444,
     image: Shoe,
     price: 109.95,
     rating: {rate: 3.9, count: 120},
@@ -46,7 +46,7 @@ function App() {
         <NavBar handleShow={handleShow} itemCount={itemCount}/>
         {/* <ErrorBoundary> */}
           <Hero 
-            item={headerProduct} handleClick={addItem} cart={cart}
+            item={headerProduct} cart={cart}
           />
           {/* <Hot 
             price={product.price}

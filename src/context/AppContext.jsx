@@ -44,22 +44,34 @@ const [num, setNum] = useState(1)
   }
 
   // add item to cart
-  const addItem = (item) => {
-    if (cart.includes(item)) {
-      // setFound(false);
-    } else {
-      // cart.push(item);
+  // const addItem = (item) => {
+  //   const findItem = cart.find((cartItem) => cartItem.id === item.id);
+  //   if (!findItem) { 
+  //     setCart([...cart, item]);
+  //     setItemCount(itemCount+1)
+  //     addSubtotal(item)
+  //   }
+  // }
+
+  // const removeItem = (item) => {
+  //   const findItem = cart.find((cartItem) => cartItem.id === item.id);
+  //   if (findItem) {
+  //     const newCart = cart.filter((cartItem) => cartItem.id !== item.id);
+  //     setCart(newCart);
+  //     setItemCount(itemCount-1)
+  //     subtractSubtotal(item)
+  //   }
+  // }
+
+  const toggleItem = (item) => {
+    const findItem = cart.find((cartItem) => cartItem.id === item.id);
+    if (!findItem) { 
       setCart([...cart, item]);
       setItemCount(itemCount+1)
       addSubtotal(item)
-    }
-  }
-
-  const removeItem = (item) => {
-    const index = cart.indexOf(item);
-    if (index > -1) { // only splice array when item is found
-      cart.splice(index, 1); // 2nd parameter means remove one item only
-      setCart(cart);
+    } else {
+      const newCart = cart.filter((cartItem) => cartItem.id !== item.id);
+      setCart(newCart);
       setItemCount(itemCount-1)
       subtractSubtotal(item)
     }
@@ -101,7 +113,8 @@ const [num, setNum] = useState(1)
             cart, setCart,
             show, setShow,
             itemCount, setItemCount,
-            addItem, removeItem,
+            // addItem, removeItem,
+            toggleItem,
             handleShow,
             handleNumAdd, handleNumMinus,
             addSubtotal, subtractSubtotal,

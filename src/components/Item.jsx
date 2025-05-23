@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {AiFillCloseCircle, AiFillPlusSquare, AiFillMinusSquare} from 'react-icons/ai';
+import { AppContext } from '../context/AppContext';
 
-const Item = ({ item, itemNum, handleSum, handleMinus, handleRemoveItem }) => {
+const Item = ({ item, itemNum, handleSum, handleMinus }) => {
+  const { toggleItem } = useContext(AppContext);
   const { image, title, price } = item;
   return (
     <div className='w-full grid grid-cols-4 shadow-md px-4 py-2 m-2 rounded-lg justify-between items-center'>
@@ -13,7 +15,7 @@ const Item = ({ item, itemNum, handleSum, handleMinus, handleRemoveItem }) => {
               <p>{title}</p>
               <p className='font-bold'>₦ {(price) * 500}</p>
             </div>
-            <AiFillCloseCircle size={20} className="cursor-pointer" onClick={()=>handleRemoveItem(item)}/>
+            <AiFillCloseCircle size={20} className="cursor-pointer" onClick={()=> toggleItem(item)}/>
           </div>
 
           <div className='w-56 grid grid-cols-3 px-2 mt-4 justify-center items-center'>
