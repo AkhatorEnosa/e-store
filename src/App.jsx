@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import './App.css';
 import Benefits from './components/Benefits';
 import Cart from './components/Cart';
@@ -17,9 +17,9 @@ import { AppContext } from './context/AppContext';
 
 function App() {
   const { 
-    products, setProducts,
-    loading, setLoading,
-    error, setError,
+    products,
+    loading,
+    error,
     subtotal,
     num,
     cart,
@@ -40,53 +40,11 @@ function App() {
   };
   //cart
 
-
-useEffect(()=> {
-  //console.log(randomNum);
-  // let num = 11000;
-  // let numToString = num.toString();
-  // let newString = [];
-  //     // console.log("This is ", numToString[numToString.length - 1]);
-  //     for(let i=numToString.length-1; i >= 0; i--) {
-  //       newString.push(numToString[i]);
-  //       if(i%2 == 0) {
-  //         newString.splice(i,0,",");
-  //       }
-  //         // newString.push(numToString[i]);
-  //       console.log(newString);
-  //       // console.log(numToString[i]);
-  //     }
-// const randomNum = Math.floor(Math.random() * 30) + 1;
- 
-  let mounted = true;
-  fetch('https://fakestoreapi.com/products')
-        .then(response => {
-          if(response.ok){
-            return response.json();
-          }
-          throw response;
-        })
-        .then(item => {
-             if(mounted) {
-                 setProducts(item);
-                //  setProduct(item[randomNum]);
-            } 
-        })
-        .catch(error => {
-          console.error(error)
-        })
-        .finally(() => {
-          setLoading(false);
-                 setError(false);
-        });
-     return () => mounted = false;
-}, [] );
-
   if(!loading && !error) {
     return (
       <div className="h-screen flex flex-col justify-between">
         <NavBar handleShow={handleShow} itemCount={itemCount}/>
-        <ErrorBoundary>
+        {/* <ErrorBoundary> */}
           <Hero 
             item={headerProduct} handleClick={addItem} cart={cart}
           />
@@ -114,7 +72,7 @@ useEffect(()=> {
               />
           <Benefits />
           <Footer />
-            </ErrorBoundary>
+            {/* </ErrorBoundary> */}
           <Cart 
               show={show} 
               handleShow={handleShow}

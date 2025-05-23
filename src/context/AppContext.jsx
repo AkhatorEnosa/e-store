@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import axios from "axios";
+import { createContext, useEffect, useState } from "react";
 
 export const AppContext = createContext();
 
@@ -68,6 +69,28 @@ const [num, setNum] = useState(1)
     setShow(!show);
   }
 
+
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get('https://fakestoreapi.com/products');
+      if (response.status === 200) {
+        setProducts(response.data);
+        // setProduct(response.data[randomNum]);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+      setError(false);
+    }
+  }
+
+
+
+  useEffect(() => {
+    fetchProducts()
+  }, [])
+
     return (
         <AppContext.Provider value={{
             products, setProducts,
@@ -81,7 +104,8 @@ const [num, setNum] = useState(1)
             addItem, removeItem,
             handleShow,
             handleNumAdd, handleNumMinus,
-            addSubtotal, subtractSubtotal
+            addSubtotal, subtractSubtotal,
+            fetchProducts
         }}>
             {children}
         </AppContext.Provider>
