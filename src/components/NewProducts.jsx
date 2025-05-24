@@ -21,7 +21,7 @@ const NewProducts = ({ products, cart }) => {
   // console.log(products)
 
   return (
-    <div className='md:px-10 px-10 z-30 py-20'>
+    <div className='px-8 md:px-16 lg:px-32 z-30 py-20'>
       <div className="w-full flex flex-col">
           <h1 className='text-2xl font-bold uppercase border-b-2 border-[#fe4343] w-fit pr-5 mt-4 mb-10 '>New Arrivals</h1>
           <div className='grid md:grid-cols-4 grid-cols-2 gap-4'>

@@ -12,13 +12,13 @@ const Footer = () => {
     <div className='w-full flex md:flex-row flex-col justify-around p-10 py-20'>
       <div className='flex flex-col max-w-[450px] md:px-5 py-2 mb-5'>
         <div className="logo text-black text-5xl font-extrabold items-center mb-6">
-          <p>Shaup.com</p>
+          <p>Shaup</p>
         </div>
-          <p className='font-extralight text-sm'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt sequi nostrum at explicabo. Ullam tempora quisquam vel non!</p>
-          <div className="flex justify-between w-48 mt-5">
-            <RiVisaLine className='text-[#3b3521]' size={60}/>
-            <FaCcMastercard className='text-[#3b3521]' size={60}/>
-            <FaCcPaypal className='text-[#3b3521]' size={60}/>
+          <p className='font-extralight text-sm'>Discover a seamless shopping experience at Shaup, your go-to destination for stylish, high-quality products. From trendy fashion to everyday essentials, we bring you carefully selected items that blend affordability with premium design. Shop with confidence, enjoy fast delivery, and elevate your lifestyle with Shaup</p>
+          <div className="flex w-full gap-1 mt-5">
+            <RiVisaLine className='text-[#3b3521]' size={40}/>
+            <FaCcMastercard className='text-[#3b3521]' size={40}/>
+            <FaCcPaypal className='text-[#3b3521]' size={40}/>
           </div>
       </div>
 
@@ -26,15 +26,15 @@ const Footer = () => {
         <h1 className='text-1xl font-bold uppercase mb-2'>Quick Links</h1>
         <div className="flex flex-col">
           <ul className='font-extralight text-sm'>
-            <li className='my-2'>About</li>
-            <li className='my-2'>Blogs</li>
-            <li className='my-2'>Contact</li>
-            <li className='my-2'>FAQ</li>
+            <li className='my-2'><a href="#">About</a></li>
+            <li className='my-2'><a href="#">Blogs</a></li>
+            <li className='my-2'><a href="#">Contact</a></li>
+            <li className='my-2'><a href="#">FAQ</a></li>
           </ul>
         </div>
       </div>
 
-      <div className="flex flex-col md:px-5 py-2">
+      {/* <div className="flex flex-col md:px-5 py-2">
         <h1 className='text-1xl font-bold uppercase mb-2'>Account</h1>
         <div className="flex flex-col">
           <ul className='font-extralight text-sm'>
@@ -44,7 +44,7 @@ const Footer = () => {
             <li className='my-2'>FAQ</li>
           </ul>
         </div>
-      </div>
+      </div> */}
 
       <div className="flex flex-col py-2 md:pl-2 pr-10">
         <h1 className='text-1xl font-bold uppercase mb-2'>Newsletter</h1>

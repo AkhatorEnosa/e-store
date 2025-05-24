@@ -6,6 +6,7 @@ export const AppContext = createContext();
 export function AppProvider({ children }) {
 
 
+const body = document.body
 const [products, setProducts] = useState([]);
 // const [product, setProduct] = useState([]);
 const [loading, setLoading] = useState(true);
@@ -18,6 +19,16 @@ const [num, setNum] = useState(1)
   // const [found, setFound] = useState(false);
   const [show, setShow] = useState(false);
   const [itemCount, setItemCount] = useState(0);
+  
+  useEffect(() => {
+    if(show) {
+      body.style.height = '100vh'
+      body.style.overflowY = 'hidden'
+    } else {
+      body.style.height = '100vh'
+      body.style.overflowY = 'scroll'
+    }
+  }, [show])
 
   const addSubtotal = (item) => {
     setSubtotal(subtotal+(item.price*500))

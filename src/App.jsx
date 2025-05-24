@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 import './App.css';
 import Benefits from './components/Benefits';
-import Cart from './components/Cart';
-import ErrorBoundary from './components/ErrorBoundary';
+// import ErrorBoundary from './components/ErrorBoundary';
 import Footer from './components/Footer';
 import Hero from './components/Hero';
 // import Hot from './components/Hot';
@@ -14,6 +13,7 @@ import Sections from './components/Sections';
 
 import Shoe from './assets/shoe.png'
 import { AppContext } from './context/AppContext';
+import Cart from './components/Cart';
 
 function App() {
   const { 
@@ -73,8 +73,8 @@ function App() {
           <Benefits />
           <Footer />
             {/* </ErrorBoundary> */}
-          <Cart 
-              show={show} 
+          <Cart
+              show={show}
               handleShow={handleShow}
               items={cart}
               products = {products}

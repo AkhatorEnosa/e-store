@@ -19,14 +19,14 @@ const NewProductsCard = ({ cart, item }) => {
           <span className={`${itemInCart ? "bg-[#fe4343] text-white" : "bg-white text-[#fe4343] hover:bg-[#fe4343] hover:text-[#fff] shadow"} border-[1px] border-[#fe4343] px-2 py-2 rounded-full cursor-pointer transition-all duration-500`} onClick={()=>toggleItem(item)}>{itemInCart ? <MdOutlineRemoveShoppingCart size={20} title='Remove from cart'/> : <MdOutlineAddShoppingCart size={20} title='Add to cart'/>}</span>
         </div>
 
-        <div className="flex flex-col justify-center items-center size-64 px-4 overflow-hidden">
+        <div className="flex flex-col justify-center items-center size-56 px-4 overflow-hidden">
           <img src={image} alt="bag" className='h-60'/>
         </div>
 
         <div className='w-full flex flex-col justify-center items-center gap-1'>
           <div className='flex flex-col items-center justify-center gap-2'>
             <p className='font-semibold'>{title}</p>
-            <p className='w-[60%] line-clamp-2 text-xs'>{description}</p>
+            <p className='w-[60%] line-clamp-2 text-xs text-black/80 capitalize'>{description}</p>
           </div>
 
           <div className='text-small flex'>
@@ -38,10 +38,6 @@ const NewProductsCard = ({ cart, item }) => {
             </div>
           <p className='font-bold text-xl'>₦{(price) * 500}</p>
           {/* <p className='bg-slate-600/20 rounded-md text-xs'>{category}</p> */}
-          
-          {/* <button className={!cart.includes(item) ? "p-4 py-2 w-fit lg:mt-2 hover:bg-[#fe4343] bg-[#000]/90 text-white rounded-md shadow-md duration-150" : "p-4 py-2 w-fit lg:mt-2 bg-[#fe4343] text-white opacity-30 rounded-md cursor-not-allowed"} onClick={()=>handleClick(item)}>
-            {cart.includes(item) ? "Already In Cart" : "Add to Cart"}
-          </button> */}
         </div>
 
     </div>
