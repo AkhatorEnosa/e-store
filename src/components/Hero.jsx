@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { MdOutlineAddShoppingCart, MdOutlineRemoveShoppingCart } from "react-icons/md";
 import { AppContext } from "../context/AppContext";
 
-const Hero = ({ cart, item }) => {
-  const { toggleItem } = useContext(AppContext);
+const Hero = ({  item }) => {
+  const { cart, toggleItem, convertToUSD } = useContext(AppContext);
 
   const {image, title, description, price} = item;
   const itemInCart = cart.some((cartItem => cartItem.id === item.id));
@@ -19,7 +19,7 @@ const Hero = ({ cart, item }) => {
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-black tracking-wide">
             {title}
           </h1>
-          <p>Priced @ <b className="text-2xl font-bold mt-6 text-[#fe4343]">₦{(price) * 500}</b></p>
+          <p><span className="line-through opacity-50 italic px-2 py-1">$189.95</span><b className="text-2xl font-bold mt-6">{convertToUSD(price)}</b></p>
         </div>
         <p>
           {description}

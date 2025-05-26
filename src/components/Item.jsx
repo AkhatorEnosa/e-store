@@ -1,10 +1,34 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import {AiOutlineClose, AiOutlineMinus, AiOutlinePlus} from 'react-icons/ai';
 import { AppContext } from '../context/AppContext';
 
-const Item = ({ item, itemNum, handleSum, handleMinus }) => {
-  const { toggleItem } = useContext(AppContext);
+const Item = ({ item }) => {
+  const { toggleItem, convertToUSD, cart } = useContext(AppContext);
+  const [num, setNum] = useState(1)
+
   const { image, title, price, category } = item;
+
+  const findItem = cart.find((cartItem) => cartItem.id === item.id);
+
+  const handleNumAdd = () => {
+    if(findItem) {
+      setNum(num+1)
+      // findItem.price = price * num;
+    }
+  }
+
+  const handleNumMinus = () => {
+    if(findItem) {
+      if(num > 1){
+        setNum(num-1)
+        // findItem.price = price * num;
+      } else {
+        setNum(1)
+        // findItem.price = price * num;
+      }
+    }
+  }
+
   return (
     <div className='w-full grid grid-cols-10 py-2 justify-between items-center'>
 
@@ -20,16 +44,17 @@ const Item = ({ item, itemNum, handleSum, handleMinus }) => {
 
 
       <div className='col-span-2 grid grid-cols-4 justify-center items-center gap-2'>
-        <AiOutlineMinus className='col-span-1 w-full text-center text-xs cursor-pointer' onClick={() => handleMinus()}/>
-        <span className='col-span-2 p-2 w-full h-fit text-center border-[1px] border-[#342718]/10 rounded-md'>{itemNum}</span>
-        <AiOutlinePlus className='col-span-1 w-full text-center text-xs cursor-pointer' onClick={() => handleSum()}/>
+        <AiOutlineMinus className={`${num === 1 && "opacity-50 font-bold cursor-default"} col-span-1 w-full text-center text-sm cursor-pointer`} onClick={() => handleNumMinus()}/>
+        <span className='col-span-2 p-2 w-full h-fit text-center border-[1px] border-[#342718]/10 bg-gray-400/5 rounded-md'>{num}</span>
+        <AiOutlinePlus className='col-span-1 w-full text-center text-sm cursor-pointer' onClick={() => handleNumAdd()}/>
       </div>
 
       <div className='col-span-2 flex justify-end'>
-        <p className='text-sm font-semibold'>$ {(price)}</p>
+        <p className='text-sm font-semibold'>{convertToUSD((price * num))}</p>
       </div>
 
       <div className='col-span-1 flex justify-end'>
+        {/* <p>{price}</p> */}
         <button className='text-red-500 hover:text-red-700' onClick={() => toggleItem(item)}>
           <AiOutlineClose size={15} />
         </button>

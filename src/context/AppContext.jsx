@@ -12,23 +12,11 @@ const [products, setProducts] = useState([]);
 const [loading, setLoading] = useState(true);
 const [error, setError] = useState(true);
 const [subtotal, setSubtotal] = useState(0);
-const [num, setNum] = useState(1)
 
 // start cart
   const [cart, setCart] = useState([]);
-  // const [found, setFound] = useState(false);
   const [show, setShow] = useState(false);
   const [itemCount, setItemCount] = useState(0);
-  
-  useEffect(() => {
-    if(show) {
-      body.style.height = '100vh'
-      body.style.overflowY = 'hidden'
-    } else {
-      body.style.height = '100vh'
-      body.style.overflowY = 'scroll'
-    }
-  }, [show])
 
   const addSubtotal = (item) => {
     setSubtotal(subtotal+(item.price*500))
@@ -40,18 +28,6 @@ const [num, setNum] = useState(1)
       setSubtotal(subtotal-(item.price*500))
     }
     return subtotal;
-  }
-
-  const handleNumAdd = () => {
-    setNum(num+1)
-  }
-
-  const handleNumMinus = () => {
-    if(num > 1){
-      setNum(num-1)
-    } else {
-      setNum(1)
-    }
   }
 
   // add item to cart
@@ -92,6 +68,15 @@ const [num, setNum] = useState(1)
     setShow(!show);
   }
 
+  const convertToUSD = (x) => {
+    const result = x.toLocaleString('en-US', { 
+      style: 'currency', 
+      currency: 'USD' 
+    })
+
+    return result
+  }
+
 
   const fetchProducts = async () => {
     try {
@@ -112,6 +97,14 @@ const [num, setNum] = useState(1)
 
   useEffect(() => {
     fetchProducts()
+
+    if(show) {
+      body.style.height = '100vh'
+      body.style.overflowY = 'hidden'
+    } else {
+      body.style.height = '100vh'
+      body.style.overflowY = 'scroll'
+    }
   }, [])
 
     return (
@@ -120,16 +113,16 @@ const [num, setNum] = useState(1)
             loading, setLoading,
             error, setError,
             subtotal, setSubtotal,
-            num, setNum,
             cart, setCart,
             show, setShow,
             itemCount, setItemCount,
             // addItem, removeItem,
             toggleItem,
             handleShow,
-            handleNumAdd, handleNumMinus,
+            // handleNumAdd, handleNumMinus,
             addSubtotal, subtractSubtotal,
-            fetchProducts
+            fetchProducts,
+            convertToUSD
         }}>
             {children}
         </AppContext.Provider>

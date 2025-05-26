@@ -21,13 +21,9 @@ function App() {
     loading,
     error,
     subtotal,
-    num,
-    cart,
     show,
     itemCount,
-    addItem, removeItem,
-    handleShow,
-    handleNumAdd, handleNumMinus} = useContext(AppContext)
+    handleShow} = useContext(AppContext)
 
   const headerProduct = {
     id: 26,
@@ -46,7 +42,7 @@ function App() {
         <NavBar handleShow={handleShow} itemCount={itemCount}/>
         {/* <ErrorBoundary> */}
           <Hero 
-            item={headerProduct} cart={cart}
+            item={headerProduct}
           />
           {/* <Hot 
             price={product.price}
@@ -63,8 +59,6 @@ function App() {
 
           <NewProducts 
             products = {products}
-            addItem = {addItem}
-            cart={cart}
             />
           <MegaSales />
           <Sections 
@@ -76,14 +70,6 @@ function App() {
           <Cart
               show={show}
               handleShow={handleShow}
-              items={cart}
-              products = {products}
-              addItem = {addItem}
-              cart={cart}
-              removeItem={removeItem}
-              sum={handleNumAdd}
-              minus={handleNumMinus}
-              itemNum={num}
               subtotal={subtotal}
               // item={cart.map(x => Object.keys(x))}
             />

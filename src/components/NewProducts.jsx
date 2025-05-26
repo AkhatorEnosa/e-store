@@ -2,7 +2,7 @@
 import { useMemo } from 'react';
 import NewProductsCard from './NewProductsCard';
 
-const NewProducts = ({ products, cart }) => {
+const NewProducts = ({ products }) => {
   const randomNum = useMemo(() => {
     return products?.length ? Math.floor(Math.random() * products.length) : 0;
   }
@@ -28,7 +28,7 @@ const NewProducts = ({ products, cart }) => {
             {
             products.map(item => {
               return (
-                <NewProductsCard key={`${item.id}-${item.title}`} item={item} cart={cart}/>
+                <NewProductsCard key={`${item.id}-${item.title}`} item={item}/>
               );
             }).slice(startPos, endPos)}
           </div>
