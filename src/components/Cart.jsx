@@ -30,11 +30,13 @@ const Cart = ({ show, handleShow }) => {
                             <div className='col-span-3 w-full h-full flex flex-col gap-4 divide-y divide-[#342718]/10 overflow-y-scroll'>
                                 {/* Cart items will be displayed here */}
                                 {
-                                        cart?.map((item) => {
-                                            return(
-                                                <Item key={item.id} item={item}/>
-                                            )
-                                        })
+                                        cart.map((x) => (
+                                            // console.log(item)
+                                            <Item 
+                                              key={x?.id}  // Add this unique key
+                                              item={x} 
+                                            />
+                                          ))
                                 }
                             </div>
 

@@ -6,7 +6,7 @@ const Hero = ({  item }) => {
   const { cart, toggleItem, convertToUSD } = useContext(AppContext);
 
   const {image, title, description, price} = item;
-  const itemInCart = cart.some((cartItem => cartItem.id === item.id));
+  const itemInCart = cart?.find((cartItem) => cartItem?.id === item?.id);
 
   return (
     <div className="w-full h-auto md:h-screen bg-grey flex flex-col lg:grid grid-cols-7 py-20 lg:py-0 mt-6 lg:mt-16 px-8 md:px-16 lg:px-32 md:gap-8 lg:gap-10 justify-around md:justify-evenly items-center bg-[#f6f6f6]">

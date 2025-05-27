@@ -9,7 +9,7 @@ const NewProductsCard = ({ item }) => {
   const { cart, toggleItem, convertToUSD } = useContext(AppContext);
   
   const {image, title, price, description} = item;
-  const itemInCart = cart.some(cartItem => cartItem.id === item.id);
+  const itemInCart = cart.some(cartItem => cartItem?.id === item?.id);
   
   return (
     <div className={`relative flex flex-col justify-center lg:justify-between md:text-xs lg:text-sm items-center border-[1px] ${itemInCart ? "border-[#fe4343] shadow-md" : "hover:border-[#fe4343] hover:shadow-md"} gap-3 py-5 px-2 group rounded-xl duration-150 text-center`}>

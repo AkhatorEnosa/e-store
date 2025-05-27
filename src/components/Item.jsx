@@ -2,31 +2,51 @@ import React, { useContext, useState } from 'react';
 import {AiOutlineClose, AiOutlineMinus, AiOutlinePlus} from 'react-icons/ai';
 import { AppContext } from '../context/AppContext';
 
-const Item = ({ item }) => {
-  const { toggleItem, convertToUSD, cart } = useContext(AppContext);
+const Item = ({ item = {} }) => {
+  const { toggleItem, convertToUSD, cart, setCart } = useContext(AppContext);
   const [num, setNum] = useState(1)
 
-  const { image, title, price, category } = item;
+  const {
+      id,
+      image,
+      title,
+      price,
+      category
+     } = item;
 
-  const findItem = cart.find((cartItem) => cartItem.id === item.id);
+  const findItem = cart.find((cartItem) => cartItem?.id === id);
+  const defaultPrice = findItem?.price
 
   const handleNumAdd = () => {
-    if(findItem) {
-      setNum(num+1)
-      // findItem.price = price * num;
-    }
+    const newNum = num + 1;
+    setNum(newNum);
+    
+    // setCart(cart.map(item => 
+    //   item.id === id 
+    //     ? { ...item, price: defaultPrice * newNum } 
+    //     : item
+    // ));
+
+    console.log(cart)
   }
 
   const handleNumMinus = () => {
-    if(findItem) {
       if(num > 1){
-        setNum(num-1)
-        // findItem.price = price * num;
+        const newNum = num - 1
+        setNum(newNum)
+        // setCart(cart.map((item) => {
+        //   item.id === id 
+        //     ?
+        //   { ...item, price: defaultPrice * newNum }
+        //     :
+        //   item
+        // }))
       } else {
         setNum(1)
         // findItem.price = price * num;
       }
-    }
+
+      console.log(cart)
   }
 
   return (
@@ -38,7 +58,7 @@ const Item = ({ item }) => {
         </div>
         <div className='w-full flex flex-col items-start'>
           <p className='text-sm text-semibold'>{title}</p>
-          <p className='text-[10px] px-2 py-1 bg-gray-100'>{category}</p>
+          <p className='w-fit text-[10px] px-2 py-1 bg-gray-100 text-justify'>{category}</p>
         </div>
       </div>
 

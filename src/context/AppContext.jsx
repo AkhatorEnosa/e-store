@@ -62,6 +62,8 @@ const [subtotal, setSubtotal] = useState(0);
       setItemCount(itemCount-1)
       subtractSubtotal(item)
     }
+
+    console.log('THIS IS CART', cart)
   }
 
   const handleShow = () => {
@@ -82,7 +84,7 @@ const [subtotal, setSubtotal] = useState(0);
     try {
       const response = await axios.get('https://fakestoreapi.com/products');
       if (response.status === 200) {
-        setProducts(response.data);
+        setProducts(response.data || []);
         // setProduct(response.data[randomNum]);
       }
     } catch (error) {
