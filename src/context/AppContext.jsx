@@ -9,8 +9,8 @@ export function AppProvider({ children }) {
 const body = document.body
 const [products, setProducts] = useState([]);
 // const [product, setProduct] = useState([]);
-const [loading, setLoading] = useState(true);
-const [error, setError] = useState(true);
+const [loading, setLoading] = useState(false);
+const [error, setError] = useState(false);
 const [subtotal, setSubtotal] = useState(0);
 
 // start cart
@@ -62,8 +62,6 @@ const [subtotal, setSubtotal] = useState(0);
       setItemCount(itemCount-1)
       subtractSubtotal(item)
     }
-
-    console.log('THIS IS CART', cart)
   }
 
   const handleShow = () => {
@@ -81,14 +79,24 @@ const [subtotal, setSubtotal] = useState(0);
 
 
   const fetchProducts = async () => {
+    setLoading(true);
+    setError(false);
     try {
       const response = await axios.get('https://fakestoreapi.com/products');
       if (response.status === 200) {
-        setProducts(response.data || []);
-        // setProduct(response.data[randomNum]);
+        const result = response.data.map(product => ({
+          ...product,
+          quantity: 1 // Add quantity property with default value of 1
+        }))
+        console.log(result);
+        setProducts(result);
+        setLoading(false);
+        setError(false)
       }
     } catch (error) {
       console.error(error);
+      setError(true);
+      setLoading(false);
     } finally {
       setLoading(false);
       setError(false);
@@ -107,6 +115,7 @@ const [subtotal, setSubtotal] = useState(0);
       body.style.height = '100vh'
       body.style.overflowY = 'scroll'
     }
+
   }, [])
 
     return (

@@ -4,49 +4,63 @@ import { AppContext } from '../context/AppContext';
 
 const Item = ({ item = {} }) => {
   const { toggleItem, convertToUSD, cart, setCart } = useContext(AppContext);
-  const [num, setNum] = useState(1)
-
+  
   const {
-      id,
-      image,
-      title,
-      price,
-      category
-     } = item;
-
-  const findItem = cart.find((cartItem) => cartItem?.id === id);
-  const defaultPrice = findItem?.price
+    id,
+    image,
+    title,
+    price,
+    category,
+    quantity
+  } = item;
+  
+  const [num, setNum] = useState(quantity || 1);
+  // const findItem = cart.find((cartItem) => cartItem?.id === id);
 
   const handleNumAdd = () => {
-    const newNum = num + 1;
-    setNum(newNum);
-    
-    // setCart(cart.map(item => 
-    //   item.id === id 
-    //     ? { ...item, price: defaultPrice * newNum } 
-    //     : item
-    // ));
+    const findItem = cart?.find((cartItem) => cartItem?.id === id);
+    if (!findItem) return;
+  
+    const newQuantity = findItem?.quantity + 1;
+    const newPrice = findItem?.price * newQuantity; // Calculate new price
+
+    setNum(newQuantity);
+    // Update the cart with the new quantity and price
+  
+    setCart(cart?.map(item =>
+      item.id === id
+        ? { 
+            ...item, 
+            quantity: num, // Increment quantity
+            price: newPrice  // Update price
+          }
+        : item
+    ));
 
     console.log(cart)
   }
 
   const handleNumMinus = () => {
-      if(num > 1){
-        const newNum = num - 1
-        setNum(newNum)
-        // setCart(cart.map((item) => {
-        //   item.id === id 
-        //     ?
-        //   { ...item, price: defaultPrice * newNum }
-        //     :
-        //   item
-        // }))
-      } else {
-        setNum(1)
-        // findItem.price = price * num;
-      }
+    const findItem = cart?.find((cartItem) => cartItem?.id === id);
+    if (!findItem) return;
+  
+    const newQuantity = findItem?.quantity <= 1 ? findItem?.quantity : findItem?.quantity - 1;
+    const newPrice = findItem?.price * newQuantity; // Calculate new price
 
-      console.log(cart)
+    setNum(newQuantity);
+    // Update the cart with the new quantity and price
+  
+    setCart(cart?.map(item =>
+      item.id === id
+        ? { 
+            ...item, 
+            quantity: num,
+            price: newPrice  // Update price
+          }
+        : item
+    ));
+
+    console.log(cart)
   }
 
   return (
@@ -70,7 +84,7 @@ const Item = ({ item = {} }) => {
       </div>
 
       <div className='col-span-2 flex justify-end'>
-        <p className='text-sm font-semibold'>{convertToUSD((price * num))}</p>
+        <p className='text-sm font-semibold'>{convertToUSD((price))}</p>
       </div>
 
       <div className='col-span-1 flex justify-end'>

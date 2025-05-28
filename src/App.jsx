@@ -32,7 +32,8 @@ function App() {
     image: Shoe,
     price: 109.95,
     rating: {rate: 3.9, count: 120},
-    title: "Nike Air Max 270"
+    title: "Nike Air Max 270",
+    quantity: 1,
   };
   //cart
 
