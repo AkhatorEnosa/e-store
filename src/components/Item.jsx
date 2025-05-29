@@ -11,56 +11,40 @@ const Item = ({ item = {} }) => {
     title,
     price,
     category,
-    quantity
+    originalPrice
   } = item;
   
-  const [num, setNum] = useState(quantity || 1);
+  const [num, setNum] = useState(1)
   // const findItem = cart.find((cartItem) => cartItem?.id === id);
+  // const originalPrice = price;
+
+  const updateItemInCartPrice = (x) => {
+    return cart.map(item => 
+      item.id === id 
+        ? { ...item, price: originalPrice * x } 
+        : item
+    )
+  }
 
   const handleNumAdd = () => {
-    const findItem = cart?.find((cartItem) => cartItem?.id === id);
-    if (!findItem) return;
-  
-    const newQuantity = findItem?.quantity + 1;
-    const newPrice = findItem?.price * newQuantity; // Calculate new price
+    const newNum = num + 1;
+    setNum(newNum);
+    
+    setCart(updateItemInCartPrice(newNum));
 
-    setNum(newQuantity);
-    // Update the cart with the new quantity and price
-  
-    setCart(cart?.map(item =>
-      item.id === id
-        ? { 
-            ...item, 
-            quantity: num, // Increment quantity
-            price: newPrice  // Update price
-          }
-        : item
-    ));
-
-    console.log(cart)
+    // console.log(cart)
   }
 
   const handleNumMinus = () => {
-    const findItem = cart?.find((cartItem) => cartItem?.id === id);
-    if (!findItem) return;
-  
-    const newQuantity = findItem?.quantity <= 1 ? findItem?.quantity : findItem?.quantity - 1;
-    const newPrice = findItem?.price * newQuantity; // Calculate new price
-
-    setNum(newQuantity);
-    // Update the cart with the new quantity and price
-  
-    setCart(cart?.map(item =>
-      item.id === id
-        ? { 
-            ...item, 
-            quantity: num,
-            price: newPrice  // Update price
-          }
-        : item
-    ));
-
-    console.log(cart)
+      const newNum = num - 1;
+      setNum(newNum)
+      if(num > 1){
+        setCart(updateItemInCartPrice(newNum));
+      } else {
+        setNum(1)
+        setCart(updateItemInCartPrice(num))
+        // findItem.price = price * num;
+      }
   }
 
   return (
@@ -71,7 +55,7 @@ const Item = ({ item = {} }) => {
           <img src={image} alt={title} className="h-16"/>
         </div>
         <div className='w-full flex flex-col items-start'>
-          <p className='text-sm text-semibold'>{title}</p>
+          <p className='text-xs text-semibold tracking-tight'>{title}</p>
           <p className='w-fit text-[10px] px-2 py-1 bg-gray-100 text-justify'>{category}</p>
         </div>
       </div>
@@ -89,7 +73,7 @@ const Item = ({ item = {} }) => {
 
       <div className='col-span-1 flex justify-end'>
         {/* <p>{price}</p> */}
-        <button className='text-red-500 hover:text-red-700' onClick={() => toggleItem(item)}>
+        <button className='text-black/70 hover:text-[#fe4343]' onClick={() => toggleItem(item)}>
           <AiOutlineClose size={15} />
         </button>
       </div>

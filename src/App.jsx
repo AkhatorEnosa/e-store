@@ -33,7 +33,7 @@ function App() {
     price: 109.95,
     rating: {rate: 3.9, count: 120},
     title: "Nike Air Max 270",
-    quantity: 1,
+    originalPrice: 109.95
   };
   //cart
 
@@ -78,10 +78,12 @@ function App() {
     );
   } else {
     return (
-      <div className="h-screen bg-[#fe4343]">
-        <div className="w-full h-full flex flex-col justify-center items-center align-middle">
-          <div className="p-10 rounded-full bg-black animate-bounce"></div>
-          <p className='self-center'>Loading</p>
+      <div className="h-screen bg-[#fe4343] text-white">
+        <div className="w-full h-full flex flex-col justify-center items-center gap-5">
+          <div className="logo text-8xl font-extrabold items-center">
+            <p>Shaup</p>
+          </div>
+          <p className='self-center'>Loading...</p>
         </div>
       </div>
     )

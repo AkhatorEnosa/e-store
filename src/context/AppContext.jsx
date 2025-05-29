@@ -86,7 +86,7 @@ const [subtotal, setSubtotal] = useState(0);
       if (response.status === 200) {
         const result = response.data.map(product => ({
           ...product,
-          quantity: 1 // Add quantity property with default value of 1
+          originalPrice: product.price // Add quantity property with default value of 1
         }))
         console.log(result);
         setProducts(result);
