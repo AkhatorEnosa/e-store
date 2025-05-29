@@ -1,39 +1,44 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import ShopBag from '../assets/happy.png'
 
 const MegaSales = () => {
-  const [countdown, setCountDown] = useState('')
-  // Set the date we're counting down to
-  var proposedDate = new Date('Nov 15, 2022 12:46 :00')
-  var countDownDate = proposedDate.getTime()
+  const [countdown, setCountdown] = useState('');
+  const intervalRef = useRef(null);
 
-  // Get today's date and time
-  var now = new Date().getTime()
+  useEffect(() => {
+    const countDownDate = new Date('Nov 15, 2025 12:46:00').getTime();
 
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const timeDifference = countDownDate - now;
 
-  // Update the count down every 1 second
-  var x = setInterval(function () {
-    // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24))
-    var hours = Math.floor(
-      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-    )
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000)
+      if (timeDifference <= 0) {
+        setCountdown('EXPIRED');
+        clearInterval(intervalRef.current);
+        return;
+      }
 
-    // Display the result
-    setCountDown(
-      days + 'd : ' + hours + 'h : ' + minutes + 'm : ' + seconds + 's',
-    )
+      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor(
+        (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+      );
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-    // If the count down is finished, write some text
-    if (distance === 0) {
-      clearInterval(x)
-      setCountDown('')
-    }
-  }, 1000)
+      setCountdown(`${days}d : ${hours}h : ${minutes}m : ${seconds}s`);
+    };
+
+    // Initial call to avoid 1-second delay
+    updateCountdown();
+    
+    // Set up interval
+    intervalRef.current = setInterval(updateCountdown, 1000);
+
+    // Cleanup on unmount
+    return () => clearInterval(intervalRef.current);
+  }, []);
 
   return (
     <div className="w-full flex justify-center align-middle bg-[#f7f5ed] items-center px-10 lg:px-20 py-20 shadow-sm z-30">
@@ -43,7 +48,7 @@ const MegaSales = () => {
         className="lg:w-[30rem] md:w-[25rem] w-[14rem] md:relative absolute md:left-0 right-60"
       />
 
-      {distance < 0 ? (
+      {countdown === 'EXPIRED' ? (
         <div className="flex flex-col ml-10 z-50">
           <p className="md:text-base text-xs text-center">
             THE BIGGEST SALE OF THE YEAR
@@ -52,7 +57,7 @@ const MegaSales = () => {
             Mega Shopping Fiesta
           </h1>
           {/* <h1 className='mt-6 text-center lg:text-3xl text-2xl tracking-tight font-bold uppercase'>{countdown}</h1> */}
-          <button className="px-10 md:px-32 py-3 mx-auto rounded-lg hover:bg-[#fe4343] hover:text-black bg-[#000] text-white my-4 shadow-md cursor-pointer duration-300">
+          <button className="px-10 md:px-32 py-3 mx-auto hover:bg-accent-600 bg-[#000] text-white my-4 shadow-md cursor-pointer duration-150">
             Explore
           </button>
         </div>

@@ -66,6 +66,15 @@ const [subtotal, setSubtotal] = useState(0);
 
   const handleShow = () => {
     setShow(!show);
+
+    if(!show) {
+      body.style.height = '100vh'
+      body.style.overflowY = 'hidden'
+      console.log(show)
+    } else {
+      body.style.height = '100vh'
+      body.style.overflowY = 'scroll'
+    }
   }
 
   const convertToUSD = (x) => {
@@ -88,7 +97,7 @@ const [subtotal, setSubtotal] = useState(0);
           ...product,
           originalPrice: product.price // Add quantity property with default value of 1
         }))
-        console.log(result);
+        // console.log(result);
         setProducts(result);
         setLoading(false);
         setError(false)
@@ -107,15 +116,6 @@ const [subtotal, setSubtotal] = useState(0);
 
   useEffect(() => {
     fetchProducts()
-
-    if(show) {
-      body.style.height = '100vh'
-      body.style.overflowY = 'hidden'
-    } else {
-      body.style.height = '100vh'
-      body.style.overflowY = 'scroll'
-    }
-
   }, [])
 
     return (

@@ -6,6 +6,7 @@ import {GrPinterest} from 'react-icons/gr';
 import {RiVisaLine} from 'react-icons/ri';
 import {FaCcMastercard} from 'react-icons/fa';
 import {FaCcPaypal} from 'react-icons/fa';
+import { NAVLINKS } from '../constants/navlinks';
 
 const Footer = () => {
   return (
@@ -16,9 +17,9 @@ const Footer = () => {
         </div>
           <p className='font-extralight text-sm'>Discover a seamless shopping experience at Shaup, your go-to destination for stylish, high-quality products. From trendy fashion to everyday essentials, we bring you carefully selected items that blend affordability with premium design. Shop with confidence, enjoy fast delivery, and elevate your lifestyle with Shaup</p>
           <div className="flex w-full gap-1 mt-5">
-            <RiVisaLine className='text-[#3b3521]' size={40}/>
-            <FaCcMastercard className='text-[#3b3521]' size={40}/>
-            <FaCcPaypal className='text-[#3b3521]' size={40}/>
+            <RiVisaLine className='' size={40}/>
+            <FaCcMastercard className='' size={40}/>
+            <FaCcPaypal className='' size={40}/>
           </div>
       </div>
 
@@ -26,10 +27,13 @@ const Footer = () => {
         <h1 className='text-1xl font-bold uppercase mb-2'>Quick Links</h1>
         <div className="flex flex-col">
           <ul className='font-extralight text-sm'>
-            <li className='my-2'><a href="#">About</a></li>
-            <li className='my-2'><a href="#">Blogs</a></li>
-            <li className='my-2'><a href="#">Contact</a></li>
-            <li className='my-2'><a href="#">FAQ</a></li>
+            {
+              NAVLINKS.map((link, index) => (
+                <li key={index} className='my-2'>
+                  <a href="#">{link}</a>
+                </li>
+              ))
+            }
           </ul>
         </div>
       </div>
@@ -49,23 +53,23 @@ const Footer = () => {
       <div className="flex flex-col py-2 md:pl-2 pr-10">
         <h1 className='text-1xl font-bold uppercase mb-2'>Newsletter</h1>
         <div className="flex border-[1px] border-[#ccc] rounded-full py-1 px-2 w-fit">
-          <input type="text" placeholder='Email' className='mr-6 md:w-auto'/>
+          <input type="text" placeholder='Email' className='mr-6 md:w-auto outline-none'/>
           <button className="bg-black text-white font-sm py-2 px-5 rounded-full">
             Subscribe
           </button>
           </div>
           <div className="flex mt-7">
-            <span className='bg-[#fe4343]/30 rounded-full p-2 mx-2 cursor-pointer'>
-              <GrFacebookOption className='text-[#3b3521]' size={20}/>
+            <span className='bg-primary-100 rounded-full p-2 mx-2 cursor-pointer'>
+              <GrFacebookOption className='' size={20}/>
             </span>
-            <span className='bg-[#fe4343]/30 rounded-full p-2 mx-2'>
-              <GrTwitter className='text-[#3b3521]' size={20}/>
+            <span className='bg-primary-100 rounded-full p-2 mx-2'>
+              <GrTwitter className='' size={20}/>
             </span>
-            <span className='bg-[#fe4343]/30 rounded-full p-2 mx-2'>
-              <GrInstagram className='text-[#3b3521]' size={20}/>
+            <span className='bg-primary-100 rounded-full p-2 mx-2'>
+              <GrInstagram className='' size={20}/>
             </span>
-            <span className='bg-[#fe4343]/30 rounded-full p-2 mx-2'>
-              <GrPinterest className='text-[#3b3521]' size={20}/>
+            <span className='bg-primary-100 rounded-full p-2 mx-2'>
+              <GrPinterest className='' size={20}/>
             </span>
         </div>
       </div>

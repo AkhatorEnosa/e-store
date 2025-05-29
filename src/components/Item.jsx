@@ -15,6 +15,7 @@ const Item = ({ item = {} }) => {
   } = item;
   
   const [num, setNum] = useState(1)
+  const [clicked, setClicked] = useState('');
   // const findItem = cart.find((cartItem) => cartItem?.id === id);
   // const originalPrice = price;
 
@@ -31,6 +32,10 @@ const Item = ({ item = {} }) => {
     setNum(newNum);
     
     setCart(updateItemInCartPrice(newNum));
+    setClicked("add");
+    setTimeout(() => {
+      setClicked("");
+    }, 400);
 
     // console.log(cart)
   }
@@ -39,8 +44,13 @@ const Item = ({ item = {} }) => {
       const newNum = num - 1;
       setNum(newNum)
       if(num > 1){
+        setClicked("minus");
+        setTimeout(() => {
+          setClicked("");
+        }, 400);
         setCart(updateItemInCartPrice(newNum));
       } else {
+        setClicked("");
         setNum(1)
         setCart(updateItemInCartPrice(num))
         // findItem.price = price * num;
@@ -51,19 +61,19 @@ const Item = ({ item = {} }) => {
     <div className='w-full grid grid-cols-10 py-2 justify-between items-center'>
 
       <div className='col-span-5 flex justify-start gap-2 items-center'>
-        <div className='w-[100px] h-[80px] flex justify-center items-center rounded-lg shadow shadow-[#342718]/10 object-cover overflow-hidden'>
-          <img src={image} alt={title} className="h-16"/>
+        <div className='min-w-[60px] h-[60px] md:w-[100px] md:h-[80px] flex justify-center items-center rounded-lg shadow shadow-[#342718]/10 overflow-hidden'>
+          <img src={image} alt={title} className="h-12 md:h-20 object-contain"/>
         </div>
-        <div className='w-full flex flex-col items-start'>
-          <p className='text-xs text-semibold tracking-tight'>{title}</p>
-          <p className='w-fit text-[10px] px-2 py-1 bg-gray-100 text-justify'>{category}</p>
+        <div className='w-full flex flex-col items-start pr-4 gap-1'>
+          <p className='text-xs text-semibold tracking-tight line-clamp-3'>{title}</p>
+          <p className='w-fit text-[10px] p-1 bg-gray-100 text-justify line-clamp-1 rounded-full'>{category}</p>
         </div>
       </div>
 
 
       <div className='col-span-2 grid grid-cols-4 justify-center items-center gap-2'>
         <AiOutlineMinus className={`${num === 1 && "opacity-50 font-bold cursor-default"} col-span-1 w-full text-center text-sm cursor-pointer`} onClick={() => handleNumMinus()}/>
-        <span className='col-span-2 p-2 w-full h-fit text-center border-[1px] border-[#342718]/10 bg-gray-400/5 rounded-md'>{num}</span>
+        <span className={`col-span-2 p-2 w-full h-fit text-center border-[1px] ${clicked === "add" ? "border-secondary-400" : clicked === "minus" ? "border-accent-600" : "border-[#342718]/10"} bg-gray-400/5 rounded-md transition-all duration-150`}>{num}</span>
         <AiOutlinePlus className='col-span-1 w-full text-center text-sm cursor-pointer' onClick={() => handleNumAdd()}/>
       </div>
 
