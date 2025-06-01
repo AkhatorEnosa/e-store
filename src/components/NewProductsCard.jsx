@@ -3,16 +3,18 @@ import { AiFillStar } from 'react-icons/ai';
 import {AiOutlineStar} from 'react-icons/ai';
 import { AppContext } from '../context/AppContext';
 import { MdOutlineAddShoppingCart, MdOutlineRemoveShoppingCart } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 // import { AiFillHeart, AiTwotoneShopping} from "react-icons/ai";
 
 const NewProductsCard = ({ item }) => {
-  const { cart, toggleItem, convertToUSD } = useContext(AppContext);
+  const { cart, toggleItem, convertToUSD, findItemInCart } = useContext(AppContext);
   
-  const {image, title, price, description} = item;
-  const itemInCart = cart.some(cartItem => cartItem?.id === item?.id);
+  const { id, image, title, price, description } = item;
+  const itemInCart = findItemInCart(cart, item);
   
   return (
-    <div className={`relative flex flex-col justify-center lg:justify-between md:text-xs lg:text-sm items-center border-[1px] ${itemInCart ? "border-primary-400 shadow-md" : "hover:border-primary-400 hover:shadow-md"} gap-3 py-5 px-2 group rounded-xl duration-150 text-center`}>
+    <div className={`relative flex flex-col justify-center lg:justify-between md:text-xs lg:text-sm items-center border-[1px] ${itemInCart ? "border-primary-400 shadow-md" : "hover:border-primary-400 hover:shadow-md"} gap-3 py-5 px-2 group rounded-xl duration-150 text-center hover:cursor-pointer`}>
+        <Link to={`/${id}`} className='w-full h-full absolute top-0 left-0 z-40'></Link>
 
         <div className={`absolute flex opacity-100 p-2 w-full justify-end group-hover:text-primary-400 -top-5 -right-5 z-50 `}>
           {/* <span className='bg-white hover:bg-[#fe4362] hover:text-[#fff] shadow-md px-2 py-2 rounded-full text-black duration-500'><AiFillHeart size={25}/></span> */}

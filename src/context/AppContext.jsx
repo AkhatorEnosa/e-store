@@ -1,23 +1,26 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 
 export const AppContext = createContext();
 
 export function AppProvider({ children }) {
 
 
-const body = document.body
-const [products, setProducts] = useState([]);
-// const [product, setProduct] = useState([]);
-const [loading, setLoading] = useState(false);
-const [error, setError] = useState(false);
-const [subtotal, setSubtotal] = useState(0);
+  const body = document.body
 
-// start cart
-  const [cart, setCart] = useState([]);
+  const [products, setProducts] = useState([]);
+  // const [product, setProduct] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [subtotal, setSubtotal] = useState(0);
+
+  
+  // start cart
+  const [cart, setCart] = useState(localStorage.getItem('cart') !== null ? JSON.parse(localStorage.getItem('cart')) : []);
   const [show, setShow] = useState(false);
-  const [itemCount, setItemCount] = useState(0);
-
+  const [itemCount, setItemCount] = useState(cart?.length || 0);
+  const cartString = useMemo(() => JSON.stringify(cart), [cart]);
+  
   const addSubtotal = (item) => {
     setSubtotal(subtotal+(item.price*500))
     return subtotal;
@@ -30,34 +33,21 @@ const [subtotal, setSubtotal] = useState(0);
     return subtotal;
   }
 
-  // add item to cart
-  // const addItem = (item) => {
-  //   const findItem = cart.find((cartItem) => cartItem.id === item.id);
-  //   if (!findItem) { 
-  //     setCart([...cart, item]);
-  //     setItemCount(itemCount+1)
-  //     addSubtotal(item)
-  //   }
-  // }
-
-  // const removeItem = (item) => {
-  //   const findItem = cart.find((cartItem) => cartItem.id === item.id);
-  //   if (findItem) {
-  //     const newCart = cart.filter((cartItem) => cartItem.id !== item.id);
-  //     setCart(newCart);
-  //     setItemCount(itemCount-1)
-  //     subtractSubtotal(item)
-  //   }
-  // }
+  const findItemInCart = (cart, item) => {
+    if(cart === undefined || cart?.length === 0) {
+      return false;
+    } else {
+      return cart?.find((cartItem) => cartItem.id === item.id);
+    }
+  }
 
   const toggleItem = (item) => {
-    const findItem = cart.find((cartItem) => cartItem.id === item.id);
-    if (!findItem) { 
+    if (!findItemInCart(cart, item)) { 
       setCart([...cart, item]);
       setItemCount(itemCount+1)
       addSubtotal(item)
     } else {
-      const newCart = cart.filter((cartItem) => cartItem.id !== item.id);
+      const newCart = cart?.filter((cartItem) => cartItem.id !== item.id);
       setCart(newCart);
       setItemCount(itemCount-1)
       subtractSubtotal(item)
@@ -78,7 +68,7 @@ const [subtotal, setSubtotal] = useState(0);
   }
 
   const convertToUSD = (x) => {
-    const result = x.toLocaleString('en-US', { 
+    const result = x?.toLocaleString('en-US', { 
       style: 'currency', 
       currency: 'USD' 
     })
@@ -94,7 +84,7 @@ const [subtotal, setSubtotal] = useState(0);
       const response = await axios.get('https://fakestoreapi.com/products');
       if (response.status === 200) {
         const result = response.data.map(product => ({
-          ...product,
+          ...product, 
           originalPrice: product.price // Add quantity property with default value of 1
         }))
         // console.log(result);
@@ -118,6 +108,15 @@ const [subtotal, setSubtotal] = useState(0);
     fetchProducts()
   }, [])
 
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('cart', cartString);
+    } catch (error) {
+      console.error('LocalStorage save failed:', error);
+    }
+  }, [cartString]);
+
     return (
         <AppContext.Provider value={{
             products, setProducts,
@@ -132,6 +131,7 @@ const [subtotal, setSubtotal] = useState(0);
             handleShow,
             // handleNumAdd, handleNumMinus,
             addSubtotal, subtractSubtotal,
+            findItemInCart,
             fetchProducts,
             convertToUSD
         }}>

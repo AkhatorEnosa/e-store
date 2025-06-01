@@ -1,39 +1,49 @@
-// import React, { useState } from 'react';
 import { useMemo } from 'react';
 import NewProductsCard from './NewProductsCard';
 
-const NewProducts = ({ products }) => {
-  const randomNum = useMemo(() => {
-    return products?.length ? Math.floor(Math.random() * products.length) : 0;
+const NewProducts = ({ products = [] }) => {
+  // Memoized random starting position calculation
+  const { startPos, endPos } = useMemo(() => {
+    if (!products.length) return { startPos: 0, endPos: 0 };
+    
+    const randomNum = Math.floor(Math.random() * products.length);
+    const safeStart = Math.max(
+      0, 
+      randomNum - (randomNum + 4 > products.length ? 4 : 0)
+    );
+    const safeEnd = Math.min(safeStart + 4, products.length);
+    
+    return { startPos: safeStart, endPos: safeEnd };
+  }, [products]);
+
+  // Early return if no products
+  if (!products.length) {
+    return (
+      <div className='px-8 md:px-16 lg:px-32 py-20'>
+        <p>No new arrivals available</p>
+      </div>
+    );
   }
-  , [products]);
-  // let position;
-  const checkedPos = () => {
-    if (!products?.length) return 0;
-    const safePosition = Math.max(0, randomNum - (randomNum + 4 > products.length ? 4 : 0));
-    return Math.min(safePosition, products.length - 4);
-  };
 
-  const startPos = checkedPos();
-  const endPos = Math.min(startPos + 4, products.length);
-
-  // console.log(products.length, startPos, endPos, randomNum);
-  // console.log(products)
+  // Get the products to display
+  const displayedProducts = products.slice(startPos, endPos);
 
   return (
-    <div className='px-8 md:px-16 lg:px-32 z-30 py-20'>
+    <section className='px-8 md:px-16 lg:px-32 z-30 py-20'>
       <div className="w-full flex flex-col">
-          <h1 className='text-2xl font-bold uppercase w-fit mt-4 mb-10 '>New Arrivals</h1>
-          <div className='grid grid-cols-2 gap-4'>
-            {
-            products.map(item => {
-              return (
-                <NewProductsCard key={`${item.id}-${item.title}`} item={item}/>
-              );
-            }).slice(startPos, endPos)}
-          </div>
+        <h2 className='text-2xl font-bold uppercase w-fit mt-4 mb-10'>
+          New Arrivals
+        </h2>
+        <div className='grid grid-cols-2 gap-4'>
+          {displayedProducts.map((item) => (
+            <NewProductsCard 
+              key={`${item.id}-${item.title}`} 
+              item={item}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

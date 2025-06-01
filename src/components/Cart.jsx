@@ -10,7 +10,7 @@ const Cart = ({ show, handleShow }) => {
     const [total, setTotal] = useState(0)
 
     useEffect(() => {
-        const sumPrices =  cart.reduce((sum, item) => {
+        const sumPrices =  cart?.reduce((sum, item) => {
             return sum + (item.price || 0);
           }, 0);
 
@@ -27,7 +27,7 @@ const Cart = ({ show, handleShow }) => {
     <div className={`w-screen h-screen ${show ? "flex" : "hidden"} flex-col justify-center items-center bg-black/50 fixed z-50`}>
         <div className='w-[90%] md:w-[80%] h-[95%] bg-white shadow-lg rounded-lg flex flex-col justify-between items-center p-6'>
             <div className='w-full flex justify-between items-center mb-4'>
-                 <h2 className='text-xl font-semibold'>You have {cart.length} items in your cart.</h2>
+                 <h2 className='text-xl font-semibold'>You have {cart?.length} items in your cart.</h2>
                 <AiOutlineClose className='size-10 p-2 hover:text-accent-600 rounded-full text-sm duration-150 cursor-pointer' onClick={()=>handleShow(show)}/>
             </div>
             <div className={`w-full h-full ${cart?.length > 0 && "flex flex-col md:grid grid-cols-5 gap-6 overflow-scroll" }`}>

@@ -27,7 +27,7 @@ const MegaSales = () => {
       );
       const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-      setCountdown(`${days}d : ${hours}h : ${minutes}m : ${seconds}s`);
+      setCountdown(`${days}days  ${hours}hrs  ${minutes}mins  ${seconds}secs`);
     };
 
     // Initial call to avoid 1-second delay
@@ -69,7 +69,7 @@ const MegaSales = () => {
           <h1 className="lg:text-7xl text-3xl tracking-tight font-extrabold text-center">
             Mega Shopping Fiesta
           </h1>
-          <h1 className="mt-6 text-center lg:text-3xl text-2xl tracking-tight font-bold uppercase countdown">
+          <h1 className="mt-6 text-center lg:text-4xl text-2xl tracking-tight font-bold capitalize countdown text-accent-500">
             {countdown}
           </h1>
         </div>

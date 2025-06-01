@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Benefits from './components/Benefits';
 // import ErrorBoundary from './components/ErrorBoundary';
@@ -14,6 +15,7 @@ import Sections from './components/Sections';
 import Shoe from './assets/shoe.png'
 import { AppContext } from './context/AppContext';
 import Cart from './components/Cart';
+import Product from './pages/Product';
 
 function App() {
   const { 
@@ -39,42 +41,52 @@ function App() {
 
   if(!loading && !error) {
     return (
-      <div className="h-screen flex flex-col justify-between">
-        <NavBar handleShow={handleShow} itemCount={itemCount}/>
-        {/* <ErrorBoundary> */}
-          <Hero 
-            item={headerProduct}
-          />
-          {/* <Hot 
-            price={product.price}
-            description={product.description}
-            title={product.title}
-            // discountPercentage={product.discountPercentage}
-            image={product.image}
-            loading={loading}
-            error={error}
-            
-            product={products}
-            category={product.category}
-          /> */}
+      <Router>
+        <div className="h-screen flex flex-col justify-between">
+          <NavBar handleShow={handleShow} itemCount={itemCount}/>
+          {/* <ErrorBoundary> */}
+          <Routes>
+            <Route path="/" element={
+              <>
+                <Hero item={headerProduct} />
+                {/* <Hot 
+                  price={product.price}
+                  description={product.description}
+                  title={product.title}
+                  // discountPercentage={product.discountPercentage}
+                  image={product.image}
+                  loading={loading}
+                  error={error}
+                  
+                  product={products}
+                  category={product.category}
+                /> */}
 
-          <NewProducts 
-            products = {products}
-            />
-          <MegaSales />
-          <Sections 
-              products = {products}
+                <NewProducts 
+                  products = {products}
+                  />
+                <MegaSales />
+                <Sections 
+                    products = {products}
+                    />
+                <Benefits />
+              </>
+            } />
+
+            <Route path='/:id' element={
+              <Product />
+            } />
+          </Routes>
+            <Footer />
+              {/* </ErrorBoundary> */}
+            <Cart
+                show={show}
+                handleShow={handleShow}
+                subtotal={subtotal}
+                // item={cart.map(x => Object.keys(x))}
               />
-          <Benefits />
-          <Footer />
-            {/* </ErrorBoundary> */}
-          <Cart
-              show={show}
-              handleShow={handleShow}
-              subtotal={subtotal}
-              // item={cart.map(x => Object.keys(x))}
-            />
-      </div>
+        </div>
+      </Router>
     );
   } else {
     return (
