@@ -12,7 +12,9 @@ const Product = () => {
     const navigate = useNavigate();
 
     const getProduct = products?.find((product) => product?.id === parseInt(id)); // Find product by ID
+    console.log(getProduct)
     const itemInCart = findItemInCart(cart, getProduct); // Check if item is in cart
+
 
     // const [clicked, setClicked] = useState('');
     //   const [num, setNum] = useState(getProduct?.quantity || 1);
@@ -25,15 +27,15 @@ const Product = () => {
         if (!id) navigate('/not-found'); // Redirect if missing
       }, [id]);
   return (
-    <div className='w-full h-fit lg:h-screen flex flex-col px-8 md:px-16 lg:px-32 lg:pt-24 gap-10'>
+    <div className='w-full h-fit lg:h-screen flex flex-col px-8 md:px-16 lg:px-32 pt-24 gap-10'>
         <Breadcrumbs />
-        <div className='w-full h-full grid grid-cols-2 gap-4'>
+        <div className='w-full h-full flex flex-col md:grid grid-cols-2 gap-4'>
             <div className='w-full max-h-[500px] flex justify-center items-center col-span-1 p-4 rounded-lg overflow-hidden'>
                 <img src={getProduct?.image} alt={`${getProduct?.image}`} className='w-full h-full object-contain'/>
             </div>
             <div className='col-span-1 flex flex-col justify-start items-start gap-4'>
                 <div className='w-full flex flex-col gap-1'>
-                    <h1 className='text-2xl font-bold'>{getProduct?.title}</h1>
+                    <h1 className='leading-5 lg:text-2xl font-bold'>{getProduct?.title}</h1>
                     <span className='w-fit text-[10px] bg-gray-200 p-1 rounded-full font-semibold'>{getProduct?.category}</span>
                 </div>
                 <p className='text-xs text-gray-700'>{getProduct?.description}</p>
@@ -51,6 +53,7 @@ const Product = () => {
                         title={itemInCart ? "Remove from Cart" : "Add to Cart"}
                         operation={itemInCart}
                         handleClick={() => toggleItem(getProduct)}
+                        variants={"text-sm"}
                     />
                 </div>
                 {/* <button className='bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300 transition duration-200' onClick={() => navigate('/')}>Back to Products</button> */}

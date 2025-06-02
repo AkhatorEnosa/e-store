@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
 import Benefits from './components/Benefits';
 // import ErrorBoundary from './components/ErrorBoundary';
@@ -91,7 +92,7 @@ function App() {
   } else {
     return (
       <div className="h-screen bg-[#fe4343] text-white">
-        <div className="w-full h-full flex flex-col justify-center items-center gap-5">
+        <div className="w-full h-full flex flex-col justify-center items-center gap-5 animate-pulse">
           <div className="logo text-8xl font-extrabold items-center">
             <p>Shaup</p>
           </div>

@@ -3,6 +3,7 @@ import { BiSearchAlt } from 'react-icons/bi';
 import { TiShoppingCart } from 'react-icons/ti';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { NAVLINKS } from "../constants/navlinks";
+import { Link } from "react-router-dom";
 
 const NavBar = (props) => {
   const [nav, setNav] = useState(false);
@@ -14,7 +15,7 @@ const NavBar = (props) => {
     <div className='w-full px-6 py-4 mb-4 flex justify-between items-center shadow fixed bg-white z-50'>
 
       <div className="logo text-black text-5xl font-extrabold items-center">
-        <p>Shaup</p>
+        <Link to={"/"}>Shaup</Link>
       </div>
 
       {/* fullscreen menu */}

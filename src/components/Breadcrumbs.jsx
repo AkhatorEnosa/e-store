@@ -7,7 +7,7 @@ const Breadcrumbs = () => {
 
   return (
     <nav className="flex items-center text-sm px-6 py-4 text-gray-600">
-      <Link to="/" className="hover:text-primary-600">Home</Link>
+      <Link to="/" className="hover:text-accent-700">Home</Link>
       {pathnames.map((name, index) => {
         const routeTo = `/${pathnames.slice(0, index + 1).join('>')}`;
         const isLast = index === pathnames.length - 1;
@@ -16,9 +16,9 @@ const Breadcrumbs = () => {
           <span key={name} className="flex items-center">
             <span className="mx-2">/</span>
             {isLast ? (
-              <span className="text-primary-600 font-medium">{name}</span>
+              <span className="text-accent-700 font-medium">{name}</span>
             ) : (
-              <Link to={routeTo} className="hover:text-primary-600 capitalize">
+              <Link to={routeTo} className="hover:text-accent-700 capitalize">
                 {name}
               </Link>
             )}
