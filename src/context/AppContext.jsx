@@ -27,6 +27,7 @@ export function AppProvider({ children }) {
   });
 
   const [show, setShow] = useState(false);
+  const [nav, setNav] = useState(false);
   const [itemCount, setItemCount] = useState(cart?.length || 0);
   const cartString = useMemo(() => JSON.stringify(cart), [cart]);
 
@@ -103,17 +104,24 @@ export function AppProvider({ children }) {
     }
   }
 
-  const handleShow = () => {
-    setShow(!show);
-
-    if(!show) {
+  const lockBodyScroll = (state) => {
+    if(!state) {
       body.style.height = '100vh'
       body.style.overflowY = 'hidden'
-      console.log(show)
     } else {
       body.style.height = '100vh'
       body.style.overflowY = 'scroll'
     }
+  }
+
+  const handleShow = () => {
+    setShow(!show);
+    lockBodyScroll(show)
+  }
+
+  const handleNav = () => {
+    setNav(!nav);
+    lockBodyScroll(nav)
   }
 
   const convertToUSD = (x) => {
@@ -133,10 +141,12 @@ export function AppProvider({ children }) {
             subtotal, setSubtotal,
             cart, setCart,
             show, setShow,
+            nav, setNav,
             itemCount, setItemCount,
             // addItem, removeItem,
             toggleItem,
             handleShow,
+            handleNav,
             // handleNumAdd, handleNumMinus,
             addSubtotal, subtractSubtotal,
             findItemInCart,

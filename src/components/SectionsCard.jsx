@@ -1,6 +1,4 @@
 import React, { useContext } from 'react'
-import {AiFillStar} from 'react-icons/ai';
-import {AiOutlineStar} from 'react-icons/ai';
 import { AppContext } from '../context/AppContext';
 
 const SectionsCard = ({ img, title, price }) => {
@@ -11,11 +9,11 @@ const SectionsCard = ({ img, title, price }) => {
             <div className='flex flex-col justify-center'>
                 <span className='text-sm mb-2'>{title}</span>
                 <div className='text-sm flex'>
-                <AiFillStar className='text-primary-400'/>
-                <AiFillStar className='text-primary-400'/>
-                <AiFillStar className='text-primary-400'/>
-                <AiFillStar className='text-primary-400'/>
-                <AiOutlineStar/>
+                    <i className="bi bi-star-fill text-primary-600"></i>
+                    <i className="bi bi-star-fill text-primary-600"></i>
+                    <i className="bi bi-star-fill text-primary-600"></i>
+                    <i className="bi bi-star text-primary-600"></i>
+                    <i className="bi bi-star text-primary-600"></i>
                 </div>
                 <p className='font-bold text-md mt-2'>{convertToUSD(price)}</p>
             </div>

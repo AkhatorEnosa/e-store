@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { lazy, Suspense, useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
@@ -16,7 +16,9 @@ import Sections from './components/Sections';
 import Shoe from './assets/shoe.png'
 import { AppContext } from './context/AppContext';
 import Cart from './components/Cart';
-import Product from './pages/Product';
+import Loader from './components/Loader';
+// import Product from './pages/Product';
+const Product = lazy(() => import('./pages/Product'));
 
 function App() {
   const { 
@@ -42,63 +44,58 @@ function App() {
 
   if(!loading && !error) {
     return (
-      <Router>
-        <div className="h-screen flex flex-col justify-between">
-          <NavBar handleShow={handleShow} itemCount={itemCount}/>
-          {/* <ErrorBoundary> */}
-          <Routes>
-            <Route path="/" element={
-              <>
-                <Hero item={headerProduct} />
-                {/* <Hot 
-                  price={product.price}
-                  description={product.description}
-                  title={product.title}
-                  // discountPercentage={product.discountPercentage}
-                  image={product.image}
-                  loading={loading}
-                  error={error}
-                  
-                  product={products}
-                  category={product.category}
-                /> */}
+      <Suspense fallback={<Loader />}>
+        <Router>
+          <div className="h-screen flex flex-col justify-between">
+            <NavBar handleShow={handleShow} itemCount={itemCount}/>
+            {/* <ErrorBoundary> */}
+            <Routes>
+              <Route path="/" element={
+                <>
+                  <Hero item={headerProduct} />
+                  {/* <Hot 
+                    price={product.price}
+                    description={product.description}
+                    title={product.title}
+                    // discountPercentage={product.discountPercentage}
+                    image={product.image}
+                    loading={loading}
+                    error={error}
+                    
+                    product={products}
+                    category={product.category}
+                  /> */}
 
-                <NewProducts 
-                  products = {products}
-                  />
-                <MegaSales />
-                <Sections 
+                  <NewProducts 
                     products = {products}
                     />
-                <Benefits />
-              </>
-            } />
+                  <MegaSales />
+                  <Sections 
+                      products = {products}
+                      />
+                  <Benefits />
+                </>
+              } />
 
-            <Route path='/:id' element={
-              <Product />
-            } />
-          </Routes>
-            <Footer />
-              {/* </ErrorBoundary> */}
-            <Cart
-                show={show}
-                handleShow={handleShow}
-                subtotal={subtotal}
-                // item={cart.map(x => Object.keys(x))}
-              />
-        </div>
-      </Router>
+              <Route path='/:id' element={
+                <Product />
+              } />
+            </Routes>
+              <Footer />
+                {/* </ErrorBoundary> */}
+              <Cart
+                  show={show}
+                  handleShow={handleShow}
+                  subtotal={subtotal}
+                  // item={cart.map(x => Object.keys(x))}
+                />
+          </div>
+        </Router>
+      </Suspense>
     );
   } else {
     return (
-      <div className="h-screen bg-[#fe4343] text-white">
-        <div className="w-full h-full flex flex-col justify-center items-center gap-5 animate-pulse">
-          <div className="logo text-8xl font-extrabold items-center">
-            <p>Shaup</p>
-          </div>
-          <p className='self-center'>Loading...</p>
-        </div>
-      </div>
+      <Loader />
     )
   }
 }

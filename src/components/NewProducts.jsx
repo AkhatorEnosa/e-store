@@ -9,9 +9,9 @@ const NewProducts = ({ products = [] }) => {
     const randomNum = Math.floor(Math.random() * products.length);
     const safeStart = Math.max(
       0, 
-      randomNum - (randomNum + 4 > products.length ? 4 : 0)
+      randomNum - (randomNum + 6 > products.length ? 6 : 0)
     );
-    const safeEnd = Math.min(safeStart + 4, products.length);
+    const safeEnd = Math.min(safeStart + 6, products.length);
     
     return { startPos: safeStart, endPos: safeEnd };
   }, [products]);
@@ -34,7 +34,7 @@ const NewProducts = ({ products = [] }) => {
         <h2 className='text-2xl font-bold uppercase w-fit mt-4 mb-10'>
           New Arrivals
         </h2>
-        <div className='grid grid-cols-2 gap-4'>
+        <div className='grid grid-cols-2 md:grid-cols-3 gap-4'>
           {displayedProducts.map((item) => (
             <NewProductsCard 
               key={`${item.id}-${item.title}`} 

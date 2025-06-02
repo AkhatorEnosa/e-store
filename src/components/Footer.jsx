@@ -1,8 +1,5 @@
 import React from 'react';
 import {GrFacebookOption} from 'react-icons/gr';
-import {GrTwitter} from 'react-icons/gr';
-import {GrInstagram} from 'react-icons/gr';
-import {GrPinterest} from 'react-icons/gr';
 import {RiVisaLine} from 'react-icons/ri';
 import {FaCcMastercard} from 'react-icons/fa';
 import {FaCcPaypal} from 'react-icons/fa';
@@ -10,7 +7,7 @@ import { NAVLINKS } from '../constants/navlinks';
 
 const Footer = () => {
   return (
-    <div className='w-full flex md:flex-row flex-col justify-around p-10'>
+    <div className='w-full flex lg:flex-row flex-col justify-around p-10'>
       <div className='flex flex-col max-w-[450px] md:px-5 py-2 mb-5'>
         <div className="logo text-black text-5xl font-extrabold items-center mb-6">
           <p>Shaup</p>
@@ -58,19 +55,15 @@ const Footer = () => {
             Subscribe
           </button>
           </div>
-          <div className="flex mt-7">
-            <span className='bg-primary-100 rounded-full p-2 mx-2 cursor-pointer'>
-              <GrFacebookOption className='' size={20}/>
-            </span>
-            <span className='bg-primary-100 rounded-full p-2 mx-2'>
-              <GrTwitter className='' size={20}/>
-            </span>
-            <span className='bg-primary-100 rounded-full p-2 mx-2'>
-              <GrInstagram className='' size={20}/>
-            </span>
-            <span className='bg-primary-100 rounded-full p-2 mx-2'>
-              <GrPinterest className='' size={20}/>
-            </span>
+          <div className="flex gap-2 mt-7">
+            <i className='flex justify-center items-center p-2 text-2xl bi bi-facebook bg-primary-100 rounded-full cursor-pointer'>
+            </i>
+            <i className='flex justify-center items-center p-2 text-2xl bi bi-twitter-x bg-primary-100 rounded-full cursor-pointer'>
+            </i>
+            <i className='flex justify-center items-center p-2 text-2xl bi bi-instagram bg-primary-100 rounded-full cursor-pointer'>
+            </i>
+            <i className='flex justify-center items-center p-2 text-2xl bi bi-pinterest bg-primary-100 rounded-full cursor-pointer'>
+            </i>
         </div>
       </div>
     </div>

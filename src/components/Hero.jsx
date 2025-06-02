@@ -25,7 +25,7 @@ const Hero = ({  item }) => {
           {description}
         </p>
         <Button 
-          title={itemInCart ? "Remove from Cart" : "Add to Cart"}
+          title={itemInCart ? "Item in Cart" : "Add to Cart"}
           operation={itemInCart}
           handleClick={() => toggleItem(item)}
         />

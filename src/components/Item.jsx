@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import {AiOutlineClose, AiOutlineMinus, AiOutlinePlus} from 'react-icons/ai';
 import { AppContext } from '../context/AppContext';
 
 const Item = ({ item = {} }) => {
@@ -72,9 +71,9 @@ const Item = ({ item = {} }) => {
 
 
       <div className='col-span-2 grid grid-cols-4 justify-center items-center gap-2'>
-        <AiOutlineMinus className={`${num === 1 && "opacity-50 font-bold cursor-default"} col-span-1 w-full text-center text-sm cursor-pointer`} onClick={() => handleNumMinus()}/>
-        <span className={`col-span-2 p-2 w-full h-fit text-center border-[1px] ${clicked === "add" ? "border-secondary-400" : clicked === "minus" ? "border-accent-600" : "border-[#342718]/10"} bg-gray-400/5 rounded-md transition-all duration-150`}>{num}</span>
-        <AiOutlinePlus className='col-span-1 w-full text-center text-sm cursor-pointer' onClick={() => handleNumAdd()}/>
+        <i className={`bi bi-dash-lg ${num === 1 && "opacity-50 font-bold cursor-default"} col-span-1 w-full text-center text-sm cursor-pointer`} onClick={() => handleNumMinus()}></i>
+        <span className={`col-span-2 p-2 w-full h-fit text-center border-[1px] ${clicked === "add" ? "border-secondary-400 bg-secondary-50" : clicked === "minus" ? "border-accent-600 bg-accent-50" : "border-inherit/10 bg-gray-400/5"} rounded-md transition-all duration-150`}>{num}</span>
+        <i className="bi bi-plus-lg col-span-1 w-full text-center text-sm cursor-pointer" onClick={() => handleNumAdd()}></i>
       </div>
 
       <div className='col-span-2 flex justify-end'>
@@ -84,28 +83,9 @@ const Item = ({ item = {} }) => {
       <div className='col-span-1 flex justify-end'>
         {/* <p>{price}</p> */}
         <button className='text-black/70 hover:text-[#fe4343]' onClick={() => toggleItem(item)}>
-          <AiOutlineClose size={15} />
+          <i className="bi bi-x"></i>
         </button>
       </div>
-
-
-      {/* <div className="col-span-3">
-        <div className="flex flex-col text-xs justify-between">
-          <div className="w-full flex justify-between">
-            <div>
-              <p>{title}</p>
-              <p className='font-bold'>₦ {(price) * 500}</p>
-            </div>
-            <AiFillCloseCircle size={20} className="cursor-pointer" onClick={()=> toggleItem(item)}/>
-          </div>
-
-          <div className='w-56 grid grid-cols-3 px-2 mt-4 justify-center items-center'>
-            <AiFillMinusSquare className='col-span-1 text-xl hover:2xl cursor-pointer duration-75' onClick={() => handleMinus()}/>
-            <span className='col-span-1 text-xl font-bold'>{itemNum}</span>
-            <AiFillPlusSquare className='col-span-1 text-xl hover:2xl cursor-pointer duration-75' onClick={() => handleSum()}/>
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 };

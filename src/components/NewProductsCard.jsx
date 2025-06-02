@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { AiFillStar } from 'react-icons/ai';
 import {AiOutlineStar} from 'react-icons/ai';
 import { AppContext } from '../context/AppContext';
-import { MdOutlineAddShoppingCart, MdOutlineRemoveShoppingCart } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 // import { AiFillHeart, AiTwotoneShopping} from "react-icons/ai";
 
@@ -13,12 +12,14 @@ const NewProductsCard = ({ item }) => {
   const itemInCart = findItemInCart(cart, item);
   
   return (
-    <div className={`relative flex flex-col justify-center lg:justify-between md:text-xs lg:text-sm items-center border-[1px] ${itemInCart ? "border-primary-400 shadow-md" : "hover:border-primary-400 hover:shadow-md"} gap-3 py-5 px-2 group rounded-xl duration-150 text-center hover:cursor-pointer`}>
+    <div className={`relative flex flex-col justify-center lg:justify-between md:text-xs lg:text-sm items-center border-[1px] ${itemInCart ? "shadow-md" : "hover:shadow-md"} gap-3 py-5 px-2 group rounded-xl duration-150 text-center hover:cursor-pointer`}>
         <Link to={`/${id}`} className='w-full h-full absolute top-0 left-0 z-40'></Link>
+        
 
-        <div className={`absolute flex opacity-100 p-2 w-full justify-end group-hover:text-primary-400 -top-5 -right-5 z-50 `}>
+        <div className={`absolute flex opacity-100 p-2 w-full justify-end ${itemInCart ? "top-2 right-2" : "-top-5 -right-5"} transition-all duration-150 z-50 `}>
+          
           {/* <span className='bg-white hover:bg-[#fe4362] hover:text-[#fff] shadow-md px-2 py-2 rounded-full text-black duration-500'><AiFillHeart size={25}/></span> */}
-          <span className={`${itemInCart ? "bg-primary-600 text-white" : "bg-white hover:bg-primary-400 group-hover:border-primary-400 hover:text-[#ffffff] shadow"} border-[1px] px-2 py-2 rounded-full cursor-pointer transition-all duration-150`} onClick={()=>toggleItem(item)}>{itemInCart ? <MdOutlineRemoveShoppingCart size={20} title='Remove from cart'/> : <MdOutlineAddShoppingCart size={20} title='Add to cart'/>}</span>
+          <i className={`flex bi ${itemInCart ? "bi-bag-check-fill bg-primary-600 text-white" : "bi-bag-fill bg-black/90 text-white hover:bg-primary-600 hover:text-[#fff] shadow-md"} text-lg border-[1px] px-2 py-2 rounded-full cursor-pointer transition-all duration-150`} onClick={()=>toggleItem(item)}></i>
         </div>
 
         <div className="flex flex-col justify-center items-center lg:size-44 px-4 overflow-hidden">
@@ -31,12 +32,12 @@ const NewProductsCard = ({ item }) => {
             <p className='w-[60%] line-clamp-2 text-[10px] text-black/80 capitalize'>{description}</p>
           </div>
 
-          <div className='text-small flex'>
-            <AiFillStar className='text-primary-400'/>
-            <AiFillStar className='text-primary-400'/>
-            <AiFillStar className='text-primary-400'/>
-            <AiFillStar className='text-primary-400'/>
-            <AiOutlineStar/>
+          <div className='text-xs flex gap-1'>
+            <i className="bi bi-star-fill text-primary-600"></i>
+            <i className="bi bi-star-fill text-primary-600"></i>
+            <i className="bi bi-star-fill text-primary-600"></i>
+            <i className="bi bi-star-fill text-primary-600"></i>
+            <i className="bi bi-star text-primary-600"></i>
             </div>
           <p className='font-bold text-xl'>{convertToUSD(price)}</p>
           {/* <p className='bg-slate-600/20 rounded-md text-xs'>{category}</p> */}
