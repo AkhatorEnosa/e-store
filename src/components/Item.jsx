@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
+import { Link } from 'react-router-dom';
 
 const Item = ({ item = {} }) => {
-  const { toggleItem, convertToUSD, cart, setCart } = useContext(AppContext);
+  const { toggleItem, convertToUSD, cart, setCart, handleShow } = useContext(AppContext);
   
   const {
     id,
@@ -13,7 +14,7 @@ const Item = ({ item = {} }) => {
     originalPrice
   } = item;
   
-  const [num, setNum] = useState(1)
+  const [num, setNum] = useState(item?.quantity || 1);
   const [clicked, setClicked] = useState('');
   // const findItem = cart.find((cartItem) => cartItem?.id === id);
   // const originalPrice = price;
@@ -21,7 +22,7 @@ const Item = ({ item = {} }) => {
   const updateItemInCartPrice = (x) => {
     return cart.map(item => 
       item.id === id 
-        ? { ...item, price: originalPrice * x } 
+        ? { ...item, price: originalPrice * x, quantity: x } 
         : item
     )
   }
@@ -64,7 +65,9 @@ const Item = ({ item = {} }) => {
           <img src={image} alt={title} className="h-12 md:h-20 object-contain"/>
         </div>
         <div className='w-full flex flex-col items-start pr-4 gap-1'>
-          <p className='text-xs text-semibold tracking-tight line-clamp-3'>{title}</p>
+          <Link to={`/${id}`} className='text-sm md:text-base text-inherit hover:text-primary-600 font-semibold transition-all duration-150' onClick={() => handleShow()}>
+            <p className='text-xs text-semibold tracking-tight line-clamp-3'>{title}</p>
+          </Link>
           <p className='w-fit text-[10px] p-1 bg-gray-100 text-justify line-clamp-1 rounded-full'>{category}</p>
         </div>
       </div>

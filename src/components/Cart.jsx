@@ -14,6 +14,8 @@ const Cart = ({ show, handleShow }) => {
           }, 0);
 
           setTotal(sumPrices)
+
+        //   console.log("cart", cart)
     }, [cart])
 
     const TaxPercentage = (x) => {

@@ -1,6 +1,9 @@
 import axios from "axios";
 import { createContext, useEffect, useMemo, useState } from "react";
 
+
+import Shoe from '../assets/shoe.png'
+
 export const AppContext = createContext();
 
 export function AppProvider({ children }) {
@@ -30,6 +33,18 @@ export function AppProvider({ children }) {
   const [nav, setNav] = useState(false);
   const [itemCount, setItemCount] = useState(cart?.length || 0);
   const cartString = useMemo(() => JSON.stringify(cart), [cart]);
+  const updatedcart = useMemo(() => cart , [cart])
+
+  const headerProduct = {
+    id: 26,
+    category: "men's clothing",
+    description: "Legendary Air gets lifted First lifestyle Air Max brings you styke, comfort and 270 degrees of Air. Its tinted Air window lets you showcase one of our greatest innovations.",
+    image: Shoe,
+    price: 109.95,
+    rating: {rate: 3.9, count: 120},
+    title: "Nike Air Max 270",
+    originalPrice: 109.95
+  };
 
   const fetchProducts = async () => {
     setLoading(true);
@@ -41,6 +56,7 @@ export function AppProvider({ children }) {
           ...product, 
           originalPrice: product.price // Add quantity property with default value of 1
         }))
+        result.push(headerProduct); // Add header product to the end of the list
         setProducts(result);
         setLoading(false);
         setError(false)
@@ -66,8 +82,10 @@ export function AppProvider({ children }) {
       console.error('LocalStorage save failed:', error);
     }
 
-    console.log(cartString)
-  }, [cartString]);
+    // console.log(cartString)
+    console.log("cart", updatedcart)
+    
+  }, [cartString, updatedcart]);
   
   const addSubtotal = (item) => {
     setSubtotal(subtotal+(item.price*500))
@@ -86,14 +104,15 @@ export function AppProvider({ children }) {
       return false;
     } else {
       const findItem = cart?.find((x) => x.id === item?.id);
-      console.log(findItem)
+      // console.log(findItem)
       return findItem;
     }
   }
 
   const toggleItem = (item) => {
     if (!findItemInCart(cart, item)) { 
-      setCart([...cart, item]);
+      const updateditem = {...item, quantity: 1} 
+      setCart([...cart, updateditem]);
       setItemCount(itemCount+1)
       addSubtotal(item)
     } else {

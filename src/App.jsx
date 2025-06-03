@@ -11,9 +11,6 @@ import MegaSales from './components/MegaSales';
 import NavBar from './components/NavBar';
 import NewProducts from './components/NewProducts';
 import Sections from './components/Sections';
-
-
-import Shoe from './assets/shoe.png'
 import { AppContext } from './context/AppContext';
 import Cart from './components/Cart';
 import Loader from './components/Loader';
@@ -29,19 +26,7 @@ function App() {
     show,
     itemCount,
     handleShow} = useContext(AppContext)
-
-  const headerProduct = {
-    id: 26,
-    category: "men's clothing",
-    description: "Legendary Air gets lifted First lifestyle Air Max brings you styke, comfort and 270 degrees of Air. Its tinted Air window lets you showcase one of our greatest innovations.",
-    image: Shoe,
-    price: 109.95,
-    rating: {rate: 3.9, count: 120},
-    title: "Nike Air Max 270",
-    originalPrice: 109.95
-  };
-  //cart
-
+    
   if(!loading && !error) {
     return (
       <Suspense fallback={<Loader />}>
@@ -52,7 +37,7 @@ function App() {
             <Routes>
               <Route path="/" element={
                 <>
-                  <Hero item={headerProduct} />
+                  <Hero item={products?.length > 0 && products[products.length - 1]} />
                   {/* <Hot 
                     price={product.price}
                     description={product.description}
