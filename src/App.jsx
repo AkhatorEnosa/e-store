@@ -31,7 +31,7 @@ function App() {
     return (
       <Suspense fallback={<Loader />}>
         <Router>
-          <div className="h-screen flex flex-col justify-between">
+          <div className="relative h-screen flex flex-col justify-between">
             <NavBar handleShow={handleShow} itemCount={itemCount}/>
             {/* <ErrorBoundary> */}
             <Routes>

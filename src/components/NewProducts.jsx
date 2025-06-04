@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import NewProductsCard from './NewProductsCard';
+import { Link } from 'react-router-dom';
 
 const NewProducts = ({ products = [] }) => {
   // Memoized random starting position calculation
@@ -42,6 +43,10 @@ const NewProducts = ({ products = [] }) => {
             />
           ))}
         </div>
+
+        <p className='w-full flex justify-center items-center py-6 text-sm text-gray-500 mt-6'>
+          <Link to="/products" className='flex justify-center items-center gap-1 hover:gap-3 hover:font-semibold hover:text-primary-600 hover:border-b-[1px] border-primary-600 transition-all duration-150'>View More <i className="bi bi-arrow-right text-lg"></i></Link>
+        </p>
       </div>
     </section>
   );

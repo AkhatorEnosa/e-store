@@ -23,7 +23,7 @@ const NewProductsCard = ({ item }) => {
         </div>
 
         <div className="flex flex-col justify-center items-center lg:size-44 px-4 overflow-hidden">
-          <img src={image} alt="bag" className='h-20 lg:h-40'/>
+          <img src={image} alt="bag" className='h-20 lg:h-40 group-hover:scale-110 transition-all duration-150'/>
         </div>
 
         <div className='w-full flex flex-col justify-center items-center gap-1 leading-4'>
