@@ -4,6 +4,7 @@ import {RiVisaLine} from 'react-icons/ri';
 import {FaCcMastercard} from 'react-icons/fa';
 import {FaCcPaypal} from 'react-icons/fa';
 import { NAVLINKS } from '../constants/navlinks';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -27,7 +28,7 @@ const Footer = () => {
             {
               NAVLINKS.map((link, index) => (
                 <li key={index} className='my-2'>
-                  <a href="#">{link}</a>
+                  <Link to={link.path}>{link.label}</Link>
                 </li>
               ))
             }

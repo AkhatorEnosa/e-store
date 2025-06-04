@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useMemo, useState } from 'react'
 import Item from './Item';
 import { TiShoppingCart } from 'react-icons/ti';
 import { AppContext } from '../context/AppContext';
@@ -8,7 +8,7 @@ const Cart = ({ show, handleShow }) => {
     const { cart, convertToUSD } = useContext(AppContext)
     const [total, setTotal] = useState(0)
 
-    useEffect(() => {
+    useMemo(() => {
         const sumPrices =  cart?.reduce((sum, item) => {
             return sum + (item.price || 0);
           }, 0);

@@ -9,7 +9,7 @@ const Hero = ({  item }) => {
   const itemInCart = findItemInCart(cart, item);
 
   return (
-    <div className="w-full h-fit lg:h-screen bg-grey flex flex-col lg:grid grid-cols-7 py-20 lg:py-0 mt-6 lg:mt-16 px-8 md:px-16 lg:px-32 md:gap-8 lg:gap-10 justify-around md:justify-evenly items-center bg-[#f6f6f6]">
+    <div className="w-full h-fit lg:h-screen bg-grey flex flex-col lg:grid grid-cols-7 py-20 lg:py-0 px-8 md:px-16 lg:px-32 md:gap-8 lg:gap-10 justify-around md:justify-evenly items-center bg-[#f6f6f6]">
       <div className="col-span-full lg:col-span-3 lg:py-6 flex flex-col gap-4 justify-center lg:justify-evenly lg:h-[550px] z-40 order-last lg:order-first lg:text-left text-justify">
         <h1 className="w-fit sm:mt-0 md:mt-14 lg:mt-0 z-40 bg-[#444]/10">
           <span className="text- animate-pulse text-accent-600">&#x3C;</span> Hottest

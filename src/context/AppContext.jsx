@@ -33,6 +33,7 @@ export function AppProvider({ children }) {
   const [nav, setNav] = useState(false);
   const [itemCount, setItemCount] = useState(cart?.length || 0);
   const cartString = useMemo(() => JSON.stringify(cart), [cart]);
+  
   const updatedcart = useMemo(() => cart , [cart])
 
   const headerProduct = {
@@ -81,9 +82,6 @@ export function AppProvider({ children }) {
     } catch (error) {
       console.error('LocalStorage save failed:', error);
     }
-
-    // console.log(cartString)
-    console.log("cart", updatedcart)
     
   }, [cartString, updatedcart]);
   
@@ -104,7 +102,6 @@ export function AppProvider({ children }) {
       return false;
     } else {
       const findItem = cart?.find((x) => x.id === item?.id);
-      // console.log(findItem)
       return findItem;
     }
   }
@@ -122,6 +119,15 @@ export function AppProvider({ children }) {
       subtractSubtotal(item)
     }
   }
+
+  // Update quantity of an item
+  const updateQuantity = (id, quantity, price) => {
+    setCart((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id ? { ...item, quantity, price: price * quantity } : item
+      )
+    );
+  };
 
   const lockBodyScroll = (state) => {
     if(!state) {
@@ -169,6 +175,7 @@ export function AppProvider({ children }) {
             // handleNumAdd, handleNumMinus,
             addSubtotal, subtractSubtotal,
             findItemInCart,
+            updateQuantity,
             fetchProducts,
             convertToUSD
         }}>

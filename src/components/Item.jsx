@@ -3,7 +3,7 @@ import { AppContext } from '../context/AppContext';
 import { Link } from 'react-router-dom';
 
 const Item = ({ item = {} }) => {
-  const { toggleItem, convertToUSD, cart, setCart, handleShow } = useContext(AppContext);
+  const { toggleItem, updateQuantity, convertToUSD, handleShow } = useContext(AppContext);
   
   const {
     id,
@@ -11,49 +11,30 @@ const Item = ({ item = {} }) => {
     title,
     price,
     category,
+    quantity,
     originalPrice
   } = item;
   
-  const [num, setNum] = useState(item?.quantity || 1);
   const [clicked, setClicked] = useState('');
-  // const findItem = cart.find((cartItem) => cartItem?.id === id);
-  // const originalPrice = price;
-
-  const updateItemInCartPrice = (x) => {
-    return cart.map(item => 
-      item.id === id 
-        ? { ...item, price: originalPrice * x, quantity: x } 
-        : item
-    )
-  }
 
   const handleNumAdd = () => {
-    const newNum = num + 1;
-    setNum(newNum);
-    
-    setCart(updateItemInCartPrice(newNum));
+    updateQuantity(id, quantity + 1, originalPrice)
     setClicked("add");
     setTimeout(() => {
       setClicked("");
     }, 400);
-
-    // console.log(cart)
   }
 
   const handleNumMinus = () => {
-      const newNum = num - 1;
-      setNum(newNum)
-      if(num > 1){
+      if(quantity > 1){
         setClicked("minus");
         setTimeout(() => {
           setClicked("");
         }, 400);
-        setCart(updateItemInCartPrice(newNum));
+        updateQuantity(id, quantity - 1, originalPrice)
       } else {
         setClicked("");
-        setNum(1)
-        setCart(updateItemInCartPrice(num))
-        // findItem.price = price * num;
+        updateQuantity(id, 1, originalPrice)
       }
   }
 
@@ -74,8 +55,8 @@ const Item = ({ item = {} }) => {
 
 
       <div className='col-span-2 grid grid-cols-4 justify-center items-center gap-2'>
-        <i className={`bi bi-dash-lg ${num === 1 && "opacity-50 font-bold cursor-default"} col-span-1 w-full text-center text-sm cursor-pointer`} onClick={() => handleNumMinus()}></i>
-        <span className={`col-span-2 p-2 w-full h-fit text-center border-[1px] ${clicked === "add" ? "border-secondary-400 bg-secondary-50" : clicked === "minus" ? "border-accent-600 bg-accent-50" : "border-inherit/10 bg-gray-400/5"} rounded-md transition-all duration-150`}>{num}</span>
+        <i className={`bi bi-dash-lg ${quantity === 1 && "opacity-50 font-bold cursor-default"} col-span-1 w-full text-center text-sm cursor-pointer`} onClick={() => handleNumMinus()}></i>
+        <span className={`col-span-2 p-2 w-full h-fit text-center border-[1px] ${clicked === "add" ? "border-secondary-400 bg-secondary-50" : clicked === "minus" ? "border-accent-600 bg-accent-50" : "border-inherit/10 bg-gray-400/5"} rounded-md transition-all duration-150`}>{quantity}</span>
         <i className="bi bi-plus-lg col-span-1 w-full text-center text-sm cursor-pointer" onClick={() => handleNumAdd()}></i>
       </div>
 
@@ -84,7 +65,6 @@ const Item = ({ item = {} }) => {
       </div>
 
       <div className='col-span-1 flex justify-end'>
-        {/* <p>{price}</p> */}
         <button className='text-black/70 hover:text-[#fe4343]' onClick={() => toggleItem(item)}>
           <i className="bi bi-x"></i>
         </button>
