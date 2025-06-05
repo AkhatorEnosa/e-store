@@ -37,7 +37,7 @@ const NewProducts = () => {
         <h2 className='text-2xl font-bold uppercase w-fit mt-4 mb-10'>
           New Arrivals
         </h2>
-        <div className='grid grid-cols-2 md:grid-cols-3 gap-6'>
+        <div className='grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>
           {displayedProducts.map((item) => (
             <NewProductsCard 
               key={`${item.id}-${item.title}`} 

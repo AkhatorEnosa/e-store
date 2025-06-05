@@ -17,7 +17,7 @@ const Checkout = ({convertToUSD, TaxPercentage, total}) => {
             <p>Total:</p>
             <p>{convertToUSD(TaxPercentage(total) + total)}</p>
         </div>
-        <button className={`px-10 py-2 lg:py-4 w-full lg:mt-4 bg-black hover:bg-primary-600 text-white shadow-md duration-150`}>Checkout</button>
+        <button className={`px-10 py-4 w-full lg:mt-4 bg-black hover:bg-primary-600 text-white shadow-md duration-150`}>Checkout</button>
     </div>
   );
 };

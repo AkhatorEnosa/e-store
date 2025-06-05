@@ -28,55 +28,59 @@ function App() {
     itemCount,
     handleShow} = useContext(AppContext)
     
-  if(!loading && !error) {
+  if(!loading) {
     return (
       <Suspense fallback={<Loader />}>
         <Router>
           <div className="relative h-screen flex flex-col justify-between">
             <NavBar handleShow={handleShow} itemCount={itemCount}/>
+            <Cart
+                show={show}
+                handleShow={handleShow}
+                subtotal={subtotal}
+              />
             {/* <ErrorBoundary> */}
-            <Routes>
-              <Route path="/" element={
-                <>
-                  <Hero item={products?.length > 0 && products[products.length - 1]} />
-                  {/* <Hot 
-                    price={product.price}
-                    description={product.description}
-                    title={product.title}
-                    // discountPercentage={product.discountPercentage}
-                    image={product.image}
-                    loading={loading}
-                    error={error}
-                    
-                    product={products}
-                    category={product.category}
-                  /> */}
+            { !error ? 
+              <Routes>
+                <Route path="/" element={
+                  <>
+                    <Hero item={products?.length > 0 && products[products.length - 1]} />
+                    {/* <Hot 
+                      price={product.price}
+                      description={product.description}
+                      title={product.title}
+                      // discountPercentage={product.discountPercentage}
+                      image={product.image}
+                      loading={loading}
+                      error={error}
+                      
+                      product={products}
+                      category={product.category}
+                    /> */}
 
-                  <NewProducts/>
-                  <MegaSales />
-                  <Sections 
-                      products = {products}
-                      />
-                  <Benefits />
-                </>
-              } />
+                    <NewProducts/>
+                    <MegaSales />
+                    <Sections 
+                        products = {products}
+                        />
+                    <Benefits />
+                  </>
+                } />
 
-              <Route path='/products/:id' element={
-                <Product />
-              } />
+                <Route path='/products/:id' element={
+                  <Product />
+                } />
 
-              <Route path='/products' element={
-                <Products />
-              } />
-            </Routes>
+                <Route path='/products' element={
+                  <Products />
+                } />
+              </Routes> : 
+                <div className="px-9 md:px-16 lg:px-32 py-40">
+                  <p>Connect to the Internet and try again.</p>
+                </div>
+            }
               <Footer />
                 {/* </ErrorBoundary> */}
-              <Cart
-                  show={show}
-                  handleShow={handleShow}
-                  subtotal={subtotal}
-                  // item={cart.map(x => Object.keys(x))}
-                />
           </div>
         </Router>
       </Suspense>

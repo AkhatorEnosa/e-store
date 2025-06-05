@@ -33,7 +33,7 @@ const Cart = ({ show, handleShow }) => {
                     <i className={`bi bi-x-lg hover:text-accent-600 text-lg transition-all duration-150`}></i>
                 </div>
             </div>
-            <div className={`w-full h-full ${cart?.length > 0 && "flex flex-col md:grid grid-cols-5 gap-6 overflow-scroll" }`}>
+            <div className={`w-full h-full ${cart?.length > 0 && "flex flex-col lg:grid grid-cols-5 gap-6 overflow-scroll" }`}>
                 {
                     cart?.length > 0 ? 
                         <>

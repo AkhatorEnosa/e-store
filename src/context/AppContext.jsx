@@ -49,7 +49,6 @@ export function AppProvider({ children }) {
 
   const fetchProducts = async () => {
     setLoading(true);
-    setError(false);
     try {
       const response = await axios.get('https://fakestoreapi.com/products');
       if (response.status === 200) {
@@ -60,15 +59,14 @@ export function AppProvider({ children }) {
         result.push(headerProduct); // Add header product to the end of the list
         setProducts(result);
         setLoading(false);
-        setError(false)
       }
     } catch (error) {
-      console.error(error);
+      console.log(error.message);
+      // setProducts([])
       setError(true);
       setLoading(false);
     } finally {
       setLoading(false);
-      setError(false);
     }
   }
 

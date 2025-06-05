@@ -6,7 +6,7 @@ import Button from '../components/Button';
 import NewProductsCard from '../components/NewProductsCard';
 
 const Product = () => {
-    const { cart, products, toggleItem, findItemInCart, updateQuantity} = useContext(AppContext);
+    const { cart, products, toggleItem, findItemInCart, updateQuantity, error} = useContext(AppContext);
     const { convertToUSD } = useContext(AppContext);
     const { id } = useParams()
     const navigate = useNavigate();
@@ -80,35 +80,44 @@ const Product = () => {
       return { startPos: safeStart, endPos: safeEnd };
     }, [products]);
   
-    // Early return if no products
-    if (!products.length) {
+    if(error) {
       return (
-        <div className='px-8 md:px-16 lg:px-32 py-20'>
-          <p>No new arrivals available</p>
+        <div className="w-full text-center px-9 md:px-16 lg:px-32 py-56">
+          <p>Connect to the Internet and try again.</p>
         </div>
-      );
+      )
+    } else {
+      if (!products.length) {
+        return (
+          <div className='px-8 md:px-16 lg:px-32 py-20'>
+            <p>No new arrivals available</p>
+          </div>
+        );
+      }
     }
+
+    // Early return if no products
   
     // Get the products to display
     const displayedProducts = products.slice(startPos, endPos);
 
 
   return (
-    <div className='w-full h-fit lg:h-screen flex flex-col gap-10 px-8 md:px-16 lg:px-32 z-30 py-20'>
+    <div className='w-full h-fit flex flex-col gap-10 px-8 md:px-16 lg:px-32 z-30 py-20'>
         <Breadcrumbs />
-        <div className='w-full h-full flex flex-col md:grid grid-cols-2 gap-4'>
-            <div className='w-full max-h-[500px] flex justify-center items-center col-span-1 p-4 rounded-lg overflow-hidden'>
+        <div className='w-full h-full flex flex-col md:grid md:grid-cols-3 lg:grid-cols-2 gap-4'>
+            <div className='w-full max-h-[500px] flex justify-center items-center col-span-1 rounded-lg overflow-hidden'>
                 <img src={getProduct?.image} alt={`${getProduct?.image}`} className='w-full h-full object-contain'/>
             </div>
-            <div className='col-span-1 flex flex-col justify-start items-start gap-4'>
+            <div className='md:col-span-2 lg:col-span-1 flex flex-col justify-start items-start gap-4'>
                 <div className='w-full flex flex-col gap-1'>
                     <h1 className='leading-5 lg:text-2xl font-bold'>{getProduct?.title}</h1>
                     <span className='w-fit text-[10px] bg-gray-200 p-1 rounded-full font-semibold'>{getProduct?.category}</span>
                 </div>
                 <p className='text-xs text-gray-700'>{getProduct?.description}</p>
-                <div className='w-full flex  justify-between items-center gap-4'>
-                  <div className='w-fit md:w-full flex justify-center items-center gap-6'>
-                    <p className='text-lg font-semibold'>{convertToUSD(getProduct?.price)}</p>
+                <div className='w-full flex  justify-between items-start gap-4'>
+                  <div className='w-fit md:w-full flex justify-center items-start gap-6'>
+                    <p className='text-lg md:text-2xl font-semibold'>{convertToUSD(getProduct?.price)}</p>
 
                     <div className='flex flex-col justify-center items-center md:items-center gap-2 w-full'>
 
@@ -126,26 +135,26 @@ const Product = () => {
                         title={itemInCart ? "Remove from Cart" : "Add to Cart"}
                         operation={itemInCart}
                         handleClick={() => toggleItem(getProduct)}
-                        variants={"text-sm hidden lg:flex"}
+                        variants={"text-sm hidden md:flex"}
                     />
                 </div>
                 {/* <button className='bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300 transition duration-200' onClick={() => navigate('/')}>Back to Products</button> */}
             </div>
         </div>
 
-      {/* <div className="w-full flex flex-col">
-        <h2 className='font-semibold capitalize w-fit mt-10 mb-10'>
-          Related Products
-        </h2>
-        <div className='grid grid-cols-2 md:grid-cols-3 gap-6'>
-          {displayedProducts.map((item) => (
-            <NewProductsCard 
-              key={`${item.id}-${item.title}`} 
-              item={item}
-            />
-          ))}
+        <div className="w-full h-fit">
+          <h2 className='font-semibold capitalize w-fit mt-10 mb-10'>
+            Related Products
+          </h2>
+          <div className='w-full grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6'>
+            {displayedProducts.map((item) => (
+              <NewProductsCard 
+                key={`${item.id}-${item.title}`} 
+                item={item}
+              />
+            ))}
+          </div>
         </div>
-      </div> */}
     </div>
   )
 }
