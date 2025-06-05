@@ -15,6 +15,7 @@ import { AppContext } from './context/AppContext';
 import Cart from './components/Cart';
 import Loader from './components/Loader';
 // import Product from './pages/Product';
+const Products = lazy(() => import('./pages/Products'));
 const Product = lazy(() => import('./pages/Product'));
 
 function App() {
@@ -51,9 +52,7 @@ function App() {
                     category={product.category}
                   /> */}
 
-                  <NewProducts 
-                    products = {products}
-                    />
+                  <NewProducts/>
                   <MegaSales />
                   <Sections 
                       products = {products}
@@ -62,8 +61,12 @@ function App() {
                 </>
               } />
 
-              <Route path='/:id' element={
+              <Route path='/products/:id' element={
                 <Product />
+              } />
+
+              <Route path='/products' element={
+                <Products />
               } />
             </Routes>
               <Footer />

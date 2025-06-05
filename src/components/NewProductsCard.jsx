@@ -13,7 +13,7 @@ const NewProductsCard = ({ item }) => {
   
   return (
     <div className={`relative flex flex-col justify-center lg:justify-between md:text-xs lg:text-sm items-center border-[1px] ${itemInCart ? "shadow-md" : "hover:shadow-md"} gap-3 py-5 px-2 group rounded-xl duration-150 text-center hover:cursor-pointer`}>
-        <Link to={`/${id}`} className='w-full h-full absolute top-0 left-0 z-40'></Link>
+        <Link to={`/products/${id}`} className='w-full h-full absolute top-0 left-0 z-40'></Link>
         
 
         <div className={`absolute flex opacity-100 p-2 w-full justify-end ${itemInCart ? "top-2 right-2" : "-top-5 -right-5"} transition-all duration-150 z-50 `}>
@@ -28,7 +28,7 @@ const NewProductsCard = ({ item }) => {
 
         <div className='w-full flex flex-col justify-center items-center gap-1 leading-4'>
           <div className='flex flex-col items-center justify-center gap-2'>
-            <p className='w-[80%] font-semibold text-xs lg:text-base'>{title}</p>
+            <p className='w-[80%] font-semibold text-xs lg:text-base group-hover:underline group-hover:text-accent-700'>{title}</p>
             <p className='w-[60%] line-clamp-2 text-[10px] text-black/80 capitalize'>{description}</p>
           </div>
 

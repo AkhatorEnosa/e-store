@@ -1,8 +1,10 @@
-import { useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 import NewProductsCard from './NewProductsCard';
 import { Link } from 'react-router-dom';
+import { AppContext } from '../context/AppContext';
 
-const NewProducts = ({ products = [] }) => {
+const NewProducts = () => {
+  const { products } = useContext(AppContext);
   // Memoized random starting position calculation
   const { startPos, endPos } = useMemo(() => {
     if (!products.length) return { startPos: 0, endPos: 0 };
@@ -35,7 +37,7 @@ const NewProducts = ({ products = [] }) => {
         <h2 className='text-2xl font-bold uppercase w-fit mt-4 mb-10'>
           New Arrivals
         </h2>
-        <div className='grid grid-cols-2 md:grid-cols-3 gap-4'>
+        <div className='grid grid-cols-2 md:grid-cols-3 gap-6'>
           {displayedProducts.map((item) => (
             <NewProductsCard 
               key={`${item.id}-${item.title}`} 
@@ -44,8 +46,8 @@ const NewProducts = ({ products = [] }) => {
           ))}
         </div>
 
-        <p className='w-full flex justify-center items-center py-6 text-sm text-gray-500 mt-6'>
-          <Link to="/products" className='flex justify-center items-center gap-1 hover:gap-3 hover:font-semibold hover:text-primary-600 hover:border-b-[1px] border-primary-600 transition-all duration-150'>View More <i className="bi bi-arrow-right text-lg"></i></Link>
+        <p className='w-full flex justify-center items-center py-6 text-sm mt-6'>
+          <Link to="/products" className='flex justify-center items-center gap-1 hover:gap-3 hover:text-accent-700 font-semibold transition-all duration-150'>View More <i className="bi bi-arrow-right text-lg"></i></Link>
         </p>
       </div>
     </section>

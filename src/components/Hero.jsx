@@ -19,7 +19,7 @@ const Hero = ({  item }) => {
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-black tracking-wide">
             {title}
           </h1>
-          <p><span className="line-through opacity-50 italic px-2 py-1">$189.95</span><b className="text-2xl font-bold mt-6 text-accent-600">{convertToUSD(price)}</b></p>
+          <p><span className="line-through opacity-50 italic px-2 py-1">$189.95</span><b className="text-4xl font-bold mt-6 text-accent-600">{convertToUSD(price)}</b></p>
         </div>
         <p>
           {description}
