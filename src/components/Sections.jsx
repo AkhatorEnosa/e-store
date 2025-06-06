@@ -16,6 +16,7 @@ const Sections = (props) => {
                   return (
                     <SectionsCard 
                       key={x.id} 
+                      id={x.id}
                       img={x.image} 
                       title={x.title} 
                       price={x.price}
@@ -37,6 +38,7 @@ const Sections = (props) => {
                   return (
                     <SectionsCard 
                       key={x.id} 
+                      id={x.id}
                       img={x.image} 
                       title={x.title} 
                       price={x.price}

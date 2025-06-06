@@ -29,12 +29,26 @@ export function AppProvider({ children }) {
     }
   });
 
+  // start saved
+  const [wishlist, setWishlist] = useState(() => {
+    try {
+      const savedWishlist = localStorage.getItem('wishlist');
+      return savedWishlist ? JSON.parse(savedWishlist) : [];
+    } catch (error) {
+      setError(error)
+      console.error('Failed to parse wishlist from localStorage:', error);
+      return []; // Fallback to empty array
+    }
+  });
+
   const [show, setShow] = useState(false);
   const [nav, setNav] = useState(false);
   const [itemCount, setItemCount] = useState(cart?.length || 0);
   const cartString = useMemo(() => JSON.stringify(cart), [cart]);
+  const wishlistString = useMemo(() => JSON.stringify(wishlist), [wishlist]);
   
-  const updatedcart = useMemo(() => cart , [cart])
+  const updatedCart = useMemo(() => cart, [cart])
+  const updatedWishlist = useMemo(() => wishlist , [wishlist])
 
   const headerProduct = {
     id: 26,
@@ -54,7 +68,8 @@ export function AppProvider({ children }) {
       if (response.status === 200) {
         const result = response.data.map(product => ({
           ...product, 
-          originalPrice: product.price // Add quantity property with default value of 1
+          originalPrice: product.price,
+          quantity: 1 // Add quantity property with default value of 1
         }))
         result.push(headerProduct); // Add header product to the end of the list
         setProducts(result);
@@ -77,11 +92,12 @@ export function AppProvider({ children }) {
   useEffect(() => {
     try {
       localStorage.setItem('cart', cartString);
+      localStorage.setItem('wishlist', wishlistString)
     } catch (error) {
       console.error('LocalStorage save failed:', error);
     }
     
-  }, [cartString, updatedcart]);
+  }, [cartString, wishlistString, updatedCart, updatedWishlist]);
   
   const addSubtotal = (item) => {
     setSubtotal(subtotal+(item.price*500))
@@ -95,28 +111,63 @@ export function AppProvider({ children }) {
     return subtotal;
   }
 
-  const findItemInCart = (cart, item) => {
-    if(cart === undefined || cart?.length === 0) {
+  // const findItemInCart = (cart, item) => {
+  //   if(cart === undefined || cart?.length === 0) {
+  //     return false;
+  //   } else {
+  //     const findItem = cart?.find((x) => x.id === item?.id);
+  //     return findItem;
+  //   }
+  // }
+
+  const findItemInGroup = (group, item) => {
+    if(group === undefined || group?.length === 0) {
+      // console.log(group)
       return false;
     } else {
-      const findItem = cart?.find((x) => x.id === item?.id);
+      const findItem = group?.find((x) => x.id === item?.id);
+      // console.log(findItem)
       return findItem;
     }
   }
 
-  const toggleItem = (item) => {
-    if (!findItemInCart(cart, item)) { 
-      const updateditem = {...item, quantity: 1} 
-      setCart([...cart, updateditem]);
-      setItemCount(itemCount+1)
-      addSubtotal(item)
-    } else {
-      const newCart = cart?.filter((cartItem) => cartItem.id !== item.id);
-      setCart(newCart);
-      setItemCount(itemCount-1)
-      subtractSubtotal(item)
+  const toggleItem = (group, item) => {
+    if( group === 'cart') {
+      if (!findItemInGroup(cart, item)) { 
+        // const updateditem = {...item, quantity: 1} 
+        setCart([...cart, item]);
+        setItemCount(itemCount+1)
+        addSubtotal(item)
+      } else {
+        const newCart = cart?.filter((cartItem) => cartItem.id !== item.id);
+        setCart(newCart);
+        setItemCount(itemCount-1)
+        subtractSubtotal(item)
+      }
+    } else if (group === 'wishlist') {
+        if (!findItemInGroup(wishlist, item)) { 
+          // const updateditem = {...item, quantity: 1} 
+          setWishlist([...wishlist, item]);
+        } else {
+          const newWishlist = wishlist?.filter((wish) => wish.id !== item.id);
+          setCart(newWishlist);
+        }
     }
   }
+
+  // const toggleItem = (item) => {
+  //   if (!findItemInCart(cart, item)) { 
+  //     const updateditem = {...item, quantity: 1} 
+  //     setCart([...cart, updateditem]);
+  //     setItemCount(itemCount+1)
+  //     addSubtotal(item)
+  //   } else {
+  //     const newCart = cart?.filter((cartItem) => cartItem.id !== item.id);
+  //     setCart(newCart);
+  //     setItemCount(itemCount-1)
+  //     subtractSubtotal(item)
+  //   }
+  // }
 
   // Update quantity of an item
   const updateQuantity = (id, quantity, price) => {
@@ -163,6 +214,7 @@ export function AppProvider({ children }) {
             error, setError,
             subtotal, setSubtotal,
             cart, setCart,
+            wishlist, setWishlist,
             show, setShow,
             nav, setNav,
             itemCount, setItemCount,
@@ -172,7 +224,8 @@ export function AppProvider({ children }) {
             handleNav,
             // handleNumAdd, handleNumMinus,
             addSubtotal, subtractSubtotal,
-            findItemInCart,
+            findItemInGroup,
+            
             updateQuantity,
             fetchProducts,
             convertToUSD

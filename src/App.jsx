@@ -33,7 +33,10 @@ function App() {
       <Suspense fallback={<Loader />}>
         <Router>
           <div className="relative h-screen flex flex-col justify-between">
-            <NavBar handleShow={handleShow} itemCount={itemCount}/>
+            <div className="navbar-container">
+              <NavBar handleShow={handleShow} itemCount={itemCount}/>
+            </div>
+              
             <Cart
                 show={show}
                 handleShow={handleShow}
@@ -44,6 +47,7 @@ function App() {
               <Routes>
                 <Route path="/" element={
                   <>
+
                     <Hero item={products?.length > 0 && products[products.length - 1]} />
                     {/* <Hot 
                       price={product.price}

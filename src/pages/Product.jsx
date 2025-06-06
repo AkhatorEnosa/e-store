@@ -6,13 +6,15 @@ import Button from '../components/Button';
 import NewProductsCard from '../components/NewProductsCard';
 
 const Product = () => {
-    const { cart, products, toggleItem, findItemInCart, updateQuantity, error} = useContext(AppContext);
+    const { cart, products, toggleItem, findItemInGroup, updateQuantity, error} = useContext(AppContext);
     const { convertToUSD } = useContext(AppContext);
     const { id } = useParams()
     const navigate = useNavigate();
 
     const getProduct = products?.find((product) => product?.id === parseInt(id)); // Find product by ID
-    const itemInCart = findItemInCart(cart, getProduct) ; // Check if item is in cart
+    const itemInCart = findItemInGroup(cart, getProduct) ; // Check if item is in cart
+
+    console.log(itemInCart)
     
     useEffect(() => {
         if (!id) navigate('/not-found'); // Redirect if missing
@@ -134,7 +136,7 @@ const Product = () => {
                     <Button 
                         title={itemInCart ? "Remove from Cart" : "Add to Cart"}
                         operation={itemInCart}
-                        handleClick={() => toggleItem(getProduct)}
+                        handleClick={() => toggleItem('cart', getProduct)}
                         variants={"text-sm hidden md:flex"}
                     />
                 </div>

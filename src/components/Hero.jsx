@@ -3,10 +3,10 @@ import { AppContext } from "../context/AppContext";
 import Button from "./Button";
 
 const Hero = ({  item }) => {
-  const { cart, toggleItem, convertToUSD, findItemInCart } = useContext(AppContext);
+  const { cart, toggleItem, convertToUSD, findItemInGroup } = useContext(AppContext);
 
   const {image, title, description, price} = item;
-  const itemInCart = findItemInCart(cart, item);
+  const itemInCart = findItemInGroup(cart, item);
 
   return (
     <div className="w-full h-fit lg:h-screen bg-grey flex flex-col lg:grid grid-cols-7 py-20 lg:py-0 mt-6 lg:mt-16 px-8 md:px-16 lg:px-32 md:gap-8 lg:gap-10 justify-around md:justify-evenly items-center bg-[#f6f6f6]">
@@ -27,7 +27,7 @@ const Hero = ({  item }) => {
         <Button 
           title={itemInCart ? "Item in Cart" : "Add to Cart"}
           operation={itemInCart}
-          handleClick={() => toggleItem(item)}
+          handleClick={() => toggleItem('cart', item)}
         />
         {/* <button className={`px-10 py-4 w-full lg:mt-4 lg:w-[80%] ${itemInCart ? "bg-primary-600 text-white" : "bg-black/90 text-white hover:bg-primary-600 hover:text-[#fff] shadow-md"} duration-150`} onClick={()=>  toggleItem(item) }>
           {itemInCart ? <span className="w-full h-full flex justify-center items-center gap-6"><MdOutlineRemoveShoppingCart size={25}/> Remove from Cart</span> : <span className="w-full h-full flex justify-center items-center gap-6"><MdOutlineAddShoppingCart size={25}/> Add to Cart</span>}
