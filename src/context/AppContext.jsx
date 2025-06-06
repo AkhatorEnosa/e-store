@@ -150,7 +150,7 @@ export function AppProvider({ children }) {
           setWishlist([...wishlist, item]);
         } else {
           const newWishlist = wishlist?.filter((wish) => wish.id !== item.id);
-          setCart(newWishlist);
+          setWishlist(newWishlist);
         }
     }
   }
