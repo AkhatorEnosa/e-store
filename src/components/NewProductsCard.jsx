@@ -22,7 +22,7 @@ const NewProductsCard = ({ item }) => {
         {/* <div className={`absolute flex opacity-100 p-2 w-full justify-end ${itemInCart ? "top-2 right-2" : "-top-5 -right-5"} transition-all duration-150 z-50 `}></div> */}
 
         <div className="flex flex-col justify-center items-center w-full h-32 lg:h-44 px-4 overflow-hidden">
-          <img src={image} alt="bag" className='h-28 lg:h-40 group-hover:scale-110 transition-all duration-150'/>
+          <img src={image} alt="bag" className='h-28 lg:h-40 group-hover:scale-110 object-contain transition-all duration-150'/>
         </div>
 
         <div className='w-full flex flex-col justify-center items-center gap-1 leading-4 px-4'>

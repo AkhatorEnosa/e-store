@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Breadcrumbs from '../components/Breadcrumbs'
 import { AppContext } from '../context/AppContext';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -6,15 +6,16 @@ import Button from '../components/Button';
 import NewProductsCard from '../components/NewProductsCard';
 
 const Product = () => {
-    const { cart, products, toggleItem, findItemInGroup, updateQuantity, error} = useContext(AppContext);
+    const { cart, wishlist, products, toggleItem, findItemInGroup, updateQuantity, error} = useContext(AppContext);
     const { convertToUSD } = useContext(AppContext);
     const { id } = useParams()
     const navigate = useNavigate();
 
     const getProduct = products?.find((product) => product?.id === parseInt(id)); // Find product by ID
     const itemInCart = findItemInGroup(cart, getProduct) ; // Check if item is in cart
+    const itemInWishlist = findItemInGroup(wishlist, getProduct);
 
-    console.log(itemInCart)
+   const relatedItems = products.filter((item) => item.category === getProduct?.category && item.id !== getProduct?.id); // Filter related items by category, excluding the current product
     
     useEffect(() => {
         if (!id) navigate('/not-found'); // Redirect if missing
@@ -69,18 +70,26 @@ const Product = () => {
     }
   }
     // Memoized random starting position calculation
-    const { startPos, endPos } = useMemo(() => {
-      if (!products.length) return { startPos: 0, endPos: 0 };
+    // const { startPos, endPos } = useMemo(() => {
+    //   if (!products.length) return { startPos: 0, endPos: 0 };
       
-      const randomNum = Math.floor(Math.random() * products.length);
-      const safeStart = Math.max(
-        0, 
-        randomNum - (randomNum + 3 > products.length ? 3 : 0)
-      );
-      const safeEnd = Math.min(safeStart + 3, products.length);
+    //   const randomNum = Math.floor(Math.random() * relatedItems.length);
+    //   const safeStart = Math.max(
+    //     0, 
+    //     randomNum - (randomNum + 3 > products.length ? 3 : 0)
+    //   );
+    //   const safeEnd = Math.min(safeStart + 3, products.length);
       
-      return { startPos: safeStart, endPos: safeEnd };
-    }, [products]);
+    //   return { startPos: safeStart, endPos: safeEnd };
+    // }, [products]);
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+      }
+      return array;
+    }
   
     if(error) {
       return (
@@ -101,22 +110,32 @@ const Product = () => {
     // Early return if no products
   
     // Get the products to display
-    const displayedProducts = products.slice(startPos, endPos);
+    const displayedProducts = shuffleArray(relatedItems).slice(0, 3);
 
 
   return (
     <div className='w-full h-fit flex flex-col gap-10 px-8 md:px-16 lg:px-32 z-30 py-20'>
         <Breadcrumbs />
-        <div className='w-full h-full flex flex-col md:grid md:grid-cols-3 lg:grid-cols-2 gap-4'>
-            <div className='w-full max-h-[500px] flex justify-center items-center col-span-1 rounded-lg overflow-hidden'>
-                <img src={getProduct?.image} alt={`${getProduct?.image}`} className='w-full h-full object-contain'/>
+        <div className='w-full h-full flex flex-col md:grid md:grid-cols-3 lg:grid-cols-2 gap-6'>
+            <div className='group relative w-full max-h-[500px] flex justify-center items-stretch border-[1px] p-10 col-span-1 rounded-xl overflow-hidden'>
+                <button className={`absolute w-fit h-fit top-3 right-3 lg:top-5 lg:right-5 flex items-center justify-center gap-2 px-2 py-2 text-[10px] opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100 rounded-lg ${itemInWishlist ? "bg-secondary-600 text-white" : "bg-white hover:bg-secondary-600 hover:text-[#fff] border-[1px] border-black"} duration-150 z-40`} onClick={()=>  toggleItem('wishlist', getProduct)}>
+                  <i className={`bi ${!itemInWishlist ? "bi-heart" : "bi-heart-fill"} text-lg flex justify-center items-center`}></i>
+                </button>
+                <img src={getProduct?.image} alt={`${getProduct?.image}`} className='w-full h-full group-hover:scale-110 object-contain duration-200'/>
             </div>
             <div className='md:col-span-2 lg:col-span-1 flex flex-col justify-start items-start gap-4'>
                 <div className='w-full flex flex-col gap-1'>
-                    <h1 className='leading-5 lg:text-2xl font-bold'>{getProduct?.title}</h1>
+                    <h1 className='leading-5 lg:text-6xl font-bold'>{getProduct?.title}</h1>
                     <span className='w-fit text-[10px] bg-gray-200 p-1 rounded-full font-semibold'>{getProduct?.category}</span>
                 </div>
                 <p className='text-xs text-gray-700'>{getProduct?.description}</p>
+                <div className='text-xs flex gap-1'>
+                  <i className="bi bi-star-fill text-primary-600"></i>
+                  <i className="bi bi-star-fill text-primary-600"></i>
+                  <i className="bi bi-star-fill text-primary-600"></i>
+                  <i className="bi bi-star-fill text-primary-600"></i>
+                  <i className="bi bi-star text-primary-600"></i>
+                </div>
                 <div className='w-full flex  justify-between items-start gap-4'>
                   <div className='w-fit md:w-full flex justify-center items-start gap-6'>
                     <p className='text-lg md:text-2xl font-semibold'>{convertToUSD(getProduct?.price)}</p>
