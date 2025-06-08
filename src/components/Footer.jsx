@@ -1,10 +1,9 @@
 import React from 'react';
-import {GrFacebookOption} from 'react-icons/gr';
 import {RiVisaLine} from 'react-icons/ri';
 import {FaCcMastercard} from 'react-icons/fa';
 import {FaCcPaypal} from 'react-icons/fa';
 import { NAVLINKS } from '../constants/navlinks';
-import { Link } from 'react-router-dom';
+import Navigator from './Navigator';
 
 const Footer = () => {
   return (
@@ -28,7 +27,10 @@ const Footer = () => {
             {
               NAVLINKS.map((link, index) => (
                 <li key={index} className='my-2'>
-                  <Link to={link.path}>{link.label}</Link>
+                <Navigator 
+                  url={link.path}
+                  variants={"hover:text-accent-700"}
+                >{link.label}</Navigator>
                 </li>
               ))
             }

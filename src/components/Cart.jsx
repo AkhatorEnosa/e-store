@@ -1,6 +1,5 @@
 import React, { useContext, useMemo, useState } from 'react'
 import Item from './Item';
-import { TiShoppingCart } from 'react-icons/ti';
 import { AppContext } from '../context/AppContext';
 import Checkout from './Checkout';
 

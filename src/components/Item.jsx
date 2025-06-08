@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
-import { Link } from 'react-router-dom';
+import Navigator from './Navigator';
 
 const Item = ({ item = {} }) => {
   const { toggleItem, updateQuantity, convertToUSD, handleShow } = useContext(AppContext);
@@ -46,9 +46,12 @@ const Item = ({ item = {} }) => {
           <img src={image} alt={title} className="h-12 md:h-20 object-contain"/>
         </div>
         <div className='w-full flex flex-col items-start pr-4 gap-1'>
-          <Link to={`/products/${id}`} className='text-sm md:text-base text-inherit hover:text-accent-600 font-semibold transition-all duration-150' onClick={() => handleShow()}>
-            <p className='text-xs text-semibold tracking-tight line-clamp-3'>{title}</p>
-          </Link>
+          <Navigator 
+            url={`/products/${id}`}
+            variants={'text-sm md:text-base text-inherit hover:text-accent-600 font-semibold transition-all duration-150'}
+          >
+            <p className='text-xs text-semibold tracking-tight line-clamp-3' onClick={() => handleShow()}>{title}</p>
+          </Navigator>
           <p className='w-fit bg-accent-50 px-1 rounded-md text-[8px] text-justify line-clamp-1'>{category}</p>
         </div>
       </div>

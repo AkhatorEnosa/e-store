@@ -1,10 +1,42 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { AppContext } from '../context/AppContext';
 import NewProductsCard from '../components/NewProductsCard';
-import { Link } from 'react-router-dom';
+import Navigator from '../components/Navigator';
 
 const Products = () => {
   const { products } = useContext(AppContext);
+  const [sortOption, setSortOption] = useState('newest');
+  const [sortedProducts, setSortedProducts] = useState([...products]);
+
+  const sortArrayFn = ( option) => {
+    const freshArr = [...sortedProducts];
+
+    switch(option) {
+      case 'newest':
+        freshArr.sort((a, b) => new Date(b.id) - new Date(a.id));
+        break;
+      case 'price-low-high':
+        freshArr.sort((a, b) => a.price - b.price);
+        break;
+      case 'price-high-low':
+        freshArr.sort((a, b) => b.price - a.price);
+        break;
+      case 'category':
+        freshArr.sort((a, b) => a.category.localeCompare(b.category));
+        break;
+      default:
+        return freshArr.sort((a, b) => new Date(b.id) - new Date(a.id));
+    }
+
+    setSortedProducts(freshArr);
+  }
+
+  const handleSortChange = (e) => {
+    const selectedOption = e.target.value;
+    setSortOption(selectedOption);
+    sortArrayFn(selectedOption);
+  }
+
   // Memoized random starting position calculation
 //   const { startPos, endPos } = useMemo(() => {
 //     if (!products.length) return { startPos: 0, endPos: 0 };
@@ -29,15 +61,44 @@ const Products = () => {
 //   }
 
   // Get the products to display
-//   const displayedProducts = products.slice(startPos, endPos);
+  // const displayedProducts = shuffleArray(products)
   return (
-    <section className='px-8 md:px-16 lg:px-32 z-30 py-20'>
+    <section className='relative px-8 md:px-16 lg:px-32 z-30 py-20'>
+      {/* <div className='sticky top-0 flex justify-center items-center bg-accent-100 max-h-screen col-span-1'>
+        side bar
+      </div>  */}
       <div className="w-full flex flex-col">
-        <h2 className='font-semibold capitalize w-fit mt-10 mb-10'>
-          All Products
-        </h2>
-        <div className='grid grid-cols-2 md:grid-cols-3 gap-6'>
-          {products.map((item) => (
+        <div className='w-full flex justify-between items-start gap-2 py-10'>
+          <div>
+            <h2 className='font-semibold capitalize w-fit text-2xl'> All Products </h2>
+            <p className='text-xs'>Explore our collection of products</p>
+          </div>
+
+
+          <Navigator 
+              url={`/`}
+              variants={'text-xs font-semibold hover:text-accent-700 hover:underline'}
+          >
+            Back to Home
+          </Navigator>
+        </div>
+        <div className='flex justify-between items-center my-6 text-xs'>
+          <p className=''>Showing {sortedProducts?.length} products</p>
+          <div className='flex items-center gap-2'>
+            <label htmlFor="filter" className='text-sm text-black/70'>Filter by</label>
+            <select name="sort" id="" className='border-[1px] border-black/20 rounded-md px-2 py-1 text-sm outline-none'
+              value={sortOption}
+              onChange={handleSortChange}
+            >
+              <option value="newest">Newest</option>
+              <option value="price-low-high">Price: Low to High</option>
+              <option value="price-high-low">Price: High to Low</option>
+              <option value="category">Category</option>
+            </select>
+          </div>
+        </div>
+        <div className='grid grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6'>
+          {sortedProducts.map((item) => (
             <NewProductsCard 
               key={`${item.id}-${item.title}`} 
               item={item}

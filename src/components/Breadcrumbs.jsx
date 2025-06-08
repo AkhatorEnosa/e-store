@@ -1,13 +1,17 @@
 // src/components/Breadcrumbs.jsx
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import Navigator from './Navigator';
 
 const Breadcrumbs = () => {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter(x => x);
 
   return (
-    <nav className="flex items-center text-sm px-6 py-4 text-gray-600">
-      <Link to="/" className="hover:text-accent-700">Home</Link>
+    <nav className="flex items-center text-sm px-6 py-4">
+      <Navigator 
+        url={"/"}
+        variants={"hover:text-accent-700"}
+      >Home</Navigator>
       {pathnames.map((name, index) => {
         const routeTo = `/${pathnames.slice(0, index + 1).join('>')}`;
         const isLast = index === pathnames.length - 1;
@@ -18,9 +22,10 @@ const Breadcrumbs = () => {
             {isLast ? (
               <span className="text-accent-700 font-medium">{name}</span>
             ) : (
-              <Link to={routeTo} className="hover:text-accent-700 capitalize">
-                {name}
-              </Link>
+              <Navigator 
+                url={routeTo}
+                variants={"hover:text-accent-700 capitalize"}
+              >{name}</Navigator>
             )}
           </span>
         );

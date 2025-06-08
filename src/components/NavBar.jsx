@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { NAVLINKS } from "../constants/navlinks";
-import { Link } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
+import Navigator from "./Navigator";
 
 const NavBar = (props) => {
   const { nav, handleNav } = useContext(AppContext)
@@ -10,16 +10,20 @@ const NavBar = (props) => {
     <div className='w-full px-6 py-4 mb-4 flex justify-between items-center shadow fixed bg-white z-50'>
 
       <div className="logo text-black text-5xl font-extrabold items-center">
-        <Link to={"/"}>Shaup</Link>
+        <Navigator 
+          url={'/'}
+        >{'Shaup'}</Navigator>
       </div>
 
       {/* fullscreen menu */}
         <ul className='links hidden lg:flex p-0 tracking-wider text-sm'>
           {
             NAVLINKS.map((link, index) => (
-              <li key={index} className='mr-8 cursor-pointer duration-150 hover:text-accent-700'>
-                <Link to={link.path}>{link.label}</Link>
-              </li>
+              <Navigator 
+                key={index}
+                url={link.path}
+                variants={'mr-8 cursor-pointer duration-150 hover:text-accent-700'}
+              ><li onClick={handleNav}>{link.label}</li></Navigator>
             ))
           }
         </ul>
@@ -53,9 +57,11 @@ const NavBar = (props) => {
             <ul className='links flex flex-col p-4 uppercase tracking-wider text-xs md:text-sm'>
               {
                 NAVLINKS.map((link, index) => (
-                  <li key={index} className='p-6 px-3 hover:border-b-[1px] hover:border-b-accent-700 hover:translate-x-4 duration-200 cursor-pointer'>
-                     <Link to={link.path}>{link.label}</Link>
-                  </li>
+                  <Navigator 
+                    key={index}
+                    url={link.path}
+                    variants={'w-full p-6 px-3 hover:border-b-[1px] hover:border-b-accent-700 hover:translate-x-4 duration-200 cursor-pointer'}
+                  ><li onClick={handleNav}>{link.label}</li></Navigator>
                 ))
               }
             </ul>

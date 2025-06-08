@@ -4,16 +4,12 @@ export const NAVLINKS = [
         path: '/',
     },
     {
-        label: 'Phones & accessories',
-        path: '/',
-    },
-    {
         label: 'Clothing',
-        path: '/',
+        path: '/products',
     },
     {
         label: 'Electronics',
-        path: '/',
+        path: '/products',
     },
     {
         label: 'Contact',

@@ -111,15 +111,6 @@ export function AppProvider({ children }) {
     return subtotal;
   }
 
-  // const findItemInCart = (cart, item) => {
-  //   if(cart === undefined || cart?.length === 0) {
-  //     return false;
-  //   } else {
-  //     const findItem = cart?.find((x) => x.id === item?.id);
-  //     return findItem;
-  //   }
-  // }
-
   const findItemInGroup = (group, item) => {
     if(group === undefined || group?.length === 0) {
       // console.log(group)
@@ -134,7 +125,6 @@ export function AppProvider({ children }) {
   const toggleItem = (group, item) => {
     if( group === 'cart') {
       if (!findItemInGroup(cart, item)) { 
-        // const updateditem = {...item, quantity: 1} 
         setCart([...cart, item]);
         setItemCount(itemCount+1)
         addSubtotal(item)
@@ -146,7 +136,6 @@ export function AppProvider({ children }) {
       }
     } else if (group === 'wishlist') {
         if (!findItemInGroup(wishlist, item)) { 
-          // const updateditem = {...item, quantity: 1} 
           setWishlist([...wishlist, item]);
         } else {
           const newWishlist = wishlist?.filter((wish) => wish.id !== item.id);
@@ -154,20 +143,6 @@ export function AppProvider({ children }) {
         }
     }
   }
-
-  // const toggleItem = (item) => {
-  //   if (!findItemInCart(cart, item)) { 
-  //     const updateditem = {...item, quantity: 1} 
-  //     setCart([...cart, updateditem]);
-  //     setItemCount(itemCount+1)
-  //     addSubtotal(item)
-  //   } else {
-  //     const newCart = cart?.filter((cartItem) => cartItem.id !== item.id);
-  //     setCart(newCart);
-  //     setItemCount(itemCount-1)
-  //     subtractSubtotal(item)
-  //   }
-  // }
 
   // Update quantity of an item
   const updateQuantity = (id, quantity, price) => {
@@ -177,6 +152,14 @@ export function AppProvider({ children }) {
       )
     );
   };
+
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+    }
+    return array;
+  }
 
   const lockBodyScroll = (state) => {
     if(!state) {
@@ -225,7 +208,7 @@ export function AppProvider({ children }) {
             // handleNumAdd, handleNumMinus,
             addSubtotal, subtractSubtotal,
             findItemInGroup,
-            
+            shuffleArray,
             updateQuantity,
             fetchProducts,
             convertToUSD

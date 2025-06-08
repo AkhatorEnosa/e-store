@@ -1,12 +1,8 @@
 import React from 'react';
-import {AiFillCar} from 'react-icons/ai';
-import {FaMoneyBill} from 'react-icons/fa';
-import {BsHeadphones} from 'react-icons/bs';
-import {FaUserShield} from 'react-icons/fa';
 
 const Countdown = () => {
   return (
-    <div className='w-full grid lg:grid-cols-4 grid-cols-2 justify-between bg-amber-500/20 p-10 -mt-10'>
+    <div className='w-full md:grid lg:grid-cols-4 md:grid-cols-2 justify-between bg-amber-500/20 p-10 -mt-10'>
       <div className="flex flex-col mx-auto font-bold items-center p-7 gap-2 text-center">
         <i className="bi bi-airplane-fill text-6xl"></i>
         Free Shipping

@@ -14,7 +14,7 @@ import Sections from './components/Sections';
 import { AppContext } from './context/AppContext';
 import Cart from './components/Cart';
 import Loader from './components/Loader';
-// import Product from './pages/Product';
+
 const Products = lazy(() => import('./pages/Products'));
 const Product = lazy(() => import('./pages/Product'));
 
@@ -65,8 +65,8 @@ function App() {
                     <NewProducts/>
                     <MegaSales />
                     <Sections 
-                        products = {products}
-                        />
+                      products = {products}
+                    />
                     <Benefits />
                   </>
                 } />
