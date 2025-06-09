@@ -3,8 +3,8 @@ import Item from './Item';
 import { AppContext } from '../context/AppContext';
 import Checkout from './Checkout';
 
-const Cart = ({ show, handleShow }) => {
-    const { cart, convertToUSD } = useContext(AppContext)
+const Cart = () => {
+    const { cart, show, handleShow, convertToUSD } = useContext(AppContext)
     const [total, setTotal] = useState(0)
 
     useMemo(() => {
@@ -24,11 +24,11 @@ const Cart = ({ show, handleShow }) => {
     }
 
   return ( 
-    <div className={`w-screen h-screen ${show ? "flex" : "hidden"} flex-col justify-center items-center bg-black/50 fixed z-50`}>
+    <div className={`w-screen h-screen ${show === 'cart' ? "flex" : "hidden"} flex-col justify-center items-center bg-black/50 fixed z-50`}>
         <div className='w-[90%] lg:w-[80%] h-[95%] bg-white shadow-lg rounded-lg flex flex-col justify-between items-center p-6'>
             <div className='w-full flex justify-between items-center mb-4'>
                 <h2 className='text-xl font-semibold'>You have {cart?.length} items in your cart.</h2>
-                <div onClick={()=>handleShow(show)} className="flex justify-center items-center rounded-full bg-white size-10 cursor-pointer">
+                <div onClick={()=>handleShow('')} className="flex justify-center items-center rounded-full bg-white size-10 cursor-pointer">
                     <i className={`bi bi-x-lg hover:text-accent-600 text-lg transition-all duration-150`}></i>
                 </div>
             </div>

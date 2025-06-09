@@ -3,8 +3,8 @@ import { NAVLINKS } from "../constants/navlinks";
 import { AppContext } from "../context/AppContext";
 import Navigator from "./Navigator";
 
-const NavBar = (props) => {
-  const { nav, handleNav } = useContext(AppContext)
+const NavBar = () => {
+  const { nav, handleNav, handleShow, cartItemsCount, wishlistItemsCount } = useContext(AppContext)
 
   return (
     <div className='w-full px-6 py-4 mb-4 flex justify-between items-center shadow fixed bg-white z-50'>
@@ -28,14 +28,16 @@ const NavBar = (props) => {
           }
         </ul>
 
-        <ul className='others flex tracking-widest text-sm text-black justify-end align-bottom items-center'>
+        <ul className='others flex h-fit text-sm justify-center items-center'>
           <li className='mr-6 hidden lg:flex hover:text-accent-700 cursor-pointer duration-150 underline'>Login/Register</li>
-          <li className='mr-6 hidden lg:flex cursor-pointer hover:text-accent-700 text-lg'><i className="bi bi-search"></i></li>
-          <li className='mr-6 p-2' onClick={props.handleShow}>
-            <div className="cursor-pointer">
-              <span className='absolute w-4 h-4 bg-accent-700 rounded-full text-center top-6 text-white font-bold text-xs lg:top-6 lg:right-12'>{props.itemCount}</span>
-              <p className="flex justify-center text-xl"><i className="bi bi-bag-fill"></i></p>
-            </div>
+          <li className='mr-6 p-2 hidden lg:flex cursor-pointer hover:text-accent-700 text-xl '><i className="bi bi-search"></i></li>
+          <li className="relative mr-6 p-2 cursor-pointer" onClick={() => handleShow('wishlist')}>
+            <span className='absolute w-4 h-4 bg-accent-700 rounded-full text-center right-0 top-0 text-white font-bold text-xs'>{wishlistItemsCount}</span>
+            <p className="flex justify-center text-xl"><i className={`bi ${wishlistItemsCount > 0 ? "bi-heart-fill" : "bi-heart"} duration-300`}></i></p>
+          </li>
+          <li className="relative mr-6 p-2 cursor-pointer" onClick={() => handleShow('cart')}>
+            <span className='absolute w-4 h-4 bg-accent-700 rounded-full text-center right-0 top-0 text-white font-bold text-xs'>{cartItemsCount}</span>
+            <p className="flex justify-center text-xl"><i className={`bi ${cartItemsCount > 0 ? "bi-bag-fill" : "bi-bag"} duration-300`}></i></p>
           </li>
         </ul>
         {/* fullscreen menu ends here */}

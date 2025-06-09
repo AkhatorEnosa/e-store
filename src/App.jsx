@@ -22,11 +22,7 @@ function App() {
   const { 
     products,
     loading,
-    error,
-    subtotal,
-    show,
-    itemCount,
-    handleShow} = useContext(AppContext)
+    error} = useContext(AppContext)
     
   if(!loading) {
     return (
@@ -34,14 +30,10 @@ function App() {
         <Router>
           <div className="relative h-screen flex flex-col justify-between">
             <div className="navbar-container">
-              <NavBar handleShow={handleShow} itemCount={itemCount}/>
+              <NavBar />
             </div>
               
-            <Cart
-                show={show}
-                handleShow={handleShow}
-                subtotal={subtotal}
-              />
+            <Cart/>
             {/* <ErrorBoundary> */}
             { !error ? 
               <Routes>

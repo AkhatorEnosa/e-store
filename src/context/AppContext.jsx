@@ -41,9 +41,12 @@ export function AppProvider({ children }) {
     }
   });
 
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState("");
   const [nav, setNav] = useState(false);
-  const [itemCount, setItemCount] = useState(cart?.length || 0);
+
+  const [cartItemsCount, setCartItemsCount] = useState(cart?.length || 0);
+  const [wishlistItemsCount, setWishlistItemsCount] = useState(wishlist?.length || 0);
+
   const cartString = useMemo(() => JSON.stringify(cart), [cart]);
   const wishlistString = useMemo(() => JSON.stringify(wishlist), [wishlist]);
   
@@ -58,7 +61,8 @@ export function AppProvider({ children }) {
     price: 109.95,
     rating: {rate: 3.9, count: 120},
     title: "Nike Air Max 270",
-    originalPrice: 109.95
+    originalPrice: 109.95,
+    quantity: 1
   };
 
   const fetchProducts = async () => {
@@ -126,20 +130,22 @@ export function AppProvider({ children }) {
     if( group === 'cart') {
       if (!findItemInGroup(cart, item)) { 
         setCart([...cart, item]);
-        setItemCount(itemCount+1)
+        setCartItemsCount(cartItemsCount+1)
         addSubtotal(item)
       } else {
         const newCart = cart?.filter((cartItem) => cartItem.id !== item.id);
         setCart(newCart);
-        setItemCount(itemCount-1)
+        setCartItemsCount(cartItemsCount-1)
         subtractSubtotal(item)
       }
     } else if (group === 'wishlist') {
         if (!findItemInGroup(wishlist, item)) { 
           setWishlist([...wishlist, item]);
+          setWishlistItemsCount(wishlistItemsCount+1)
         } else {
           const newWishlist = wishlist?.filter((wish) => wish.id !== item.id);
           setWishlist(newWishlist);
+          setWishlistItemsCount(wishlistItemsCount - 1)
         }
     }
   }
@@ -162,7 +168,7 @@ export function AppProvider({ children }) {
   }
 
   const lockBodyScroll = (state) => {
-    if(!state) {
+    if(state !== "") {
       body.style.height = '100vh'
       body.style.overflowY = 'hidden'
     } else {
@@ -171,9 +177,9 @@ export function AppProvider({ children }) {
     }
   }
 
-  const handleShow = () => {
-    setShow(!show);
-    lockBodyScroll(show)
+  const handleShow = (box) => {
+    setShow(box);
+    lockBodyScroll(box)
   }
 
   const handleNav = () => {
@@ -200,7 +206,8 @@ export function AppProvider({ children }) {
             wishlist, setWishlist,
             show, setShow,
             nav, setNav,
-            itemCount, setItemCount,
+            cartItemsCount, setCartItemsCount,
+            wishlistItemsCount, setWishlistItemsCount,
             // addItem, removeItem,
             toggleItem,
             handleShow,

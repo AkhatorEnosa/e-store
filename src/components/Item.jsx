@@ -68,7 +68,7 @@ const Item = ({ item = {} }) => {
       </div>
 
       <div className='col-span-1 flex justify-end'>
-        <button className='text-black/70 hover:text-[#fe4343]' onClick={() => toggleItem(item)}>
+        <button className='text-black/70 hover:text-[#fe4343]' onClick={() => toggleItem('cart', item)}>
           <i className="bi bi-x"></i>
         </button>
       </div>
