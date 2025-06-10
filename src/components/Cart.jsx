@@ -27,7 +27,7 @@ const Cart = () => {
     <div className={`w-screen h-screen ${show === 'cart' ? "flex" : "hidden"} flex-col justify-center items-center bg-black/50 fixed z-50`}>
         <div className='w-[90%] lg:w-[80%] h-[95%] bg-white shadow-lg rounded-lg flex flex-col justify-between items-center p-6'>
             <div className='w-full flex justify-between items-center mb-4'>
-                <h2 className='text-xl font-semibold'>You have {cart?.length} items in your cart.</h2>
+            <h2 className='w-full tracking-tighter text-center text-3xl font-semibold'>You have {cart?.length} items in your cart.</h2>
                 <div onClick={()=>handleShow('')} className="flex justify-center items-center rounded-full bg-white size-10 cursor-pointer">
                     <i className={`bi bi-x-lg hover:text-accent-600 text-lg transition-all duration-150`}></i>
                 </div>
@@ -64,10 +64,6 @@ const Cart = () => {
                         </div>
                 }
             </div>
-            {/* <div className='w-full flex justify-between items-center mt-4'>
-                <p className='text-lg font-semibold'>Total: $0.00</p>
-                <button className='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600'>Checkout</button>
-            </div> */}
         </div>
     </div>
   )

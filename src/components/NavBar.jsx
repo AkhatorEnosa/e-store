@@ -29,15 +29,19 @@ const NavBar = () => {
         </ul>
 
         <ul className='others flex h-fit text-sm justify-center items-center'>
-          <li className='mr-6 hidden lg:flex hover:text-accent-700 cursor-pointer duration-150 underline'>Login/Register</li>
-          <li className='mr-6 p-2 hidden lg:flex cursor-pointer hover:text-accent-700 text-xl '><i className="bi bi-search"></i></li>
-          <li className="relative mr-6 p-2 cursor-pointer" onClick={() => handleShow('wishlist')}>
-            <span className='absolute w-4 h-4 bg-accent-700 rounded-full text-center right-0 top-0 text-white font-bold text-xs'>{wishlistItemsCount}</span>
+          <li className="relative p-2 cursor-pointer">
+            <p className="flex justify-center text-xl"><i className={`bi bi-search`}></i></p>
+          </li>
+          <li className="relative p-2 cursor-pointer" onClick={() => handleShow('wishlist')}>
+            <span className='absolute w-5 h-5 bg-accent-700 rounded-full text-center right-0 top-0 text-white border-[2px] border-white font-bold text-xs'>{wishlistItemsCount}</span>
             <p className="flex justify-center text-xl"><i className={`bi ${wishlistItemsCount > 0 ? "bi-heart-fill" : "bi-heart"} duration-300`}></i></p>
           </li>
-          <li className="relative mr-6 p-2 cursor-pointer" onClick={() => handleShow('cart')}>
-            <span className='absolute w-4 h-4 bg-accent-700 rounded-full text-center right-0 top-0 text-white font-bold text-xs'>{cartItemsCount}</span>
+          <li className="relative p-2 cursor-pointer" onClick={() => handleShow('cart')}>
+            <span className='absolute w-5 h-5 bg-accent-700 rounded-full text-center right-0 top-0 text-white border-[2px] border-white font-bold text-xs'>{cartItemsCount}</span>
             <p className="flex justify-center text-xl"><i className={`bi ${cartItemsCount > 0 ? "bi-bag-fill" : "bi-bag"} duration-300`}></i></p>
+          </li>
+          <li className="relative p-2 cursor-pointer">
+            <p className="flex justify-center text-2xl"><i className={`bi bi-person`}></i></p>
           </li>
         </ul>
         {/* fullscreen menu ends here */}

@@ -3,14 +3,14 @@ import { AppContext } from '../context/AppContext';
 import Navigator from './Navigator';
 
 const NewProductsCard = ({ item }) => {
-   const { cart, wishlist, toggleItem, convertToUSD, findItemInGroup } = useContext(AppContext);
+   const { cart, wishlist, toggleItem, convertToUSD, findItemInGroup, show } = useContext(AppContext);
   
   const { id, image, title, price, category, description } = item;
   const itemInCart = findItemInGroup(cart, item);
   const itemInWishlist = findItemInGroup(wishlist, item);
   
   return (
-    <div className={`relative flex flex-col justify-center lg:justify-between md:text-xs lg:text-sm items-center border-[1px] ${itemInCart ? "shadow-md" : "hover:shadow-md"} gap-3 py-5 md:px-2 group rounded-xl duration-150 text-center hover:cursor-pointer`}>
+    <div className={`relative h-fit flex flex-col justify-center lg:justify-between md:text-xs lg:text-sm items-center border-[1px] ${itemInCart ? "shadow-md" : "hover:shadow-md"} gap-3 py-5 md:px-2 group rounded-xl duration-150 text-center hover:cursor-pointer`}>
         <Navigator 
           url={`/products/${id}`}
           variants={'w-full h-full absolute top-0 left-0 z-40'}
@@ -25,7 +25,7 @@ const NewProductsCard = ({ item }) => {
           <div className='w-full flex flex-col gap-2 text-left'>
             <p className='font-semibold text-xs group-hover:underline group-hover:text-accent-700 line-clamp-2'>{title}</p>
             <p className='w-fit bg-accent-50 px-1 rounded-md text-[8px]'>{category}</p>
-            <p className='line-clamp-2 text-[10px] text-black/80 capitalize'>{description}</p>
+            {show !== 'wishlist' && <p className='line-clamp-2 text-[10px] text-black/80 capitalize'>{description}</p>}
           </div>
 
           <div className="w-full flex justify-between items-center mt-2 md:mt-5">

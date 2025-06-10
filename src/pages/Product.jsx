@@ -109,10 +109,12 @@ const Product = () => {
     <div className='w-full h-fit flex flex-col gap-10 px-8 md:px-16 lg:px-32 z-30 py-20'>
         <Breadcrumbs />
         <div className='w-full h-full flex flex-col md:grid md:grid-cols-3 lg:grid-cols-2 gap-6'>
-            <div className='group relative w-full h-[400px] lg:h-[500px] flex justify-center items-stretch border-[1px] p-10 col-span-1 rounded-xl overflow-hidden'>
-                <button title='Add to Wishlist' className={`absolute w-fit h-fit top-3 right-3 lg:top-5 lg:right-5 flex items-center justify-center gap-2 px-2 py-2 text-[10px] opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100 rounded-lg ${itemInWishlist ? "bg-secondary-600 text-white" : "bg-white hover:bg-secondary-600 hover:text-[#fff] border-[1px] border-black"} duration-150 z-40`} onClick={()=>  toggleItem('wishlist', getProduct)}>
+            <div className={`group relative w-full h-[400px] md:h-fit lg:h-[500px] flex justify-center items-stretch border-[1px] ${id == 26 && "bg-[#f6f6f6]"} p-10 col-span-1 rounded-xl overflow-hidden`}>
+
+                <button title='Add to Wishlist' className={`absolute w-fit h-fit top-3 right-3 lg:top-5 lg:right-5 flex items-center justify-center gap-2 px-2 py-2 text-[10px] rounded-lg ${itemInWishlist ? "bg-secondary-600 text-white" : "bg-white hover:bg-secondary-600 hover:text-[#fff] border-[1px] border-black"} duration-150 z-40`} onClick={()=>  toggleItem('wishlist', getProduct)}>
                   <i className={`bi ${!itemInWishlist ? "bi-heart" : "bi-heart-fill"} text-lg flex justify-center items-center`}></i>
                 </button>
+
                 <img src={getProduct?.image} alt={`${getProduct?.image}`} className='w-full h-full group-hover:scale-110 object-contain duration-200'/>
             </div>
             <div className='md:col-span-2 lg:col-span-1 flex flex-col justify-start items-start gap-4'>

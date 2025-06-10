@@ -2,7 +2,7 @@ import axios from "axios";
 import { createContext, useEffect, useMemo, useState } from "react";
 
 
-import Shoe from '../assets/shoe.png'
+import Shoe from '../assets/shoe1.png'
 
 export const AppContext = createContext();
 

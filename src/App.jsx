@@ -14,6 +14,7 @@ import Sections from './components/Sections';
 import { AppContext } from './context/AppContext';
 import Cart from './components/Cart';
 import Loader from './components/Loader';
+import Wishlist from './components/Wishlist';
 
 const Products = lazy(() => import('./pages/Products'));
 const Product = lazy(() => import('./pages/Product'));
@@ -34,6 +35,7 @@ function App() {
             </div>
               
             <Cart/>
+            <Wishlist />
             {/* <ErrorBoundary> */}
             { !error ? 
               <Routes>
