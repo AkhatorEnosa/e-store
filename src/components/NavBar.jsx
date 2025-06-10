@@ -22,14 +22,14 @@ const NavBar = () => {
               <Navigator 
                 key={index}
                 url={link.path}
-                variants={'mr-8 cursor-pointer duration-150 hover:text-accent-700'}
+                variants={'mr-8 hover:text-accent-700 font-medium cursor-pointer duration-150'}
               ><li onClick={handleNav}>{link.label}</li></Navigator>
             ))
           }
         </ul>
 
-        <ul className='others flex h-fit text-sm justify-center items-center'>
-          <li className="relative p-2 cursor-pointer">
+        <ul className='others flex w-full h-fit text-sm justify-end items-center'>
+          <li className="relative p-2 cursor-pointer hidden lg:flex">
             <p className="flex justify-center text-xl"><i className={`bi bi-search`}></i></p>
           </li>
           <li className="relative p-2 cursor-pointer" onClick={() => handleShow('wishlist')}>
@@ -47,7 +47,7 @@ const NavBar = () => {
         {/* fullscreen menu ends here */}
 
       <div onClick={handleNav} className="flex justify-center items-center rounded-full bg-white size-10 cursor-pointer lg:hidden relative z-50">
-        <i className={`bi ${nav ? "bi-x-lg text-accent-600" : "bi-list"} text-lg transition-all duration-150`}></i>
+        <i className={`bi ${nav ? "bi-x-lg text-accent-600" : "bi-list"} text-xl transition-all duration-150`}></i>
       </div>
 
 
@@ -60,21 +60,20 @@ const NavBar = () => {
               <p>Shaup</p>
             </div>
 
-            <ul className='links flex flex-col p-4 uppercase tracking-wider text-xs md:text-sm'>
+            <ul className='links flex flex-col p-4 tracking-wider text-xs md:text-sm'>
               {
                 NAVLINKS.map((link, index) => (
                   <Navigator 
                     key={index}
                     url={link.path}
-                    variants={'w-full p-6 px-3 hover:border-b-[1px] hover:border-b-accent-700 hover:translate-x-4 duration-200 cursor-pointer'}
+                    variants={'w-full p-6 px-3 hover:border-b-[1px] hover:border-b-accent-700 hover:translate-x-4 font-medium duration-200 cursor-pointer'}
                   ><li onClick={handleNav}>{link.label}</li></Navigator>
                 ))
               }
             </ul>
 
             <ul className='others flex flex-col p-7 tracking-widest text-sm text-[#737373] font-thin'>
-              <li className='hover:font-extrabold align-left cursor-pointer underline'>Login/Register</li>
-              <li className='my-10'> <input className="border border-opacity-50 rounded-md py-4 px-3 w-full active:border-black active:outline-none" type="search" name="search" id="" placeholder="Search..."/></li>
+              <li className='my-10'> <input className="border border-opacity-50 rounded-full py-4 px-3 w-full outline-none active:outline-black" type="search" name="search" id="" placeholder="Search..."/></li>
             </ul>
           </div>
 

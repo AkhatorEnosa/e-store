@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { AppContext } from '../context/AppContext';
 import NewProductsCard from '../components/NewProductsCard';
-import Navigator from '../components/Navigator';
 
 const Products = () => {
   const { products } = useContext(AppContext);
@@ -63,30 +62,21 @@ const Products = () => {
   // Get the products to display
   // const displayedProducts = shuffleArray(products)
   return (
-    <section className='relative px-8 md:px-16 lg:px-32 z-30 py-20'>
+    <section className='relative px-4 md:px-16 lg:px-32 z-30 py-20'>
       {/* <div className='sticky top-0 flex justify-center items-center bg-accent-100 max-h-screen col-span-1'>
         side bar
       </div>  */}
       <div className="w-full flex flex-col">
-        <div className='w-full flex justify-between items-start gap-2 py-10'>
+        <div className='w-full flex justify-between items-start gap-2 pt-5 md:pt-10'>
           <div>
-            <h2 className='font-semibold capitalize w-fit text-2xl'> All Products </h2>
+            <h2 className='font-semibold capitalize w-fit md:text-2xl'> All Products </h2>
             <p className='text-xs'>Explore our collection of products</p>
           </div>
-
-
-          <Navigator 
-              url={`/`}
-              variants={'text-xs font-semibold hover:text-accent-700 hover:underline'}
-          >
-            Back to Home
-          </Navigator>
         </div>
         <div className='flex justify-between items-center my-6 text-xs'>
           <p className=''>Showing {sortedProducts?.length} products</p>
           <div className='flex items-center gap-2'>
-            <label htmlFor="filter" className='text-sm text-black/70'>Filter by</label>
-            <select name="sort" id="" className='border-[1px] border-black/20 rounded-md px-2 py-1 text-sm outline-none'
+            <select name="sort" id="" className='border-[1px] border-black/20 rounded-full px-2 py-1 text-xs md:text-sm outline-none'
               value={sortOption}
               onChange={handleSortChange}
             >
@@ -95,6 +85,7 @@ const Products = () => {
               <option value="price-high-low">Price: High to Low</option>
               <option value="category">Category</option>
             </select>
+            <label htmlFor="filter" title='Filter By' className='text-lg text-black/70'><i className='bi bi-filter'></i></label>
           </div>
         </div>
         <div className='grid grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6'>

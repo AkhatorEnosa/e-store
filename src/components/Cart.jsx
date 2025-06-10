@@ -25,9 +25,9 @@ const Cart = () => {
 
   return ( 
     <div className={`w-screen h-screen ${show === 'cart' ? "flex" : "hidden"} flex-col justify-center items-center bg-black/50 fixed z-50`}>
-        <div className='w-[90%] lg:w-[80%] h-[95%] bg-white shadow-lg rounded-lg flex flex-col justify-between items-center p-6'>
-            <div className='w-full flex justify-between items-center mb-4'>
-            <h2 className='w-full tracking-tighter text-center text-3xl font-semibold'>You have {cart?.length} items in your cart.</h2>
+        <div className='w-[95%] lg:w-[80%] h-[95%] bg-white shadow-lg rounded-lg flex flex-col justify-between items-center p-2 py-4 md:p-6'>
+            <div className='w-full flex justify-between items-center md:mb-4 px-2'>
+                <h2 className='w-fit md:w-full tracking-tighter text-center text-xl md:text-3xl font-semibold'>You have {cart?.length} items in your cart.</h2>
                 <div onClick={()=>handleShow('')} className="flex justify-center items-center rounded-full bg-white size-10 cursor-pointer">
                     <i className={`bi bi-x-lg hover:text-accent-600 text-lg transition-all duration-150`}></i>
                 </div>

@@ -106,7 +106,7 @@ const Product = () => {
 
 
   return (
-    <div className='w-full h-fit flex flex-col gap-10 px-8 md:px-16 lg:px-32 z-30 py-20'>
+    <div className='w-full h-fit flex flex-col gap-10 px-4 md:px-16 lg:px-32 z-30 py-20'>
         <Breadcrumbs />
         <div className='w-full h-full flex flex-col md:grid md:grid-cols-3 lg:grid-cols-2 gap-6'>
             <div className={`group relative w-full h-[400px] md:h-fit lg:h-[500px] flex justify-center items-stretch border-[1px] ${id == 26 && "bg-[#f6f6f6]"} p-10 col-span-1 rounded-xl overflow-hidden`}>
@@ -130,11 +130,11 @@ const Product = () => {
                   <i className="bi bi-star-fill text-primary-600"></i>
                   <i className="bi bi-star text-primary-600"></i>
                 </div>
-                <div className='w-full flex  justify-between items-start gap-4'>
-                  <div className='w-fit md:w-full flex justify-center items-start gap-6'>
+                <div className='w-full flex flex-col md:flex-row justify-between items-start gap-4'>
+                  <div className='w-full flex justify-between md:justify-center items-start gap-6'>
                     <p className='text-lg md:text-2xl font-semibold'>{convertToUSD(getProduct?.price)}</p>
 
-                    <div className='flex flex-col justify-center items-center md:items-center gap-2 w-full'>
+                    <div className='flex flex-col justify-center items-center md:items-center gap-2 md:w-full'>
 
                         <div className='w-[150px] grid grid-cols-3 justify-center items-center gap-2 border rounded-lg'>
                             <i className={`flex justify-center items-center size-10 bi bi-dash-lg ${itemInCart?.quantity === 1 && "opacity-50 font-bold cursor-default"} col-span-1 w-full text-sm cursor-pointer`} onClick={() => handleNumMinus()}></i>
@@ -150,7 +150,7 @@ const Product = () => {
                         title={itemInCart ? "Remove from Cart" : "Add to Cart"}
                         operation={itemInCart}
                         handleClick={() => toggleItem('cart', getProduct)}
-                        variants={"text-sm hidden md:flex"}
+                        variants={"text-sm"}
                     />
                 </div>
                 {/* <button className='bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300 transition duration-200' onClick={() => navigate('/')}>Back to Products</button> */}
@@ -161,7 +161,7 @@ const Product = () => {
           <h2 className='font-semibold capitalize w-fit mt-10 mb-10'>
             Related Products
           </h2>
-          <div className='w-full grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6'>
+          <div className='w-full grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 lg:gap-6'>
             {displayedProducts.map((item) => (
               <NewProductsCard 
                 key={`${item.id}-${item.title}`} 

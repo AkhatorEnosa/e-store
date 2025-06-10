@@ -54,18 +54,18 @@ const Footer = () => {
         <h1 className='text-1xl font-bold uppercase mb-2'>Newsletter</h1>
         <div className="flex border-[1px] border-[#ccc] rounded-full py-1 px-2 w-fit">
           <input type="text" placeholder='Email' className='mr-6 md:w-auto outline-none'/>
-          <button className="bg-black text-white font-sm py-2 px-5 rounded-full">
+          <button className="bg-black/90 text-white hover:bg-primary-600 hover:text-[#fff] shadow-md font-sm py-2 px-5 rounded-full duration-150">
             Subscribe
           </button>
           </div>
           <div className="flex gap-2 mt-7">
-            <i className='flex justify-center items-center p-2 text-2xl bi bi-facebook bg-primary-100 rounded-full cursor-pointer'>
+            <i className='flex justify-center items-center p-2 text-2xl bi bi-facebook rounded-full cursor-pointer'>
             </i>
-            <i className='flex justify-center items-center p-2 text-2xl bi bi-twitter-x bg-primary-100 rounded-full cursor-pointer'>
+            <i className='flex justify-center items-center p-2 text-2xl bi bi-twitter-x rounded-full cursor-pointer'>
             </i>
-            <i className='flex justify-center items-center p-2 text-2xl bi bi-instagram bg-primary-100 rounded-full cursor-pointer'>
+            <i className='flex justify-center items-center p-2 text-2xl bi bi-instagram rounded-full cursor-pointer'>
             </i>
-            <i className='flex justify-center items-center p-2 text-2xl bi bi-pinterest bg-primary-100 rounded-full cursor-pointer'>
+            <i className='flex justify-center items-center p-2 text-2xl bi bi-pinterest rounded-full cursor-pointer'>
             </i>
         </div>
       </div>

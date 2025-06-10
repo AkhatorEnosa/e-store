@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 import Navigator from './Navigator';
+import { motion } from 'motion/react'
 
 const Item = ({ item = {} }) => {
   const { toggleItem, updateQuantity, convertToUSD, handleShow } = useContext(AppContext);
@@ -39,7 +40,13 @@ const Item = ({ item = {} }) => {
   }
 
   return (
-    <div className='w-full grid grid-cols-10 py-2 justify-between items-center'>
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: "easeInOut" }}
+      viewport={{ amount: 0.2 }}
+    
+    className='w-full grid grid-cols-10 py-2 justify-between items-center'>
 
       <div className='col-span-5 flex justify-start gap-2 items-center'>
         <div className='min-w-[60px] h-[60px] md:w-[100px] md:h-[80px] flex justify-center items-center rounded-lg shadow shadow-[#342718]/10 overflow-hidden'>
@@ -50,7 +57,7 @@ const Item = ({ item = {} }) => {
             url={`/products/${id}`}
             variants={'text-sm md:text-base text-inherit hover:text-accent-600 font-semibold transition-all duration-150'}
           >
-            <p className='text-xs text-semibold tracking-tight line-clamp-3' onClick={() => handleShow()}>{title}</p>
+            <p className='text-xs text-semibold tracking-tight line-clamp-2' onClick={() => handleShow()}>{title}</p>
           </Navigator>
           <p className='w-fit bg-accent-50 px-1 rounded-md text-[8px] text-justify line-clamp-1'>{category}</p>
         </div>
@@ -72,7 +79,7 @@ const Item = ({ item = {} }) => {
           <i className="bi bi-x"></i>
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
