@@ -45,6 +45,7 @@ const Item = ({ item = {} }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: "easeInOut" }}
       viewport={{ amount: 0.2 }}
+      layout
     
     className='w-full grid grid-cols-10 py-2 justify-between items-center'>
 

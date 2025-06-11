@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { NAVLINKS } from "../constants/navlinks";
 import { AppContext } from "../context/AppContext";
 import Navigator from "./Navigator";
+import Logo from '../assets/logo.webp'
 
 const NavBar = () => {
   const { nav, handleNav, handleShow, cartItemsCount, wishlistItemsCount } = useContext(AppContext)
@@ -12,7 +13,7 @@ const NavBar = () => {
       <div className="logo text-black text-5xl font-extrabold items-center">
         <Navigator 
           url={'/'}
-        >{'Shaup'}</Navigator>
+        ><img src={Logo} alt="logo" className="w-32"/></Navigator>
       </div>
 
       {/* fullscreen menu */}
@@ -28,7 +29,7 @@ const NavBar = () => {
           }
         </ul>
 
-        <ul className='others flex w-full h-fit text-sm justify-end items-center'>
+        <ul className='others flex w-full lg:w-fit h-fit text-sm justify-end items-center'>
           <li className="relative p-2 cursor-pointer hidden lg:flex">
             <p className="flex justify-center text-xl"><i className={`bi bi-search`}></i></p>
           </li>

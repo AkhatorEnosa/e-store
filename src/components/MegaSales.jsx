@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import ShopBag from '../assets/happy.png'
+import ShopBag from '../assets/happy2.png'
 
 const MegaSales = () => {
   const [countdown, setCountdown] = useState('');
@@ -41,12 +41,14 @@ const MegaSales = () => {
   }, []);
 
   return (
-    <div className="w-full flex justify-center align-middle bg-[#f7f5ed] items-center px-10 lg:px-20 py-20 shadow-sm z-30">
-      <img
-        src={ShopBag}
-        alt="shopping bag"
-        className="lg:w-[30rem] md:w-[25rem] w-[14rem] md:relative absolute md:left-0 right-60"
-      />
+    <div className="w-full flex justify-center align-middle bg-[#f7f5ed] items-center px-10 lg:px-20 shadow-sm z-30">
+      <div className='h-full'>
+        <img
+          src={ShopBag}
+          alt="shopping bag"
+          className="lg:w-[60rem] md:w-[25rem] w-[14rem] md:relative absolute md:left-0 right-60 mix-blend-darken"
+        />
+      </div>
 
       {countdown === 'EXPIRED' ? (
         <div className="flex flex-col ml-10 z-50">
