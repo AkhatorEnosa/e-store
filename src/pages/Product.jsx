@@ -19,8 +19,8 @@ const Product = () => {
   //  const shuffledArr = useMemo(() => shuffleArray([...relatedItems]).slice(0, 3), [relatedItems]); // Shuffle related items
     
     useEffect(() => {
-        if (!id) navigate('/not-found'); // Redirect if missing
-      }, [id]);
+        if (!getProduct) navigate('/not-found'); // Redirect if missing
+      }, [getProduct]);
 
     const originalPrice = getProduct?.price || 0; // Fallback to 0 if price is undefined
     const [clicked, setClicked] = useState('');

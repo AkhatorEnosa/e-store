@@ -17,6 +17,7 @@ import Loader from './components/Loader';
 import Wishlist from './components/Wishlist';
 
 const Products = lazy(() => import('./pages/Products'));
+const Category = lazy(() => import('./pages/Category'));
 const Product = lazy(() => import('./pages/Product'));
 
 function App() {
@@ -67,6 +68,10 @@ function App() {
 
                 <Route path='/products/:id' element={
                   <Product />
+                } />
+
+                <Route path='/products/category/:id' element={
+                  <Category />
                 } />
 
                 <Route path='/products' element={

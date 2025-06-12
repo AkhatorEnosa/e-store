@@ -158,12 +158,33 @@ export function AppProvider({ children }) {
     );
   };
 
-  function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]]; // Swap elements
-    }
-    return array;
+  // function shuffleArray(array) {
+  //   for (let i = array.length - 1; i > 0; i--) {
+  //     const j = Math.floor(Math.random() * (i + 1));
+  //     [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+  //   }
+  //   return array;
+  // }
+
+
+  const formulateLinks = (arr) => {
+    const categories = [
+      {
+         url: '/', title: 'home' 
+      },
+      {
+         url: '/contact', title: 'contact' 
+      }
+    ]
+  
+    arr.map((x) => {
+      const findCategory = categories.find((y) => y.title === x.category)
+      const categoryLen = categories.length
+      if (!findCategory) {
+        categories.splice(categoryLen - 1, 0, {url: `/products/category/${x.category}`, title: x.category})
+      }
+    })
+      return categories
   }
 
   const lockBodyScroll = (state) => {
@@ -214,7 +235,8 @@ export function AppProvider({ children }) {
             // handleNumAdd, handleNumMinus,
             addSubtotal, subtractSubtotal,
             findItemInGroup,
-            shuffleArray,
+            // shuffleArray,
+            formulateLinks,
             updateQuantity,
             fetchProducts,
             convertToUSD

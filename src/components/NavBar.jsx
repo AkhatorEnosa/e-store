@@ -5,7 +5,8 @@ import Navigator from "./Navigator";
 import Logo from '../assets/logo.webp'
 
 const NavBar = () => {
-  const { nav, handleNav, handleShow, cartItemsCount, wishlistItemsCount } = useContext(AppContext)
+  const { nav, formulateLinks, products, handleNav, handleShow, cartItemsCount, wishlistItemsCount } = useContext(AppContext)
+    const navLinks = formulateLinks([...products])
 
   return (
     <div className='w-full px-6 py-4 mb-4 flex justify-between items-center shadow fixed bg-white z-50'>
@@ -19,12 +20,12 @@ const NavBar = () => {
       {/* fullscreen menu */}
         <ul className='links hidden lg:flex p-0 tracking-wider text-sm'>
           {
-            NAVLINKS.map((link, index) => (
+            navLinks.map((link, index) => (
               <Navigator 
                 key={index}
-                url={link.path}
-                variants={'mr-8 hover:text-accent-700 font-medium cursor-pointer duration-150'}
-              ><li onClick={handleNav}>{link.label}</li></Navigator>
+                url={link.url}
+                variants={'mr-8 hover:text-accent-700 font-medium capitalize cursor-pointer duration-150'}
+              ><li onClick={handleNav}>{link.title}</li></Navigator>
             ))
           }
         </ul>
@@ -63,12 +64,12 @@ const NavBar = () => {
 
             <ul className='links flex flex-col p-4 tracking-wider text-xs md:text-sm'>
               {
-                NAVLINKS.map((link, index) => (
+                navLinks.map((link, index) => (
                   <Navigator 
                     key={index}
-                    url={link.path}
-                    variants={'w-full p-6 px-3 hover:border-b-[1px] hover:border-b-accent-700 hover:translate-x-4 font-medium duration-200 cursor-pointer'}
-                  ><li onClick={handleNav}>{link.label}</li></Navigator>
+                    url={link.url}
+                    variants={'w-full p-6 px-3 hover:border-b-[1px] hover:border-b-accent-700 hover:translate-x-4 font-medium capitalize duration-200 cursor-pointer'}
+                  ><li onClick={handleNav}>{link.title}</li></Navigator>
                 ))
               }
             </ul>

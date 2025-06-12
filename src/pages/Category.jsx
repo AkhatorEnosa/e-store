@@ -1,11 +1,24 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { AppContext } from '../context/AppContext';
 import NewProductsCard from '../components/NewProductsCard';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const Products = () => {
+const Category = () => {
   const { products } = useContext(AppContext);
+
+  const { id } = useParams()
+  const getProducts = useMemo(() => products?.filter((product) => product?.category === id), [id]) ; // Find product by params ID
+  const findCategory = products?.find((product) => product?.category === id); // Find product by params ID
+
   const [sortOption, setSortOption] = useState('newest');
-  const [sortedProducts, setSortedProducts] = useState([...products]);
+  const [sortedProducts, setSortedProducts] = useState([...getProducts]);
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+      if (!findCategory) navigate('/not-found'); // Redirect if missing
+      getProducts && setSortedProducts(getProducts);
+      // console.log(getProducts)
+    }, [findCategory, getProducts]);
 
   const sortArrayFn = ( option) => {
     const freshArr = [...sortedProducts];
@@ -20,9 +33,6 @@ const Products = () => {
       case 'price-high-low':
         freshArr.sort((a, b) => b.price - a.price);
         break;
-      case 'category':
-        freshArr.sort((a, b) => a.category.localeCompare(b.category));
-        break;
       default:
         return freshArr.sort((a, b) => new Date(b.id) - new Date(a.id));
     }
@@ -36,29 +46,6 @@ const Products = () => {
     sortArrayFn(selectedOption);
   }
 
-  // Memoized random starting position calculation
-//   const { startPos, endPos } = useMemo(() => {
-//     if (!products.length) return { startPos: 0, endPos: 0 };
-    
-//     const randomNum = Math.floor(Math.random() * products.length);
-//     const safeStart = Math.max(
-//       0, 
-//       randomNum - (randomNum + 6 > products.length ? 6 : 0)
-//     );
-//     const safeEnd = Math.min(safeStart + 6, products.length);
-    
-//     return { startPos: safeStart, endPos: safeEnd };
-//   }, [products]);
-
-//   // Early return if no products
-//   if (!products.length) {
-//     return (
-//       <div className='px-8 md:px-16 lg:px-32 py-20'>
-//         <p>Nothing to show yet</p>
-//       </div>
-//     );
-//   }
-
   // Get the products to display
   // const displayedProducts = shuffleArray(products)
   return (
@@ -69,8 +56,8 @@ const Products = () => {
       <div className="w-full flex flex-col">
         <div className='w-full flex justify-between items-start gap-2 pt-5 md:pt-10'>
           <div>
-            <h2 className='font-semibold capitalize w-fit md:text-2xl'> All Products </h2>
-            <p className='text-xs'>Explore our collection of products</p>
+            <h2 className='font-semibold capitalize w-fit md:text-2xl'> {id} </h2>
+            <p className='text-xs'>Explore our <span className='capitalize'>{id}</span> collection</p>
           </div>
         </div>
         <div className='flex justify-between items-center my-6 text-xs'>
@@ -84,7 +71,6 @@ const Products = () => {
               <option value="newest">Newest</option>
               <option value="price-low-high">Price: Low to High</option>
               <option value="price-high-low">Price: High to Low</option>
-              <option value="category">Category</option>
             </select>
           </div>
         </div>
@@ -101,4 +87,4 @@ const Products = () => {
   )
 }
 
-export default Products
+export default Category

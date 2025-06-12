@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {RiVisaLine} from 'react-icons/ri';
 import {FaCcMastercard} from 'react-icons/fa';
 import {FaCcPaypal} from 'react-icons/fa';
-import { NAVLINKS } from '../constants/navlinks';
+// import { NAVLINKS } from '../constants/navlinks';
 import Navigator from './Navigator';
 import Logo from '../assets/logo.webp'
+import { AppContext } from '../context/AppContext';
 
 const Footer = () => {
+  const { formulateLinks, products } = useContext(AppContext);
+  const navLinks = formulateLinks([...products])
+
   return (
     <div className='w-full flex lg:flex-row flex-col justify-around p-10'>
       <div className='flex flex-col max-w-[450px] md:px-5 py-2 mb-5'>
@@ -26,12 +30,12 @@ const Footer = () => {
         <div className="flex flex-col">
           <ul className='font-extralight text-sm'>
             {
-              NAVLINKS.map((link, index) => (
+              navLinks.map((link, index) => (
                 <li key={index} className='my-2'>
                 <Navigator 
-                  url={link.path}
-                  variants={"hover:text-accent-700"}
-                >{link.label}</Navigator>
+                  url={link.url}
+                  variants={"hover:text-accent-700 capitalize"}
+                >{link.title}</Navigator>
                 </li>
               ))
             }
