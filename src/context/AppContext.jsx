@@ -12,7 +12,6 @@ export function AppProvider({ children }) {
   const body = document.body
 
   const [products, setProducts] = useState([]);
-  // const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [subtotal, setSubtotal] = useState(0);

@@ -6,7 +6,7 @@ import Button from '../components/Button';
 import NewProductsCard from '../components/NewProductsCard';
 
 const Product = () => {
-    const { cart, wishlist, products, toggleItem, findItemInGroup, updateQuantity, shuffleArray, error} = useContext(AppContext);
+    const { cart, wishlist, products, toggleItem, findItemInGroup, updateQuantity, error} = useContext(AppContext);
     const { convertToUSD } = useContext(AppContext);
     const { id } = useParams()
     const navigate = useNavigate();
@@ -16,6 +16,7 @@ const Product = () => {
     const itemInWishlist = findItemInGroup(wishlist, getProduct);
 
    const relatedItems = products.filter((item) => item.category === getProduct?.category && item.id !== getProduct?.id); // Filter related items by category, excluding the current product
+  //  const shuffledArr = useMemo(() => shuffleArray([...relatedItems]).slice(0, 3), [relatedItems]); // Shuffle related items
     
     useEffect(() => {
         if (!id) navigate('/not-found'); // Redirect if missing
@@ -69,40 +70,27 @@ const Product = () => {
       return 'Add to cart before you can increase or decrease quantity';
     }
   }
-    // Memoized random starting position calculation
-    // const { startPos, endPos } = useMemo(() => {
-    //   if (!products.length) return { startPos: 0, endPos: 0 };
-      
-    //   const randomNum = Math.floor(Math.random() * relatedItems.length);
-    //   const safeStart = Math.max(
-    //     0, 
-    //     randomNum - (randomNum + 3 > products.length ? 3 : 0)
-    //   );
-    //   const safeEnd = Math.min(safeStart + 3, products.length);
-      
-    //   return { startPos: safeStart, endPos: safeEnd };
-    // }, [products]);
   
-    if(error) {
+  if(error) {
+    return (
+      <div className="w-full text-center px-9 md:px-16 lg:px-32 py-56">
+        <p>Connect to the Internet and try again.</p>
+      </div>
+    )
+  } else {
+    if (!products.length) {
       return (
-        <div className="w-full text-center px-9 md:px-16 lg:px-32 py-56">
-          <p>Connect to the Internet and try again.</p>
+        <div className='px-8 md:px-16 lg:px-32 py-20'>
+          <p>No new arrivals available</p>
         </div>
-      )
-    } else {
-      if (!products.length) {
-        return (
-          <div className='px-8 md:px-16 lg:px-32 py-20'>
-            <p>No new arrivals available</p>
-          </div>
-        );
-      }
+      );
     }
+  }
 
     // Early return if no products
   
     // Get the products to display
-    const displayedProducts = shuffleArray(relatedItems).slice(0, 3);
+    const displayedProducts = [...relatedItems].slice(0, 3);
 
 
   return (
