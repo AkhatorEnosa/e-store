@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import ShopBag from '../assets/happy2.png'
+import Navigator from './Navigator';
 
 const MegaSales = () => {
   const [countdown, setCountdown] = useState('');
@@ -59,9 +60,14 @@ const MegaSales = () => {
             Mega Shopping Fiesta
           </h1>
           {/* <h1 className='mt-6 text-center lg:text-3xl text-2xl tracking-tight font-bold uppercase'>{countdown}</h1> */}
-          <button className="px-10 md:px-32 py-3 mx-auto hover:bg-accent-600 bg-[#000] text-white my-4 shadow-md cursor-pointer duration-150">
-            Explore
-          </button>
+            <Navigator 
+              url="/products"
+              variants={'w-full p-6 px-3 hover:border-b-[1px] hover:border-b-accent-700 hover:translate-x-4 capitalize duration-200 cursor-pointer'}
+            >
+              <button className="px-10 md:px-32 py-3 mx-auto hover:bg-accent-600 bg-[#000] text-white my-4 shadow-md cursor-pointer duration-150">
+                Explore
+              </button>
+            </Navigator>
         </div>
       ) : (
         <div className="flex flex-col ml-10 py-8 z-50">
@@ -71,7 +77,7 @@ const MegaSales = () => {
           <h1 className="lg:text-7xl text-3xl tracking-tight font-extrabold text-center">
             Mega Shopping Fiesta
           </h1>
-          <p className='text-center lg:text-4xl text-2xl tracking-tight font-bold capitalize text-primary-600'>COMING SOON!</p>
+          <p className='text-center lg:text-4xl text-2xl tracking-tight font-bold mt-4 capitalize text-primary-600 animate-pulse'>COMING SOON!!!!</p>
           {/* <h1 className="mt-6 text-center lg:text-4xl text-2xl tracking-tight font-bold capitalize countdown text-accent-500">
             {countdown}
           </h1> */}

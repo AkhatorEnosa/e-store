@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { NAVLINKS } from "../constants/navlinks";
 import { AppContext } from "../context/AppContext";
 import Navigator from "./Navigator";
 import Logo from '../assets/logo.webp'

@@ -14,7 +14,7 @@ const NewProductsCard = ({ item }) => {
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeInOut" }}
+      transition={{ duration: 0.2, ease: "easeInOut" }}
       viewport={{ amount: 0.2 }}
       className={`relative h-fit flex flex-col justify-center lg:justify-between md:text-xs lg:text-sm items-center border-[1px] ${itemInCart ? "shadow-md" : "hover:shadow-md"} gap-3 py-5 md:px-2 group rounded-xl duration-150 text-center hover:cursor-pointer`}>
         <Navigator 
@@ -30,7 +30,7 @@ const NewProductsCard = ({ item }) => {
         <div className='w-full flex flex-col justify-center items-center gap-1 leading-4 px-2 md:px-4'>
           <div className='w-full flex flex-col gap-2 text-left'>
             <p className='font-semibold text-xs group-hover:underline group-hover:text-accent-700 line-clamp-1 md:line-clamp-2'>{title}</p>
-            <p className='w-fit bg-accent-50 px-1 rounded-md text-[8px]'>{category}</p>
+            <p className='w-fit bg-secondary-50 px-1 rounded-md text-[8px]'>{category}</p>
             {show !== 'wishlist' && <p className='line-clamp-2 text-[10px] text-black/80 capitalize'>{description}</p>}
           </div>
 

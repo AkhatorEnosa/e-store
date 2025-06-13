@@ -43,7 +43,7 @@ const Item = ({ item = {} }) => {
     <motion.div
       initial={{ opacity: 0, y: -10 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
+      transition={{ duration: 0.2, ease: "easeInOut" }}
       viewport={{ amount: 0.2 }}
       layout
     
@@ -60,7 +60,7 @@ const Item = ({ item = {} }) => {
           >
             <p className='text-xs text-semibold tracking-tight line-clamp-2' onClick={() => handleShow()}>{title}</p>
           </Navigator>
-          <p className='w-fit bg-accent-50 px-1 rounded-md text-[8px] text-justify line-clamp-1'>{category}</p>
+          <p className='w-fit bg-secondary-50 px-1 rounded-md text-[8px] text-justify line-clamp-1'>{category}</p>
         </div>
       </div>
 
@@ -72,7 +72,7 @@ const Item = ({ item = {} }) => {
       </div>
 
       <div className='col-span-2 flex justify-end'>
-        <p className='text-sm font-semibold'>{convertToUSD((price))}</p>
+        <p className='text-sm font-semibold text-secondary-600'>{convertToUSD((price))}</p>
       </div>
 
       <div className='col-span-1 flex justify-end'>

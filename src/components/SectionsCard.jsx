@@ -9,7 +9,7 @@ const SectionsCard = ({ id, img, title, price }) => {
     <motion.div
     initial={{ opacity: 0, y: 50 }}
     whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.7, ease: "easeInOut" }}
+    transition={{ duration: 0.2, ease: "easeInOut" }}
     viewport={{ amount: 0.2 }}
     >
         <Navigator 

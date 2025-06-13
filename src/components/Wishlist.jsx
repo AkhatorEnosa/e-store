@@ -18,7 +18,7 @@ const Wishlist = () => {
                 {
                     wishlist?.length > 0 ? 
                         <>
-                            <div className='col-span-3 w-full h-fit grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 md:p-4 rounded-lg overflow-y-scroll'>
+                            <div className='col-span-3 w-full h-fit lg:h-full grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 md:p-4 rounded-lg overflow-y-scroll'>
                                 {/* Cart items will be displayed here */}
                                 {
                                         wishlist.map((x) => (

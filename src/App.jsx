@@ -2,7 +2,7 @@ import React, { lazy, Suspense, useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
-import Benefits from './components/Benefits';
+import Services from './components/Services';
 // import ErrorBoundary from './components/ErrorBoundary';
 import Footer from './components/Footer';
 import Hero from './components/Hero';
@@ -62,7 +62,7 @@ function App() {
                     <Sections 
                       products = {products}
                     />
-                    <Benefits />
+                    <Services />
                   </>
                 } />
 
