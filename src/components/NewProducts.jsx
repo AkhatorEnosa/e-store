@@ -32,12 +32,12 @@ const NewProducts = () => {
   const displayedProducts = products.slice(startPos, endPos);
 
   return (
-    <section className='px-4 md:px-16 lg:px-32 z-30 py-20'>
+    <section className='px-4 md:px-16 lg:px-32 z-30 py-10 md:py-20'>
       <div className="w-full flex flex-col">
-        <h2 className='text-2xl font-bold uppercase w-fit mt-4 mb-10'>
+        <h2 className='md:text-2xl font-bold uppercase w-fit mt-4 mb-10'>
           New Arrivals
         </h2>
-        <div className='grid grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6'>
+        <div className='grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6'>
           {displayedProducts.map((item) => (
             <NewProductsCard 
               key={`${item.id}-${item.title}`} 

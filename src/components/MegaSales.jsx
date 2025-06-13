@@ -41,12 +41,12 @@ const MegaSales = () => {
   }, []);
 
   return (
-    <div className="w-full flex justify-center align-middle bg-[#f7f5ed] items-center px-10 lg:px-20 shadow-sm z-30">
-      <div className='h-full'>
+    <div className="relative w-full flex justify-center align-middle bg-[#f7f5ed] items-center px-10 lg:px-20 shadow-sm z-30 overflow-clip">
+      <div className='overflow-hidden'>
         <img
           src={ShopBag}
           alt="shopping bag"
-          className="lg:w-[60rem] md:w-[25rem] w-[14rem] md:relative absolute md:left-0 right-60 mix-blend-darken"
+          className="lg:w-[60rem] md:w-[25rem] w-[90%] md:relative absolute md:left-0 bottom-0 right-60 mix-blend-darken"
         />
       </div>
 
@@ -64,16 +64,17 @@ const MegaSales = () => {
           </button>
         </div>
       ) : (
-        <div className="flex flex-col ml-10 z-50">
+        <div className="flex flex-col ml-10 py-8 z-50">
           <p className="md:text-base text-xs text-center">
             THE BIGGEST SALE OF THE YEAR
           </p>
           <h1 className="lg:text-7xl text-3xl tracking-tight font-extrabold text-center">
             Mega Shopping Fiesta
           </h1>
-          <h1 className="mt-6 text-center lg:text-4xl text-2xl tracking-tight font-bold capitalize countdown text-accent-500">
+          <p className='text-center lg:text-4xl text-2xl tracking-tight font-bold capitalize text-primary-600'>COMING SOON!</p>
+          {/* <h1 className="mt-6 text-center lg:text-4xl text-2xl tracking-tight font-bold capitalize countdown text-accent-500">
             {countdown}
-          </h1>
+          </h1> */}
         </div>
       )}
     </div>

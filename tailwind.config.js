@@ -5,6 +5,10 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        'xs': '200px',
+        'sm': '430px',  // Extra small devices
+      },
       colors: {
         // Primary Color Palette (Blue for trust and brand consistency)
         primary: {

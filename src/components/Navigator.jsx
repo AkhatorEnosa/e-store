@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom'
 import { AppContext } from '../context/AppContext';
 
 const Navigator = ({ children, url, variants}) => {
-  const { handleShow } = useContext(AppContext);
+  const { handleShow, handleNav, lockBodyScroll } = useContext(AppContext);
   const handleClick = () => {
     handleShow('');
+    handleNav('link');
+    lockBodyScroll('');
     window.scrollTo({
       top: 0,
       left: 0,
@@ -13,8 +15,9 @@ const Navigator = ({ children, url, variants}) => {
     });
   };
   return (
-    <Link to={url} onClick={handleClick} 
-      className={variants}>{children}</Link>
+    <Link to={url} className={variants} onClick={handleClick}>
+        {children}
+      </Link>
   )
 }
 

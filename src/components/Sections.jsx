@@ -4,9 +4,9 @@ import Navigator from './Navigator';
 const Sections = (props) => {
   return (
     <section className='w-full px-4 pb-20'>
-      <div className='w-full h-fit grid md:grid-cols-2 grid-cols-1 gap-14 py-20 px-8 md:px-16 lg:px-32'>
+      <div className='w-full h-fit grid md:grid-cols-2 grid-cols-1 gap-14 py-20 md:px-16 lg:px-32'>
         <div className="flex flex-col -mb-2 md:p-4 p-2 -pb-5">
-          <h1 className='uppercase w-fit text-2xl mb-4 lg:mb-10 font-bold'>Hot Trend</h1>
+          <h1 className='md:text-2xl font-bold uppercase w-fit mt-4 mb-10'>Hot Trend</h1>
 
           <div className='flex flex-col divide-y-[1px]'>
             {
@@ -28,7 +28,7 @@ const Sections = (props) => {
         </div>
 
         <div className="flex flex-col -mb-2 md:p-4 p-2 -pb-5">
-          <h1 className='uppercase w-fit text-2xl mb-4 lg:mb-10 font-bold'>Best Sellers</h1>
+          <h1 className='md:text-2xl font-bold uppercase w-fit mt-4 mb-10'>Best Sellers</h1>
 
           <div className='flex flex-col divide-y-[1px]'>
             {

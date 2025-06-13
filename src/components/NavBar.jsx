@@ -5,7 +5,7 @@ import Navigator from "./Navigator";
 import Logo from '../assets/logo.webp'
 
 const NavBar = () => {
-  const { nav, formulateLinks, products, handleNav, handleShow, cartItemsCount, wishlistItemsCount } = useContext(AppContext)
+  const { nav, formulateLinks, products, handleNav, handleShow, lockBodyScroll, cartItemsCount, wishlistItemsCount } = useContext(AppContext)
     const navLinks = formulateLinks([...products])
 
   return (
@@ -18,14 +18,14 @@ const NavBar = () => {
       </div>
 
       {/* fullscreen menu */}
-        <ul className='links hidden lg:flex p-0 tracking-wider text-sm'>
+        <ul className='hidden w-fit gap-6 lg:flex text-sm'>
           {
             navLinks.map((link, index) => (
               <Navigator 
                 key={index}
                 url={link.url}
-                variants={'mr-8 hover:text-accent-700 font-medium capitalize cursor-pointer duration-150'}
-              ><li onClick={handleNav}>{link.title}</li></Navigator>
+                variants={'hover:text-accent-700 capitalize cursor-pointer duration-150'}
+              ><li>{link.title}</li></Navigator>
             ))
           }
         </ul>
@@ -48,7 +48,7 @@ const NavBar = () => {
         </ul>
         {/* fullscreen menu ends here */}
 
-      <div onClick={handleNav} className="flex justify-center items-center rounded-full bg-white size-10 cursor-pointer lg:hidden relative z-50">
+      <div onClick={() => handleNav() & lockBodyScroll(!nav ? "active" : "")} className="absolute right-5 flex justify-center items-center rounded-full bg-white size-10 cursor-pointer lg:hidden z-50">
         <i className={`bi ${nav ? "bi-x-lg text-accent-600" : "bi-list"} text-xl transition-all duration-150`}></i>
       </div>
 
@@ -68,8 +68,8 @@ const NavBar = () => {
                   <Navigator 
                     key={index}
                     url={link.url}
-                    variants={'w-full p-6 px-3 hover:border-b-[1px] hover:border-b-accent-700 hover:translate-x-4 font-medium capitalize duration-200 cursor-pointer'}
-                  ><li onClick={handleNav}>{link.title}</li></Navigator>
+                    variants={'w-full p-6 px-3 hover:border-b-[1px] hover:border-b-accent-700 hover:translate-x-4 capitalize duration-200 cursor-pointer'}
+                  ><li>{link.title}</li></Navigator>
                 ))
               }
             </ul>

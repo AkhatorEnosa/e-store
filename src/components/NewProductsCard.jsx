@@ -15,7 +15,7 @@ const NewProductsCard = ({ item }) => {
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: "easeInOut" }}
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ amount: 0.2 }}
       className={`relative h-fit flex flex-col justify-center lg:justify-between md:text-xs lg:text-sm items-center border-[1px] ${itemInCart ? "shadow-md" : "hover:shadow-md"} gap-3 py-5 md:px-2 group rounded-xl duration-150 text-center hover:cursor-pointer`}>
         <Navigator 
           url={`/products/${id}`}
@@ -46,14 +46,14 @@ const NewProductsCard = ({ item }) => {
           </div>
 
           <div className={`flex gap-2 lg:gap-4 mt-2 w-full font-semibold transition-all duration-150 z-50 `}>
-            <button className={`w-full md:w-full flex items-center justify-center gap-2 px-4 py-2 text-[10px] rounded-lg ${itemInWishlist ? "bg-secondary-600 text-white" : "hover:bg-secondary-600 hover:text-[#fff] border-[1px] border-black"} duration-150`} onClick={()=>  toggleItem('wishlist', item)}>
+            <button className={`w-fit md:w-full flex items-center justify-center gap-2 px-2 sm:px-4 sm:py-2 py-1 text-sm sm:text-[10px] rounded-lg ${itemInWishlist ? "bg-secondary-600 text-white" : "hover:bg-secondary-600 hover:text-[#fff] border-[1px] border-black"} duration-150`} onClick={()=>  toggleItem('wishlist', item)}>
               <i className={`bi ${!itemInWishlist ? "bi-heart" : "bi-heart-fill"} text-lg`}></i> 
               <span className='hidden md:flex'>{itemInWishlist ? "In Wishlist" : "Wishlist"}</span>
             </button>
 
-            <button className={`w-full md:w-full flex items-center justify-center gap-2 px-4 py-2 text-[10px] rounded-lg ${itemInCart ? "bg-primary-600 text-white" : "bg-black/90 text-white hover:bg-primary-600 hover:text-[#fff] shadow-md"} duration-150`} onClick={()=>  toggleItem('cart', item)}>
+            <button className={`w-full flex items-center justify-center gap-2 px-2 sm:px-4 sm:py-2 py-1 text-sm sm:text-[10px] rounded-lg line ${itemInCart ? "bg-primary-600 text-white" : "bg-black/90 text-white hover:bg-primary-600 hover:text-[#fff] shadow-md"} duration-150`} onClick={()=>  toggleItem('cart', item)}>
               <i className={`bi ${!itemInCart ? "bi-bag" : "bi-bag-check-fill"} text-lg`}></i> 
-              <span className='hidden md:flex'>{itemInCart ? "Item in Cart" : "Add to Cart"}</span>
+              <span className='hidden xs:flex text-[10px] sm:text-inherit'>{itemInCart ? "Item in Cart" : "Add to Cart"}</span>
             </button>
             
           </div>

@@ -173,6 +173,9 @@ export function AppProvider({ children }) {
          url: '/', title: 'home' 
       },
       {
+        url: '/products', title: 'all'
+      },
+      {
          url: '/contact', title: 'contact' 
       }
     ]
@@ -202,9 +205,9 @@ export function AppProvider({ children }) {
     lockBodyScroll(box)
   }
 
-  const handleNav = () => {
-    setNav(!nav);
-    lockBodyScroll(nav)
+  const handleNav = (elem) => {
+    elem !== 'link' ? setNav(!nav) : setNav(false);
+    // lockBodyScroll(nav == true ? true : false)
   }
 
   const convertToUSD = (x) => {
@@ -232,6 +235,7 @@ export function AppProvider({ children }) {
             toggleItem,
             handleShow,
             handleNav,
+            lockBodyScroll,
             // handleNumAdd, handleNumMinus,
             addSubtotal, subtractSubtotal,
             findItemInGroup,
