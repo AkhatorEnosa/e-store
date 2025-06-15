@@ -1,5 +1,5 @@
-import SectionsCard from './SectionsCard';
-import Navigator from './Navigator';
+import SectionsCard from '../components/SectionsCard';
+import Navigator from '../components/Navigator';
 
 const Sections = (props) => {
   return (

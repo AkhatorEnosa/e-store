@@ -1,5 +1,5 @@
 import React from 'react';
-import Service from './Service';
+import Service from '../components/Service';
 import { SERVICES } from '../constants/services';
 
 const Services = () => {
@@ -12,6 +12,7 @@ const Services = () => {
             icon={service.icon}
             title={service.title}
             desc={service.desc}
+            delay={index * 0.2}
           />
         ))
       }

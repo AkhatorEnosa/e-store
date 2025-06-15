@@ -1,7 +1,7 @@
 import { useContext, useMemo } from 'react';
-import NewProductsCard from './NewProductsCard';
+import NewProductsCard from '../components/NewProductsCard';
 import { AppContext } from '../context/AppContext';
-import Navigator from './Navigator';
+import Navigator from '../components/Navigator';
 
 const NewProducts = () => {
   const { products } = useContext(AppContext);

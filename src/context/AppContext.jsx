@@ -8,7 +8,6 @@ export const AppContext = createContext();
 
 export function AppProvider({ children }) {
 
-
   const body = document.body
 
   const [products, setProducts] = useState([]);

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { motion } from 'motion/react'
 import ShopBag from '../assets/happy2.png'
-import Navigator from './Navigator';
+import Navigator from '../components/Navigator';
 
 const MegaSales = () => {
   const [countdown, setCountdown] = useState('');
@@ -43,16 +44,28 @@ const MegaSales = () => {
 
   return (
     <div className="relative w-full flex justify-center align-middle bg-[#f7f5ed] items-center px-10 lg:px-20 shadow-sm z-30 overflow-clip">
-      <div className='overflow-hidden'>
+      <motion.div
+          // initial={{ opacity: 0, x: -50 }}
+          // whileInView={{ opacity: 1, x: 0 }}
+          // transition={{ duration: 0.5, ease: "easeInOut" }}
+          // viewport={{ amount: 0.2 }}
+          
+          className='overflow-hidden'>
         <img
           src={ShopBag}
           alt="shopping bag"
           className="lg:w-[60rem] md:w-[25rem] w-[90%] md:relative absolute md:left-0 bottom-0 right-60 mix-blend-darken"
         />
-      </div>
+      </motion.div>
 
       {countdown === 'EXPIRED' ? (
-        <div className="flex flex-col ml-10 z-50">
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          viewport={{ amount: 0.2 }}
+          
+          className="flex flex-col ml-10 z-50">
           <p className="md:text-base text-xs text-center">
             THE BIGGEST SALE OF THE YEAR
           </p>
@@ -68,9 +81,15 @@ const MegaSales = () => {
                 Explore
               </button>
             </Navigator>
-        </div>
+        </motion.div>
       ) : (
-        <div className="flex flex-col ml-10 py-8 z-50">
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          viewport={{ amount: 0.2 }}
+          
+          className="flex flex-col ml-10 py-8 z-50">
           <p className="md:text-base text-xs text-center">
             THE BIGGEST SALE OF THE YEAR
           </p>
@@ -81,7 +100,7 @@ const MegaSales = () => {
           {/* <h1 className="mt-6 text-center lg:text-4xl text-2xl tracking-tight font-bold capitalize countdown text-accent-500">
             {countdown}
           </h1> */}
-        </div>
+        </motion.div>
       )}
     </div>
   )

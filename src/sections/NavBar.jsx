@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
-import Navigator from "./Navigator";
+import Navigator from "../components/Navigator";
 import Logo from '../assets/logo.webp'
 
 const NavBar = () => {

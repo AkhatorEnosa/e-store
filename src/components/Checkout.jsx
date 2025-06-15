@@ -1,6 +1,48 @@
-import React from 'react';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { AppContext } from '../context/AppContext';
 
 const Checkout = ({convertToUSD, TaxPercentage, total}) => {
+    const { handleShow } = useContext(AppContext);
+    const [submitting, setSubmitting] = useState(false)
+    const [submitted, setSubmitted] = useState(false)
+
+    const handleSubmit = useCallback(() => {
+        setSubmitting(true);
+        
+        // Store timeout IDs so we can clear them
+        const submitTimeout = setTimeout(() => {
+            setSubmitting(false);
+            setSubmitted(true);
+            
+            // Reset submitted state after 3 seconds (not 5 as in your comment)
+            const resetTimeout = setTimeout(() => {
+                setSubmitted(false);
+                handleShow(''); // Close the checkout modal
+            }, 3000);
+            
+            // Store the reset timeout ID so we can clear it if needed
+            resetTimeoutRef.current = resetTimeout;
+        }, 2000);
+        
+        // Store the submit timeout ID
+        submitTimeoutRef.current = submitTimeout;
+    }, []); // Add any dependencies your callback might need
+    
+    // Use refs to store timeout IDs
+    const submitTimeoutRef = useRef();
+    const resetTimeoutRef = useRef();
+    
+    // Cleanup timeouts when component unmounts
+    useEffect(() => {
+        return () => {
+            if (submitTimeoutRef.current) {
+                clearTimeout(submitTimeoutRef.current);
+            }
+            if (resetTimeoutRef.current) {
+                clearTimeout(resetTimeoutRef.current);
+            }
+        };
+    }, []);
   return (
 
     <div className='col-span-2 w-full h-fit p-4 border-[1px] border-[#342718]/10 text-sm lg:text-base rounded-lg'>
@@ -17,7 +59,9 @@ const Checkout = ({convertToUSD, TaxPercentage, total}) => {
             <p>Total:</p>
             <p>{convertToUSD(TaxPercentage(total) + total)}</p>
         </div>
-        <button className={`px-10 py-4 w-full lg:mt-4 bg-black font-semibold hover:bg-primary-600 text-white shadow-md rounded-lg duration-150`}>Place Order</button>
+        <button className={`px-10 py-4 w-full lg:mt-4  font-semibold hover:bg-primary-600 ${submitting ? "bg-primary-600" : submitted ? "bg-secondary-600" : "bg-black"} text-white shadow-md rounded-lg duration-150`} onClick={handleSubmit}>
+          <span className={`${submitting ? "animate-pulse" : "animate-none"} duration-300`}>{submitting ? "Placing Your Order" : submitted ? "Order Placed Successfully" : "Place Order"}</span>
+        </button>
     </div>
   );
 };

@@ -2,8 +2,8 @@
 import { motion } from "motion/react"
 import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
-import Button from "./Button";
-import Navigator from "./Navigator";
+import Button from "../components/Button";
+import Navigator from "../components/Navigator";
 
 const Hero = ({  item }) => {
   const { cart, toggleItem, convertToUSD, findItemInGroup } = useContext(AppContext);
@@ -16,7 +16,8 @@ const Hero = ({  item }) => {
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ amount: 0.2 }}
        className="col-span-full lg:col-span-3 lg:py-6 flex flex-col gap-2 md:gap-4 justify-center lg:justify-evenly lg:h-[550px] z-40 order-last lg:order-first lg:text-left text-justify">
         <h1 className="w-fit z-40 bg-[#444]/10 hidden lg:block">
           <span className="text- animate-pulse text-accent-600">&#x3C;</span> Hottest
