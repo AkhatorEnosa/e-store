@@ -16,7 +16,7 @@ const NewProductsCard = ({ item }) => {
       whileInView={{ opacity: 1}}
       transition={{ duration: 0.2, ease: "easeInOut" }}
       viewport={{ amount: 0.2 }}
-      className={`relative h-auto flex flex-col justify-center lg:justify-between md:text-xs lg:text-sm items-center border-[1px] gap-3 p-5 group rounded-[1.75rem] duration-150 text-center hover:cursor-pointer`}>
+      className={`relative h-auto flex flex-col justify-center lg:justify-between md:text-xs lg:text-sm items-center border-[1px] gap-3 p-5 group rounded-[1.75rem] bg-gray-50 duration-150 text-center hover:cursor-pointer`}>
         <Navigator 
           url={`/products/${id}`}
           variants={'w-full h-full absolute top-0 left-0 z-40'}
@@ -25,7 +25,7 @@ const NewProductsCard = ({ item }) => {
         {/* <div className={`absolute flex opacity-100 p-2 w-full justify-end ${itemInCart ? "top-2 right-2" : "-top-5 -right-5"} transition-all duration-150 z-50 `}></div> */}
 
         <div className="flex flex-col justify-center items-center w-full h-full md:h-32 lg:h-44 px-4 overflow-hidden">
-          <img src={image} alt="bag" className='h-16 md:h-28 lg:h-40 group-hover:scale-110 object-contain transition-all duration-150'/>
+          <img src={image} alt="bag" className='h-16 md:h-28 lg:h-40 group-hover:scale-110 object-contain mix-blend-darken transition-all duration-150'/>
         </div>
 
         <div className='w-full flex flex-col justify-center items-center gap-1 leading-4'>
@@ -47,9 +47,9 @@ const NewProductsCard = ({ item }) => {
           </div>
 
           <div className={`flex gap-2 lg:gap-4 mt-2 w-full font-semibold transition-all duration-150 z-50 `}>
-            <button className={`w-fit md:w-full flex items-center justify-center gap-2 px-2 sm:px-4 sm:py-2 py-1 text-sm sm:text-[10px] rounded-lg ${itemInWishlist ? "bg-secondary-600 text-white" : "hover:bg-secondary-600 hover:text-[#fff] border-[1px] border-black"} duration-150`} onClick={()=>  toggleItem('wishlist', item)}>
+            <button className={`w-fit ${show !== 'wishlist' && "md:w-full"} flex items-center justify-center gap-2 px-2 sm:px-4 sm:py-2 py-1 text-sm sm:text-[10px] rounded-lg ${itemInWishlist ? "bg-secondary-600 text-white" : "hover:bg-secondary-600 hover:text-[#fff] border-[1px] border-black"} duration-150`} onClick={()=>  toggleItem('wishlist', item)}>
               <i className={`bi ${!itemInWishlist ? "bi-heart" : "bi-heart-fill"} text-lg`}></i> 
-              <span className='hidden md:flex'>{itemInWishlist ? "In Wishlist" : "Wishlist"}</span>
+              <span className={`${show == 'wishlist' ? "hidden" : "hidden md:flex"}`}>{itemInWishlist ? "In Wishlist" : "Wishlist"}</span>
             </button>
 
             <button className={`w-full flex items-center justify-center gap-2 px-2 sm:px-4 sm:py-2 py-1 text-sm sm:text-[10px] rounded-lg line ${itemInCart ? "bg-primary-600 text-white" : "bg-black/90 text-white hover:bg-primary-600 hover:text-[#fff] shadow-md"} duration-150`} onClick={()=>  toggleItem('cart', item)}>

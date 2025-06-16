@@ -45,7 +45,7 @@ const Checkout = ({convertToUSD, TaxPercentage, total}) => {
     }, []);
   return (
 
-    <div className='col-span-2 w-full h-fit p-4 border-[1px] border-[#342718]/10 text-sm lg:text-base rounded-lg'>
+    <div className='col-span-2 w-full h-fit p-4 border-[1px] border-[#342718]/10 text-xs md:text-sm bg-primary-50 md:bg-transparent rounded-[1.5rem]'>
         <h3 className='text-md lg:text-lg font-semibold mb-4'>Summary</h3>
         <div className='flex justify-between items-center mb-2'>
             <p>Subtotal:</p>
