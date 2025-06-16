@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AppContext } from '../context/AppContext';
 
-const Navigator = ({ children, url, variants}) => {
+const Navigator = ({ children, url, variants, title}) => {
   const { handleShow, handleNav, lockBodyScroll } = useContext(AppContext);
   const handleClick = () => {
     handleShow('');
@@ -15,7 +15,7 @@ const Navigator = ({ children, url, variants}) => {
     });
   };
   return (
-    <Link to={url} className={variants} onClick={handleClick}>
+    <Link to={url} className={variants} onClick={handleClick} title={title}>
         {children}
       </Link>
   )

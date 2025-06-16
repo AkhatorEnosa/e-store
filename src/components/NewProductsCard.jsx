@@ -12,14 +12,15 @@ const NewProductsCard = ({ item }) => {
   
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1}}
       transition={{ duration: 0.2, ease: "easeInOut" }}
       viewport={{ amount: 0.2 }}
-      className={`relative h-fit flex flex-col justify-center lg:justify-between md:text-xs lg:text-sm items-center border-[1px] ${itemInCart ? "shadow-md" : "hover:shadow-md"} gap-3 py-5 md:px-2 group rounded-xl duration-150 text-center hover:cursor-pointer`}>
+      className={`relative h-auto flex flex-col justify-center lg:justify-between md:text-xs lg:text-sm items-center border-[1px] gap-3 p-5 group rounded-[1.75rem] duration-150 text-center hover:cursor-pointer`}>
         <Navigator 
           url={`/products/${id}`}
           variants={'w-full h-full absolute top-0 left-0 z-40'}
+          title={title}
         ></Navigator>
         {/* <div className={`absolute flex opacity-100 p-2 w-full justify-end ${itemInCart ? "top-2 right-2" : "-top-5 -right-5"} transition-all duration-150 z-50 `}></div> */}
 
@@ -27,14 +28,14 @@ const NewProductsCard = ({ item }) => {
           <img src={image} alt="bag" className='h-16 md:h-28 lg:h-40 group-hover:scale-110 object-contain transition-all duration-150'/>
         </div>
 
-        <div className='w-full flex flex-col justify-center items-center gap-1 leading-4 px-2 md:px-4'>
+        <div className='w-full flex flex-col justify-center items-center gap-1 leading-4'>
           <div className='w-full flex flex-col gap-2 text-left'>
-            <p className='font-semibold text-xs group-hover:underline group-hover:text-accent-700 line-clamp-1 md:line-clamp-2'>{title}</p>
+            <p className='font-semibold text-xs group-hover:underline group-hover:text-accent-700 line-clamp-1'>{title}</p>
             <p className='w-fit bg-secondary-50 px-1 rounded-md text-[8px]'>{category}</p>
-            {show !== 'wishlist' && <p className='line-clamp-2 text-[10px] text-black/80 capitalize'>{description}</p>}
+            {show !== 'wishlist' && <p className='line-clamp-2 text-[10px] mt-[12px] text-black/80 capitalize'>{description}</p>}
           </div>
 
-          <div className="w-full flex justify-between text-left md:items-center gap-2 mt-2 md:mt-5">
+          <div className="w-full flex justify-between text-left md:items-center gap-2 mt-2">
             <p className='font-bold md:text-xl'>{convertToUSD(price)}</p>
             <div className='text-xs flex gap-1'>
               <i className="bi bi-star-fill text-primary-600"></i>

@@ -65,10 +65,12 @@ const Item = ({ item = {} }) => {
       </div>
 
 
-      <div className='col-span-2 grid grid-cols-4 justify-center items-center gap-2'>
-        <i className={`bi bi-dash-lg ${quantity === 1 && "opacity-50 font-bold cursor-default"} col-span-1 w-full text-center text-sm cursor-pointer`} onClick={() => handleNumMinus()}></i>
+      <div className='col-span-2 grid grid-cols-4 justify-center items-center text-[12px] md:text-sm gap-2'>
+        <i className={`bi bi-dash-lg ${quantity === 1 && "opacity-50 font-bold cursor-default"} col-span-1 w-full text-centercursor-pointer`} onClick={() => handleNumMinus()}></i>
+
         <span className={`col-span-2 p-2 w-full h-fit text-center border-[1px] ${clicked === "add" ? "border-secondary-400 bg-secondary-50" : clicked === "minus" ? "border-accent-600 bg-accent-50" : "border-inherit/10 bg-gray-400/5"} rounded-md transition-all duration-150`}>{quantity}</span>
-        <i className="bi bi-plus-lg col-span-1 w-full text-center text-sm cursor-pointer" onClick={() => handleNumAdd()}></i>
+
+        <i className="bi bi-plus-lg col-span-1 w-full text-center cursor-pointer" onClick={() => handleNumAdd()}></i>
       </div>
 
       <div className='col-span-2 flex justify-end'>
