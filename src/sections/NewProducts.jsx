@@ -2,6 +2,7 @@ import { useContext, useMemo } from 'react';
 import NewProductsCard from '../components/NewProductsCard';
 import { AppContext } from '../context/AppContext';
 import Navigator from '../components/Navigator';
+import { ProductSlider } from '../components/ProductSlider';
 
 const NewProducts = () => {
   const { products } = useContext(AppContext);
@@ -37,14 +38,26 @@ const NewProducts = () => {
         <h2 className='md:text-2xl font-bold uppercase w-fit mt-4 mb-10'>
           New Arrivals
         </h2>
-        <div className='grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4'>
-          {displayedProducts.map((item) => (
-            <NewProductsCard 
-              key={`${item.id}-${item.title}`} 
-              item={item}
-            />
-          ))}
-        </div>
+        {/* <div className='relative w-full flex justify-between items-center'>
+          <div className='flex h-10 w-10 text-black/50 cursor-pointer lg:hidden justify-center items-center bg-black-50 rounded-full hover:text-white hover:bg-black/75 text-2xl z-50'>
+            <i className="bi bi-caret-left-fill"></i>
+          </div>
+          <div className='relative lg:grid w-full flex px-5 lg:grid-cols-3 gap-2 md:gap-4 overflow-scroll'>
+            {displayedProducts.map((item) => (
+              <NewProductsCard 
+                key={`${item.id}-${item.title}`} 
+                item={item}
+              />
+            ))}
+          </div>
+          <div className='flex h-10 w-10 text-black/50 cursor-pointer lg:hidden justify-center items-center bg-black-50 rounded-full hover:text-white hover:bg-black/75 text-2xl z-50'>
+            <i className="bi bi-caret-right-fill"></i>
+          </div>
+        </div> */}
+
+        <ProductSlider 
+          products={displayedProducts}
+        />
 
         <p className='w-full flex justify-center items-center py-6 text-sm mt-6'>
           <Navigator 

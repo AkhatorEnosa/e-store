@@ -5,3 +5,16 @@
 .tip:hover + .tooltip{
   opacity: 1;
 }
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee var(--marquee-duration) linear infinite;
+}
+
+.hover\:animation-paused:hover {
+  animation-play-state: paused;
+}

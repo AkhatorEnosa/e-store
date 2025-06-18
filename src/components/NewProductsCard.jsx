@@ -16,7 +16,7 @@ const NewProductsCard = ({ item }) => {
       whileInView={{ opacity: 1}}
       transition={{ duration: 0.2, ease: "easeInOut" }}
       viewport={{ amount: 0.2 }}
-      className={`relative h-auto flex flex-col justify-center lg:justify-between md:text-xs lg:text-sm items-center border-[1px] gap-3 p-5 group rounded-[1.75rem] bg-gray-50 duration-150 text-center hover:cursor-pointer`}>
+      className={`relative min-w-[300px] h-auto flex flex-col justify-center lg:justify-between md:text-xs lg:text-sm items-center border-[1px] gap-3 p-5 group rounded-[1.75rem] bg-gray-50 duration-150 text-center hover:cursor-pointer`}>
         <Navigator 
           url={`/products/${id}`}
           variants={'w-full h-full absolute top-0 left-0 z-40'}
@@ -38,11 +38,11 @@ const NewProductsCard = ({ item }) => {
           <div className="w-full flex justify-between text-left md:items-center gap-2 mt-2">
             <p className='font-bold md:text-xl'>{convertToUSD(price)}</p>
             <div className='text-xs flex gap-1'>
-              <i className="bi bi-star-fill text-primary-600"></i>
-              <i className="bi bi-star-fill text-primary-600"></i>
-              <i className="bi bi-star-fill text-primary-600"></i>
-              <i className="bi bi-star-fill text-primary-600"></i>
-              <i className="bi bi-star text-primary-600"></i>
+              <i className="bi bi-star-fill text-secondary-600"></i>
+              <i className="bi bi-star-fill text-secondary-600"></i>
+              <i className="bi bi-star-fill text-secondary-600"></i>
+              <i className="bi bi-star-fill text-secondary-600"></i>
+              <i className="bi bi-star text-secondary-600"></i>
             </div>
           </div>
 
