@@ -14,12 +14,9 @@ export const ProductSlider = ({ products }) => {
 
   // Animation logic
   const animate = () => {
-    if (isHovering || !marqueeRef.current || !containerRef.current || isScrollingBackRef.current) return;
+    if (isHovering || isScrollingBackRef.current) return;
 
     const container = containerRef.current;
-    const marquee = marqueeRef.current;
-    const containerWidth = container.offsetWidth;
-    const marqueeWidth = marquee.scrollWidth / 2; // Since we duplicated the products
 
     // Get the last card's position
     const lastCard = lastCardRef.current;
@@ -27,8 +24,7 @@ export const ProductSlider = ({ products }) => {
     const containerRect = container.getBoundingClientRect();
 
     // Check if last card is fully visible (with 20px margin)
-    const isLastCardVisible = lastCardRect && 
-                             (lastCardRect.right <= containerRect.right - 20);
+    const isLastCardVisible = lastCardRect && (lastCardRect.right <= containerRect.right - 10);
 
     if (isLastCardVisible) {
       // Pause for 3 seconds at the end
@@ -54,7 +50,7 @@ export const ProductSlider = ({ products }) => {
     }
 
     // Normal scrolling
-    scrollPositionRef.current += 1.5; // Adjust speed here
+    scrollPositionRef.current += 1; // Adjust speed here
     container.scrollLeft = scrollPositionRef.current;
     animationRef.current = requestAnimationFrame(animate);
   };
@@ -77,7 +73,7 @@ export const ProductSlider = ({ products }) => {
       clearTimeout(pauseTimeoutRef.current);
       clearTimeout(scrollBackTimeoutRef.current);
     };
-  }, [products.length, isHovering]);
+  }, [isHovering]);
 
   return (
     <div 
@@ -92,7 +88,7 @@ export const ProductSlider = ({ products }) => {
         ref={marqueeRef}
       >
         {/* Double the products for seamless looping */}
-        {[...products, ...products].map((item, index) => {
+        {[...products].map((item, index) => {
           // Mark the last card of the first set
           const isLastCard = index === products.length - 1;
           return (
