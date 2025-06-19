@@ -19,7 +19,7 @@ const Hero = ({  item }) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ amount: 0.2 }}
-       className="col-span-full md:col-span-5 px-8 lg:pr-16 py-6 flex flex-col gap-2 md:gap-4 justify-center lg:justify-evenly lg:h-[550px] z-50 order-last lg:order-first lg:text-left">
+       className="col-span-full md:col-span-5 px-8 lg:pr-16 py-6 flex flex-col gap-2 md:gap-4 justify-center lg:justify-evenly lg:h-[550px] z-50 lg:text-left">
         <h1 className="w-fit z-40 bg-[#444]/10">
           <span className="text- animate-pulse text-accent-600">&#x3C;</span> Hottest
           Sale <span className="text-accent-600 animate-pulse">&#62;</span>
