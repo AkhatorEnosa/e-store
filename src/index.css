@@ -6,15 +6,10 @@
   opacity: 1;
 }
 
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
-
-.animate-marquee {
-  animation: marquee var(--marquee-duration) linear infinite;
-}
-
-.hover\:animation-paused:hover {
-  animation-play-state: paused;
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
