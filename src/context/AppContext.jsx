@@ -54,7 +54,7 @@ export function AppProvider({ children }) {
   const headerProduct = {
     id: 26,
     category: "men's clothing",
-    description: "Legendary Air gets lifted First lifestyle Air Max brings you styke, comfort and 270 degrees of Air. Its tinted Air window lets you showcase one of our greatest innovations.",
+    description: "Legendary Air gets lifted First lifestyle Air Max brings you style, comfort and 270 degrees of Air. Its tinted Air window lets you showcase one of our greatest innovations.",
     image: Shoe,
     price: 109.95,
     rating: {rate: 3.9, count: 120},

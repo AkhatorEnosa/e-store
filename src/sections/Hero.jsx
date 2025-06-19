@@ -12,14 +12,14 @@ const Hero = ({  item }) => {
   const itemInCart = findItemInGroup(cart, item);
 
   return (
-    <div className="relative w-full h-fit lg:h-screen flex flex-col lg:grid grid-cols-7 py-20 mt-6 lg:mt-16 px-3 sm:px-8 md:px-16 lg:px-32 gap-2 md:gap-8 justify-around md:justify-evenly items-center bg-[#f6f6f6]">
+    <div className="group relative w-full h-fit lg:h-screen grid grid-cols-7 py-32 lg:py-20 mt-6 lg:mt-16 px-3 sm:px-8 md:px-16 lg:px-32 gap-2 md:gap-8 justify-evenly items-center bg-[#f6f6f6]">
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ amount: 0.2 }}
-       className="col-span-full lg:col-span-3 lg:py-6 flex flex-col gap-2 md:gap-4 justify-center lg:justify-evenly lg:h-[550px] z-40 order-last lg:order-first lg:text-left text-justify">
-        <h1 className="w-fit z-40 bg-[#444]/10 hidden lg:block">
+       className="col-span-full md:col-span-5 bg-[#f6f6f6]/80 px-8 lg:pr-16 py-6 flex flex-col gap-2 md:gap-4 justify-center lg:justify-evenly lg:h-[550px] z-40 order-last lg:order-first lg:text-left text-justify">
+        <h1 className="w-fit z-40 bg-[#444]/10">
           <span className="text- animate-pulse text-accent-600">&#x3C;</span> Hottest
           Sale <span className="text-accent-600 animate-pulse">&#62;</span>
         </h1>
@@ -51,13 +51,13 @@ const Hero = ({  item }) => {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="lg:absolute right-0 col-span-full lg:col-span-4 order-first lg:order-last z-30">
-        <h1 className="w-fit sm:mt-0 md:mt-14 lg:mt-0 z-40 bg-[#444]/10 text-sm lg:hidden">
+        className="absolute bottom-10 right-0 col-span-4 pr-16 lg:z-50 group-hover:z-30">
+        {/* <h1 className="w-fit sm:mt-0 md:mt-14 lg:mt-0 z-40 bg-[#444]/10 text-sm lg:hidden">
           <span className="text- animate-pulse text-accent-600">&#x3C;</span> Hottest
           Sale <span className="text-accent-600 animate-pulse">&#62;</span>
-        </h1>
-        <div className="w-fit flex justify-center lg:justify-end items-center mr-32">
-          <img src={image} alt="Product image" className="min-w-[200px] lg:min-w-[750px] max-w-[60%]"/>
+        </h1> */}
+        <div className="w-full flex justify-end items-center mr-32">
+          <img src={image} alt="Product image" className="min-w-[750px] max-w-[90%] -rotate-12"/>
         </div>
       </motion.div>
     </div>
