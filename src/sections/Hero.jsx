@@ -13,12 +13,13 @@ const Hero = ({  item }) => {
 
   return (
     <div className="group relative w-full h-fit lg:h-screen grid grid-cols-7 py-32 lg:py-20 mt-6 lg:mt-16 sm:px-8 md:px-16 lg:px-32 gap-2 md:gap-8 justify-evenly items-center bg-[#f6f6f6]">
+      <div className="absolute bg-gradient-to-l from-white to-primary-50/60 w-full h-full opacity-0 group-hover:opacity-100 z-40 duration-300"></div>
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ amount: 0.2 }}
-       className="col-span-full md:col-span-5 bg-[#f6f6f6]/80 px-8 lg:pr-16 py-6 flex flex-col gap-2 md:gap-4 justify-center lg:justify-evenly lg:h-[550px] z-40 order-last lg:order-first lg:text-left">
+       className="col-span-full md:col-span-5 px-8 lg:pr-16 py-6 flex flex-col gap-2 md:gap-4 justify-center lg:justify-evenly lg:h-[550px] z-50 order-last lg:order-first lg:text-left">
         <h1 className="w-fit z-40 bg-[#444]/10">
           <span className="text- animate-pulse text-accent-600">&#x3C;</span> Hottest
           Sale <span className="text-accent-600 animate-pulse">&#62;</span>
@@ -28,7 +29,7 @@ const Hero = ({  item }) => {
             url={`/products/${id}`}
             variants={'mr-8 cursor-pointer duration-150 hover:text-accent-700'}
           >
-            <h1 className="w-full text-7xl lg:text-8xl font-black tracking-tighter">
+            <h1 className="w-fit text-7xl lg:text-8xl font-black tracking-tighter">
               {title}
             </h1>
           </Navigator>
@@ -37,7 +38,7 @@ const Hero = ({  item }) => {
             <b className="h-fit text-xl lg:text-4xl font-bold text-accent-600">{convertToUSD(price)}</b>
           </p>
         </div>
-        <p className="text-xs md:text-sm">
+        <p className="text-xs md:text-sm lg:text-base tracking-wide">
           {description}
         </p>
         <Button 
@@ -57,7 +58,7 @@ const Hero = ({  item }) => {
           Sale <span className="text-accent-600 animate-pulse">&#62;</span>
         </h1> */}
         <div className="w-full flex justify-end items-center mr-32">
-          <img src={image} alt="Product image" className="min-w-[750px] max-w-[90%] -rotate-12"/>
+          <img src={image} alt="Product image" className="min-w-[750px] max-w-[90%] group-hover:scale-90 -rotate-12 duration-300"/>
         </div>
       </motion.div>
     </div>
