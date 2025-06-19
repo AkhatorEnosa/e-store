@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import Navigator from "../components/Navigator";
 import Logo from '../assets/logo.webp'
@@ -6,6 +6,11 @@ import Logo from '../assets/logo.webp'
 const NavBar = () => {
   const { nav, formulateLinks, products, handleNav, handleShow, lockBodyScroll, cartItemsCount, wishlistItemsCount } = useContext(AppContext)
     const navLinks = formulateLinks([...products])
+    const [expandSearchBar, setExpandSearchBar] = useState(false);
+
+    const handleExpandSearchBar = () => { 
+      setExpandSearchBar(!expandSearchBar);
+    }
 
   return (
     <div className='w-full px-6 py-4 mb-4 flex justify-between items-center fixed bg-white z-[100]'>
@@ -30,8 +35,9 @@ const NavBar = () => {
         </ul>
 
         <ul className='others flex w-full lg:w-fit h-fit text-sm justify-end items-center'>
-          <li className="relative p-2 cursor-pointer hidden lg:flex">
-            <p className="flex justify-center text-xl"><i className={`bi bi-search`}></i></p>
+          <li className={`relative ${expandSearchBar && "border border-black rounded-full pr-2"} gap-2 justify-center items-center hidden lg:flex duration-150`}>
+            <input className={`${expandSearchBar ? "w-fit h-fit rounded-full px-3 " : "w-0"} py-2 outline-none duration-300`} type="search" name="search" id="" placeholder="Search..."/>
+            <button className="flex justify-center text-xl" onClick={() => handleExpandSearchBar()}><i className={`bi bi-search`}></i></button>
           </li>
           <li className="relative p-2 cursor-pointer" onClick={() => handleShow('wishlist')}>
             <span className='absolute w-5 h-5 bg-accent-700 rounded-full text-center right-0 top-0 text-white border-[2px] border-white font-bold text-xs'>{wishlistItemsCount}</span>
