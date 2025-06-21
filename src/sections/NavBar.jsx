@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import Navigator from "../components/Navigator";
 import Logo from '../assets/logo.webp'
@@ -7,18 +7,31 @@ const NavBar = () => {
   const { nav, formulateLinks, products, handleNav, handleShow, lockBodyScroll, cartItemsCount, wishlistItemsCount } = useContext(AppContext)
     const navLinks = formulateLinks([...products])
     const [expandSearchBar, setExpandSearchBar] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
 
     const handleExpandSearchBar = () => { 
       setExpandSearchBar(!expandSearchBar);
+      setSearchQuery('')
     }
 
+  useMemo(() => {
+    const foundItems = products.filter(item =>
+      item.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    setSearchResults(foundItems)
+  }
+  , [searchQuery]);
+
   return (
-    <div className='w-full px-6 py-4 mb-4 flex justify-between items-center fixed bg-white z-[100]'>
-      <div className="w-fit flex justify-left items-center lg:w-fit gap-4 lg:gap-8">
+    <nav className='w-full px-6 py-4 mb-4 flex justify-between items-center fixed bg-white z-[100]'>
+      <div className="w-fit lg:w-full flex justify-left items-center gap-24 " onClick={() => handleExpandSearchBar()}>
+        {/* logo */}
         <div className="logo text-black text-5xl font-extrabold items-center">
           <Navigator 
             url={'/'}
-          ><img src={Logo} alt="logo" className="w-32"/></Navigator>
+          ><img src={Logo} alt="logo" className="w-28"/></Navigator>
         </div>
 
         {/* fullscreen menu */}
@@ -37,20 +50,36 @@ const NavBar = () => {
 
 
       <ul className='others flex w-full lg:w-fit h-fit text-sm justify-end items-center'>
-        <li className={`relative ${expandSearchBar && "border border-black rounded-full pr-2"} mr-1 gap-2 justify-center items-center hidden lg:flex duration-300`}>
-          <input className={`${expandSearchBar ? "w-fit h-fit rounded-full px-3 " : "w-0"} py-2 outline-none duration-300`} type="search" name="search" id="" placeholder="Search..."/>
-          <button className="flex justify-center text-xl" onClick={() => handleExpandSearchBar()}><i className={`bi bi-search`}></i></button>
+        <li className="relative p-2 cursor-pointer">
+          {/* search bar */}
+          <div className={`relative ${expandSearchBar && "border border-black rounded-full pl-2"} mr-1 justify-center items-center hidden lg:flex duration-300`}>
+            {/* search bar */}
+            <button className="flex justify-center text-xl" onClick={() => handleExpandSearchBar()}><i className={`bi bi-search hover:text-primary-600`}></i></button>
+            {/* search input */}
+            <input className={`${expandSearchBar ? "w-fit h-fit rounded-full px-3 " : "w-0"} py-2 placeholder:text-black outline-none duration-300`} type="search" name="search" id="" placeholder="Search..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+          </div>
+          <div className={`${expandSearchBar ? "absolute w-full top-14 block z-50" : "hidden"}`}>
+            <div className="fixed h-screen w-screen left-0 block z-20" onClick={() => handleExpandSearchBar()}></div>
+            <div className={`${searchQuery.length > 0 ? "block" : "hidden"} w-full rounded-lg px-4 py-2 absolute bg-white border border-black z-50`}>
+              {
+                searchResults.length > 0 ? 
+                searchResults.map((result, index) => (
+                  <p key={index}>{result.title}</p>
+                )) : <p>No search result</p>
+              }
+            </div>
+          </div>
         </li>
         <li className="relative p-2 cursor-pointer" onClick={() => handleShow('wishlist')}>
           <span className='absolute w-5 h-5 bg-accent-700 rounded-full text-center right-0 top-0 text-white border-[2px] border-white font-bold text-xs'>{wishlistItemsCount}</span>
-          <p className="flex justify-center text-xl"><i className={`bi ${wishlistItemsCount > 0 ? "bi-heart-fill" : "bi-heart"} duration-300`}></i></p>
+          <p className="flex justify-center text-xl hover:text-primary-600"><i className={`bi ${wishlistItemsCount > 0 ? "bi-heart-fill" : "bi-heart"} duration-300`}></i></p>
         </li>
         <li className="relative p-2 cursor-pointer" onClick={() => handleShow('cart')}>
           <span className='absolute w-5 h-5 bg-accent-700 rounded-full text-center right-0 top-0 text-white border-[2px] border-white font-bold text-xs'>{cartItemsCount}</span>
-          <p className="flex justify-center text-xl"><i className={`bi ${cartItemsCount > 0 ? "bi-bag-fill" : "bi-bag"} duration-300`}></i></p>
+          <p className="flex justify-center text-xl hover:text-primary-600"><i className={`bi ${cartItemsCount > 0 ? "bi-bag-fill" : "bi-bag"} duration-300`}></i></p>
         </li>
         <li className="relative p-2 cursor-pointer">
-          <p className="flex justify-center text-2xl"><i className={`bi bi-person`}></i></p>
+          <p className="flex justify-center text-2xl hover:text-primary-600"><i className={`bi bi-person`}></i></p>
         </li>
       </ul>
       {/* fullscreen menu ends here */}
@@ -87,7 +116,7 @@ const NavBar = () => {
           </div>
 
         </div>
-    </div>
+    </nav>
   );
 };
 

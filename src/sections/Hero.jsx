@@ -12,8 +12,8 @@ const Hero = ({  item }) => {
   const itemInCart = findItemInGroup(cart, item);
 
   return (
-    <div className="group relative w-full h-fit lg:h-screen grid grid-cols-7 py-32 lg:py-20 mt-6 lg:mt-16 sm:px-8 md:px-16 lg:px-32 gap-2 md:gap-8 justify-evenly items-center bg-[#f6f6f6]">
-      <div className="absolute bg-gradient-to-l from-white to-primary-50/60 w-full h-full lg:opacity-0 group-hover:opacity-100 z-40 duration-300"></div>
+    <div className="group relative w-full h-fit lg:h-screen grid grid-cols-7 py-32 lg:py-20 mt-6 lg:mt-16 sm:px-8 md:px-16 lg:px-32 gap-2 md:gap-8 justify-evenly items-center bg-gradient-to-l from-white to-[#f6f6f6]">
+      <div className="absolute bg-gradient-to-l from-white to-primary-50/60 w-full h-full lg:opacity-0 z-40 duration-300"></div>
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -38,7 +38,7 @@ const Hero = ({  item }) => {
             <b className="h-fit text-xl lg:text-4xl font-bold text-accent-600">{convertToUSD(price)}</b>
           </p>
         </div>
-        <p className="text-xs md:text-sm lg:text-base tracking-wide">
+        <p className="lg:py-5 lg:pr-2 text-xs md:text-sm lg:text-base tracking-wide lg:bg-gradient-to-l from-white to-[#f6f6f6] duration-300">
           {description}
         </p>
         <Button 

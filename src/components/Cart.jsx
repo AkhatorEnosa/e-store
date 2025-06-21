@@ -24,7 +24,7 @@ const Cart = () => {
     }
 
   return ( 
-    <div className={`w-screen h-screen ${show === 'cart' ? "flex" : "hidden"} flex-col justify-center items-center bg-black/50 fixed z-50`}>
+    <div className={`w-screen h-screen ${show === 'cart' ? "flex" : "hidden"} flex-col justify-center items-center bg-black/50 fixed z-[100]`}>
         <div className='w-[95%] md:w-[60%] lg:w-[80%] h-[80%] lg:h-[95%] bg-white/95 shadow-lg rounded-[2.5rem] flex flex-col justify-between items-center p-4 lg:p-6'>
             <div className='w-full flex justify-between items-center md:mb-4 px-2'>
                 <h2 className='w-fit md:w-full tracking-tighter text-center text-xl md:text-3xl font-semibold'>You have {cart?.length} items in your cart.</h2>
