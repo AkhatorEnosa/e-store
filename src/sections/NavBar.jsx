@@ -60,7 +60,7 @@ const NavBar = () => {
           </div>
           <div className={`${expandSearchBar ? "absolute w-full top-14 block z-50" : "hidden"}`}>
             <div className="fixed h-screen w-screen left-0 block z-20" onClick={() => handleExpandSearchBar()}></div>
-            <div className={`${searchQuery.length > 0 ? "block" : "hidden"} w-full rounded-lg px-4 py-2 absolute bg-white border border-black z-50`}>
+            <div className={`${searchQuery.length > 0 ? "block" : "hidden"} w-[60%] rounded-lg px-4 py-2 absolute bg-red-300 border border-black z-50`}>
               {
                 searchResults.length > 0 ? 
                 searchResults.map((result, index) => (
