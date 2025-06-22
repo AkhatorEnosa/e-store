@@ -8,4 +8,13 @@ export default defineConfig({
     // Add heavy dependencies here (e.g., lodash, react-icons):
     include: ['react', 'react-dom', 'react-router-dom', 'react-icons'],
   },
+  build: {
+    outDir: 'dist',
+    // Ensure assets are referenced correctly
+    assetsDir: 'assets',
+  },
+  // For development server
+  server: {
+    historyApiFallback: true,
+  }
 })
