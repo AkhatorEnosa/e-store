@@ -38,7 +38,7 @@ const Hero = ({  item }) => {
             <b className="h-fit text-xl lg:text-4xl font-bold text-accent-600">{convertToUSD(price)}</b>
           </p>
         </div>
-        <p className="lg:py-5 lg:pr-2 text-xs md:text-sm lg:text-base tracking-wide lg:bg-gradient-to-l from-white to-[#f6f6f6] duration-300">
+        <p className="lg:py-5 lg:pr-2 text-xs md:text-sm lg:group-hover:text-base bg-gradient-to-l to-[#f6f6f6] from-primary-50/60 tracking-wide duration-300">
           {description}
         </p>
         <Button 
@@ -57,8 +57,9 @@ const Hero = ({  item }) => {
           <span className="text- animate-pulse text-accent-600">&#x3C;</span> Hottest
           Sale <span className="text-accent-600 animate-pulse">&#62;</span>
         </h1> */}
-        <div className="w-full flex justify-end items-center mr-32">
-          <img src={image} alt="Product image" className="min-w-[750px] max-w-[90%] group-hover:scale-90 -rotate-12 duration-300"/>
+        <div className="w-full h-full flex justify-end items-center mr-32">
+           {/* <div className="absolute w-screen h-screen flex justify-end items-center border mr-32 bg-gradient-to-l from-white to-primary-50/60 z-30"></div> */}
+          <img src={image} alt="Product image" className="relative min-w-[750px] max-w-[90%] group-hover:scale-90 -rotate-12 duration-300 z-40"/>
         </div>
       </motion.div>
     </div>
