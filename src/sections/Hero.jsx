@@ -38,7 +38,7 @@ const Hero = ({  item }) => {
             <b className="h-fit text-xl lg:text-4xl font-bold text-accent-600">{convertToUSD(price)}</b>
           </p>
         </div>
-        <p className="lg:py-5 lg:pr-2 text-xs md:text-sm lg:group-hover:text-base bg-gradient-to-l to-[#f6f6f6] from-primary-50/60 tracking-wide duration-300">
+        <p className="lg:py-5 lg:pr-2 text-xs md:text-sm lg:group-hover:text-base lg:bg-gradient-to-l to-[#f6f6f6] from-primary-50/60 tracking-wide duration-300">
           {description}
         </p>
         <Button 
@@ -52,14 +52,9 @@ const Hero = ({  item }) => {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="absolute bottom-10 right-0 col-span-4 pr-16 lg:z-50 group-hover:z-30">
-        {/* <h1 className="w-fit sm:mt-0 md:mt-14 lg:mt-0 z-40 bg-[#444]/10 text-sm lg:hidden">
-          <span className="text- animate-pulse text-accent-600">&#x3C;</span> Hottest
-          Sale <span className="text-accent-600 animate-pulse">&#62;</span>
-        </h1> */}
+        className="absolute bottom-10 right-0 col-span-4 pr-16 lg:z-50 group-hover:z-30 z-30">
         <div className="w-full h-full flex justify-end items-center mr-32">
-           {/* <div className="absolute w-screen h-screen flex justify-end items-center border mr-32 bg-gradient-to-l from-white to-primary-50/60 z-30"></div> */}
-          <img src={image} alt="Product image" className="relative min-w-[750px] max-w-[90%] group-hover:scale-90 -rotate-12 duration-300 z-40"/>
+          <img src={image} alt="Product image" className="relative min-w-[650px] max-w-[90%] lg:group-hover:scale-90 -rotate-12 duration-300 z-40"/>
         </div>
       </motion.div>
     </div>

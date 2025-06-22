@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useState } from "react";
+import React, { useContext, useMemo, useRef, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import Navigator from "../components/Navigator";
 import Logo from '../assets/logo.webp'
@@ -10,10 +10,15 @@ const NavBar = () => {
   const navLinks = formulateLinks([...products])
   const [searchResults, setSearchResults] = useState([]);
   const [debouncedSearchInput, setDebouncedSearchInput] = useState('');
+  const inputRef = useRef(null);
 
   const handleExpandSearchBar = () => { 
     setExpandSearchBar(!expandSearchBar);
     setSearchQuery('')
+    // Focus the search input when the search bar is expanded
+    if (!expandSearchBar) {
+      inputRef.current.focus();
+    }
   }
 
   useDebounce(() => {
@@ -40,7 +45,7 @@ const NavBar = () => {
 
   return (
     <nav className='w-full px-6 py-4 mb-4 flex justify-between items-center fixed bg-white z-[100]'>
-      <div className="w-fit lg:w-full flex justify-left items-center gap-24 " onClick={() => setExpandSearchBar(false)}>
+      <div className="w-fit lg:w-full flex justify-left items-center gap-10 " onClick={() => setExpandSearchBar(false)}>
         {/* logo */}
         <div className="logo text-black text-5xl font-extrabold items-center">
           <Navigator 
@@ -66,15 +71,15 @@ const NavBar = () => {
       <ul className='others flex w-full lg:w-fit h-fit text-sm justify-end items-center'>
         <li className="relative flex flex-col justify-center items-center p-2 cursor-pointer">
           {/* search bar */}
-          <div className={`relative ${expandSearchBar && "border-[1px] shadow-lg rounded-full pl-2"} bg-white mr-1 justify-center items-center hidden lg:flex z-50 duration-300`}>
+          <div className={`relative ${expandSearchBar && "border-[1px] shadow-lg rounded-full pl-2"} bg-white mr-1 justify-center items-center flex z-50 duration-300`}>
             {/* search bar */}
             <button className="flex justify-center text-xl" onClick={() => handleExpandSearchBar()}><i className={`bi bi-search hover:text-primary-600`}></i></button>
             {/* search input */}
-            <input className={`${expandSearchBar ? "w-[300px] h-fit rounded-full px-3 " : "w-0"} py-2 placeholder:text-black outline-none duration-300`} type="search" name="search" id="" placeholder="Search..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+            <input ref={inputRef} className={`${expandSearchBar ? "w-[150px] md:w-[200px] h-fit rounded-full px-3 " : "w-0"} py-2 placeholder:text-black outline-none duration-300`} type="search" name="search" id="" placeholder="Search..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
           </div>
           <div className={`${expandSearchBar ? "absolute w-full top-14 block z-40" : "hidden"}`}>
             <div className="fixed h-screen w-screen top-0 left-0 block z-20" onClick={() => handleExpandSearchBar()}></div>
-            <div className={`${searchQuery.length > 0 ? "flex flex-col gap-4" : "hidden"} w-full rounded-lg px-4 py-4 border-[1px] absolute bg-white shadow-lg z-50`}>
+            <div className={`${searchQuery.length > 0 ? "flex flex-col gap-4" : "hidden"} w-[300px] md:w-full rounded-lg px-4 py-4 border-[1px] absolute bg-white shadow-lg z-50`}>
               {
                 searchResults.length > 5 ?
                   <>
