@@ -113,12 +113,16 @@ const NavBar = () => {
           </div>
         </li>
         <li className="relative p-2 cursor-pointer" onClick={() => handleShow('wishlist')}>
-          <span className='absolute w-5 h-5 bg-accent-700 rounded-full text-center right-0 top-0 text-white border-[2px] border-white font-bold text-xs'>{wishlistItemsCount}</span>
-          <p className="flex justify-center text-xl hover:text-primary-600"><i className={`bi ${wishlistItemsCount > 0 ? "bi-heart-fill" : "bi-heart"} duration-300`}></i></p>
+          <button>
+            <span className='absolute w-5 h-5 bg-accent-700 rounded-full text-center right-0 top-0 text-white border-[2px] border-white font-bold text-xs'>{wishlistItemsCount}</span>
+            <p className="flex justify-center text-xl hover:text-primary-600"><i className={`bi ${wishlistItemsCount > 0 ? "bi-heart-fill" : "bi-heart"} duration-300`}></i></p>
+          </button>
         </li>
         <li className="relative p-2 cursor-pointer" onClick={() => handleShow('cart')}>
-          <span className='absolute w-5 h-5 bg-accent-700 rounded-full text-center right-0 top-0 text-white border-[2px] border-white font-bold text-xs'>{cartItemsCount}</span>
-          <p className="flex justify-center text-xl hover:text-primary-600"><i className={`bi ${cartItemsCount > 0 ? "bi-bag-fill" : "bi-bag"} duration-300`}></i></p>
+          <button>
+            <span className='absolute w-5 h-5 bg-accent-700 rounded-full text-center right-0 top-0 text-white border-[2px] border-white font-bold text-xs'>{cartItemsCount}</span>
+            <p className="flex justify-center text-xl hover:text-primary-600"><i className={`bi ${cartItemsCount > 0 ? "bi-bag-fill" : "bi-bag"} duration-300`}></i></p>
+          </button>
         </li>
         <li className="relative p-2 cursor-pointer">
           <p className="flex justify-center text-2xl hover:text-primary-600"><i className={`bi bi-person`}></i></p>

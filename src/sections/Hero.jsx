@@ -20,10 +20,21 @@ const Hero = ({  item }) => {
         transition={{ duration: 0.5 }}
         viewport={{ amount: 0.2 }}
        className="col-span-full md:col-span-5 px-8 lg:pr-16 py-6 flex flex-col gap-2 md:gap-4 justify-center lg:justify-evenly lg:h-[550px] z-50 lg:text-left">
-        <h1 className="w-fit z-40 bg-[#444]/10">
-          <span className="text- animate-pulse text-accent-600">&#x3C;</span> Hottest
+        <motion.h1
+          animate={{ 
+            opacity: [0.4, 1, 0.4], // Keyframes
+            scale: [1, 1.05, 1], // Scale up and down
+            // y: [-5, 0, -5] 
+          }}
+          transition={{ 
+            duration: 0.5, 
+            repeat: Infinity, // Loop forever
+            ease: "easeInOut" 
+          }}
+          className="w-fit z-40 bg-[#444]/10">
+          <span className="animate-pulse text-accent-600">&#x3C;</span> Hottest
           Sale <span className="text-accent-600 animate-pulse">&#62;</span>
-        </h1>
+        </motion.h1>
         <div className="flex flex-col gap-2 mt-5 md:mt-10 lg:mt-0">
           <Navigator
             url={`/products/${id}`}
@@ -38,7 +49,7 @@ const Hero = ({  item }) => {
             <b className="h-fit text-xl lg:text-4xl font-bold text-accent-600">{convertToUSD(price)}</b>
           </p>
         </div>
-        <p className="lg:py-5 lg:pr-2 text-xs md:text-sm lg:group-hover:text-base lg:bg-gradient-to-l to-[#f6f6f6] from-primary-50/60 tracking-wide duration-300">
+        <p className="lg:py-5 lg:pr-2 text-xs md:text-sm lg:group-hover:text-base group-hover:lg:bg-gradient-to-l to-[#f6f6f6] from-primary-50/60 tracking-wide duration-300">
           {description}
         </p>
         <Button 
@@ -49,12 +60,23 @@ const Hero = ({  item }) => {
       </motion.div>
 
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
+        animate={{ 
+          opacity: 1,
+          y: [-30, 0, -30] 
+        }}
+        transition={{ 
+          duration: 3, 
+          delay: 0.2, // Delay before starting the animation
+          repeat: Infinity, // Loop forever
+          ease: "easeInOut" 
+        }}
         className="absolute bottom-10 right-0 col-span-4 pr-16 lg:z-50 group-hover:z-30 z-30">
         <div className="w-full h-full flex justify-end items-center mr-32">
-          <img src={image} alt="Product image" className="relative min-w-[650px] max-w-[90%] lg:group-hover:scale-90 -rotate-12 duration-300 z-40"/>
+          <motion.img
+            initial={{ opacity: 0, y: 50, rotate: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            src={image} alt="Product image" className="relative min-w-[650px] max-w-[90%] lg:group-hover:scale-90 duration-300 z-40"/>
         </div>
       </motion.div>
     </div>
