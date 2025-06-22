@@ -42,7 +42,7 @@ const Cart = () => {
                                         cart.map((x) => (
                                             // console.log(item)
                                             <Item 
-                                              key={x?.id}  // Add this unique key
+                                              key={x?.id}  // unique key
                                               item={x} 
                                             />
                                           ))

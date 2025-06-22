@@ -7,7 +7,7 @@ const Products = () => {
   const [sortOption, setSortOption] = useState('newest');
   const [sortedProducts, setSortedProducts] = useState([...products]);
 
-  const sortArrayFn = ( option) => {
+  const sortArrayFn = ( option ) => {
     const freshArr = [...sortedProducts];
 
     switch(option) {
@@ -35,30 +35,6 @@ const Products = () => {
     setSortOption(selectedOption);
     sortArrayFn(selectedOption);
   }
-
-  // Memoized random starting position calculation
-//   const { startPos, endPos } = useMemo(() => {
-//     if (!products.length) return { startPos: 0, endPos: 0 };
-    
-//     const randomNum = Math.floor(Math.random() * products.length);
-//     const safeStart = Math.max(
-//       0, 
-//       randomNum - (randomNum + 6 > products.length ? 6 : 0)
-//     );
-//     const safeEnd = Math.min(safeStart + 6, products.length);
-    
-//     return { startPos: safeStart, endPos: safeEnd };
-//   }, [products]);
-
-//   // Early return if no products
-//   if (!products.length) {
-//     return (
-//       <div className='px-8 md:px-16 lg:px-32 py-20'>
-//         <p>Nothing to show yet</p>
-//       </div>
-//     );
-//   }
-
   // Get the products to display
   // const displayedProducts = shuffleArray(products)
   return (

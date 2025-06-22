@@ -41,6 +41,8 @@ export function AppProvider({ children }) {
 
   const [show, setShow] = useState("");
   const [nav, setNav] = useState(false);
+  const [expandSearchBar, setExpandSearchBar] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const [cartItemsCount, setCartItemsCount] = useState(cart?.length || 0);
   const [wishlistItemsCount, setWishlistItemsCount] = useState(wishlist?.length || 0);
@@ -226,6 +228,8 @@ export function AppProvider({ children }) {
             subtotal, setSubtotal,
             cart, setCart,
             wishlist, setWishlist,
+            expandSearchBar, setExpandSearchBar,
+            searchQuery, setSearchQuery,
             show, setShow,
             nav, setNav,
             cartItemsCount, setCartItemsCount,

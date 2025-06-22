@@ -6,8 +6,7 @@ import Button from '../components/Button';
 import NewProductsCard from '../components/NewProductsCard';
 
 const Product = () => {
-    const { cart, wishlist, products, toggleItem, findItemInGroup, updateQuantity, error} = useContext(AppContext);
-    const { convertToUSD } = useContext(AppContext);
+    const { cart, wishlist, products, toggleItem, findItemInGroup, updateQuantity, convertToUSD, error} = useContext(AppContext);
     const { id } = useParams()
     const navigate = useNavigate();
 
@@ -19,7 +18,7 @@ const Product = () => {
   //  const shuffledArr = useMemo(() => shuffleArray([...relatedItems]).slice(0, 3), [relatedItems]); // Shuffle related items
     
     useEffect(() => {
-        if (!getProduct) navigate('/not-found'); // Redirect if missing
+        if (!getProduct) navigate('/404', { replace: true }); // Redirect if missing
       }, [getProduct]);
 
     const originalPrice = getProduct?.price || 0; // Fallback to 0 if price is undefined

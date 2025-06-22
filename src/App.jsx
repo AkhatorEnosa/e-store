@@ -19,6 +19,8 @@ import Wishlist from './components/Wishlist';
 const Products = lazy(() => import('./pages/Products'));
 const Category = lazy(() => import('./pages/Category'));
 const Product = lazy(() => import('./pages/Product'));
+const Search = lazy(() => import('./pages/Search'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
   const { 
@@ -44,19 +46,6 @@ function App() {
                   <>
 
                     <Hero item={products?.length > 0 && products[products.length - 1]} />
-                    {/* <Hot 
-                      price={product.price}
-                      description={product.description}
-                      title={product.title}
-                      // discountPercentage={product.discountPercentage}
-                      image={product.image}
-                      loading={loading}
-                      error={error}
-                      
-                      product={products}
-                      category={product.category}
-                    /> */}
-
                     <NewProducts/>
                     <MegaSales />
                     <Sections 
@@ -76,6 +65,13 @@ function App() {
 
                 <Route path='/products' element={
                   <Products />
+                } />
+
+                <Route path='/search/:query' element={
+                  <Search />
+                } />
+                <Route path="*" element={
+                  <NotFound />
                 } />
               </Routes> : 
                 <div className="px-9 md:px-16 lg:px-32 py-40">
