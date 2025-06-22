@@ -148,7 +148,7 @@ const Product = () => {
           <h2 className='font-semibold capitalize w-fit mt-10 mb-10'>
             Related Products
           </h2>
-          <div className='grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6'>
+          <div className='grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4'>
             {displayedProducts.map((item) => (
               <NewProductsCard 
                 key={`${item.id}-${item.title}`} 

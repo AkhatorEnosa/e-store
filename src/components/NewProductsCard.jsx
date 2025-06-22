@@ -16,7 +16,7 @@ const NewProductsCard = ({ item }) => {
       whileInView={{ opacity: 1}}
       transition={{ duration: 0.2, ease: "easeInOut" }}
       viewport={{ amount: 0.2 }}
-      className={`relative min-w-[300px] h-auto flex flex-col justify-center lg:justify-between md:text-xs lg:text-sm items-center border-[1px] gap-3 p-5 group rounded-[1.75rem] bg-gray-50 duration-150 text-center hover:cursor-pointer`}>
+      className={`relative min-w-[100px] h-auto flex flex-col justify-center lg:justify-between md:text-xs lg:text-sm items-center border-[1px] gap-3 p-2 md:p-5 group rounded-2xl md:rounded-[1.75rem] bg-gray-50 duration-150 text-center hover:cursor-pointer`}>
         <Navigator 
           url={`/products/${id}`}
           variants={'w-full h-full absolute top-0 left-0 z-40'}
@@ -32,7 +32,7 @@ const NewProductsCard = ({ item }) => {
           <div className='w-full flex flex-col gap-2 text-left'>
             <p className='font-semibold text-xs group-hover:underline group-hover:text-accent-700 line-clamp-1'>{title}</p>
             <p className='w-fit bg-secondary-50 px-1 rounded-md text-[8px]'>{category}</p>
-            {show !== 'wishlist' && <p className='line-clamp-2 text-[10px] mt-[12px] text-black/80 capitalize'>{description}</p>}
+            {show !== 'wishlist' && <p className='line-clamp-2 text-[10px] md:mt-[12px] text-black/80 capitalize'>{description}</p>}
           </div>
 
           <div className="w-full flex justify-between text-left md:items-center gap-2 mt-2">
@@ -54,7 +54,7 @@ const NewProductsCard = ({ item }) => {
 
             <button className={`w-full flex items-center justify-center gap-2 px-2 sm:px-4 sm:py-2 py-1 text-sm sm:text-[10px] rounded-lg line ${itemInCart ? "bg-primary-600 text-white" : "bg-black/90 text-white hover:bg-primary-600 hover:text-[#fff] shadow-md"} duration-150`} onClick={()=>  toggleItem('cart', item)}>
               <i className={`bi ${!itemInCart ? "bi-bag" : "bi-bag-check-fill"} text-lg`}></i> 
-              <span className='hidden xs:flex text-[10px] sm:text-inherit'>{itemInCart ? "Item in Cart" : "Add to Cart"}</span>
+              <span className='text-[10px] sm:text-inherit'>{itemInCart ? "Item in Cart" : "Add to Cart"}</span>
             </button>
             
           </div>
