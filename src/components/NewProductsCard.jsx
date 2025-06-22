@@ -32,7 +32,7 @@ const NewProductsCard = ({ item }) => {
           <div className='w-full flex flex-col gap-2 text-left'>
             <p className='font-semibold text-xs group-hover:underline group-hover:text-accent-700 line-clamp-1'>{title}</p>
             <p className='w-fit bg-secondary-50 px-1 rounded-md text-[8px]'>{category}</p>
-            {show !== 'wishlist' && <p className='line-clamp-2 text-[10px] md:mt-[12px] text-black/80 capitalize'>{description}</p>}
+            {show !== 'wishlist' && <p className='hidden sm:line-clamp-2 text-[10px] md:mt-[12px] text-black/80 capitalize'>{description}</p>}
           </div>
 
           <div className="w-full flex justify-between text-left md:items-center gap-2 mt-2">
