@@ -68,10 +68,10 @@ const NavBar = () => {
       </div>
 
 
-      <ul className='others flex w-full lg:w-fit h-fit text-sm justify-end items-end'>
+      <ul className='others flex w-full lg:w-fit h-fit text-sm justify-end items-center'>
         <li className="relative flex flex-col justify-center items-center p-2 cursor-pointer">
           {/* search bar */}
-          <div className={`relative ${expandSearchBar && "border-[1px] shadow lg:shadow-lg rounded-full pl-2"} bg-white justify-center items-center flex duration-300`}>
+          <div className={`relative ${expandSearchBar && "border-[1px] shadow lg:shadow-lg rounded-full pl-2"} justify-center items-center flex duration-300`}>
             {/* search bar */}
             <button className="flex justify-center text-base md:text-xl" onClick={() => handleExpandSearchBar()}><i className={`bi bi-search hover:text-primary-600 ${expandSearchBar && "text-sm"} delay-75 duration-300`}></i></button>
             {/* search input */}
@@ -127,41 +127,33 @@ const NavBar = () => {
         <li className="relative p-2 cursor-pointer">
           <p className="flex justify-center text-base md:text-2xl hover:text-primary-600"><i className={`bi bi-person`}></i></p>
         </li>
-        <li className={`lg:hidden relative p-2 ${nav && "absolute z-50 flex justify-center items-center rounded-full bg-white size-10"} cursor-pointer`} onClick={() => handleNav() & lockBodyScroll(!nav ? "active" : "")}>
-          <p className={`text-base md:text-xl transition-all duration-150`}><i className={`bi ${nav ? "bi-x-lg text-accent-600" : "bi-list"}`}></i></p>
+        <li className={`lg:hidden relative p-2 flex justify-center items-center rounded-full bg-white size-8 cursor-pointer z-50`} onClick={() => handleNav() & lockBodyScroll(!nav ? "active" : "")}>
+          <p className={`text-base md:text-xl`}><i className={`bi ${nav ? "bi-x-lg text-accent-600 rotate-180" : "bi-list rotate-0"}`}></i></p>
         </li>
       </ul>
       {/* fullscreen menu ends here */}
-
-
-      {/* <div onClick={() => handleNav() & lockBodyScroll(!nav ? "active" : "")} className="absolute right-5 flex justify-center items-center rounded-full bg-white size-5 md:size-10 cursor-pointer lg:hidden z-50">
-        <i className={`bi ${nav ? "bi-x-lg text-accent-600" : "bi-list"} text-base md:text-xl transition-all duration-150`}></i>
-      </div> */}
-
 
         {/* mobile side menu */}
 
         <div className={`top-0 left-0 w-screen h-screen ${nav ? "fixed bg-black/50 z-40" : "hidden"}  lg:hidden transition-all duration-150`}>
           
-          <div className={`fixed w-[60%] h-full top-0 ${nav ? "left-0" : "-left-full"} px-6 py-4 bg-white overflow-y-scroll shadow-lg transition-all duration-150 z-40`}>
+          <div className={`fixed flex flex-col gap-6 w-[60%] h-full top-0 ${nav ? "left-0" : "-left-full"} px-6 py-4 bg-white overflow-y-scroll shadow-lg transition-all duration-150 z-40`}>
             <div className="logo text-black text-5xl font-extrabold items-center">
-              <p>Shaup</p>
+              <Navigator 
+                url={'/'}
+              ><img src={Logo} alt="logo" className="w-28"/></Navigator>
             </div>
 
-            <ul className='links flex flex-col p-4 tracking-wider text-xs md:text-sm'>
+            <ul className='links flex flex-col tracking-wider text-xs md:text-sm pr-5'>
               {
                 navLinks.map((link, index) => (
                   <Navigator 
                     key={index}
                     url={link.url}
-                    variants={'w-full p-6 px-3 hover:border-b-[1px] hover:border-b-accent-700 hover:translate-x-4 capitalize duration-200 cursor-pointer'}
+                    variants={'w-full p-4 hover:border-b-[1px] hover:border-b-accent-700 hover:translate-x-4 capitalize duration-200 cursor-pointer'}
                   ><li>{link.title}</li></Navigator>
                 ))
               }
-            </ul>
-
-            <ul className='others flex flex-col p-7 tracking-widest text-sm text-[#737373] font-thin'>
-              <li className='my-10'> <input className="border border-opacity-50 rounded-full py-4 px-3 w-full outline-none active:outline-black" type="search" name="search" id="" placeholder="Search..."/></li>
             </ul>
           </div>
 
