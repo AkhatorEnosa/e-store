@@ -49,7 +49,7 @@ const Hero = ({  item }) => {
             <b className="h-fit text-xl lg:text-4xl font-bold text-accent-600">{convertToUSD(price)}</b>
           </p>
         </div>
-        <p className="lg:py-5 lg:pr-2 text-xs md:text-sm lg:group-hover:text-base group-hover:lg:bg-gradient-to-l to-[#f6f6f6] from-primary-50/60 tracking-wide duration-300">
+        <p className="lg:py-5 lg:pr-2 text-xs md:text-sm lg:group-hover:text-base font-medium duration-300">
           {description}
         </p>
         <Button 
