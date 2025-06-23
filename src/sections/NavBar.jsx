@@ -71,11 +71,11 @@ const NavBar = () => {
       <ul className='others flex w-full lg:w-fit h-fit text-sm justify-end items-center'>
         <li className="relative flex flex-col justify-center items-center p-2 cursor-pointer">
           {/* search bar */}
-          <div className={`relative ${expandSearchBar && "border-[1px] shadow-lg rounded-full pl-2"} bg-white mr-1 justify-center items-center flex z-50 duration-300`}>
+          <div className={`relative ${expandSearchBar && "border-[1px] shadow lg:shadow-lg rounded-full pl-2"} bg-white justify-center items-center flex duration-300`}>
             {/* search bar */}
-            <button className="flex justify-center text-xl" onClick={() => handleExpandSearchBar()}><i className={`bi bi-search hover:text-primary-600`}></i></button>
+            <button className="flex justify-center text-base md:text-xl" onClick={() => handleExpandSearchBar()}><i className={`bi bi-search hover:text-primary-600`}></i></button>
             {/* search input */}
-            <input ref={inputRef} className={`${expandSearchBar ? "w-[150px] md:w-[200px] h-fit rounded-full px-3 " : "w-0"} py-2 placeholder:text-black outline-none duration-300`} type="search" name="search" id="" placeholder="Search..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+            <input ref={inputRef} className={`${expandSearchBar ? "w-[150px] md:w-[200px] h-fit rounded-full px-3 text-xs md:text-base " : "w-0"} py-1 lg:py-2 placeholder:text-black outline-none duration-300`} type="search" name="search" id="" placeholder="Search..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
           </div>
           <div className={`${expandSearchBar ? "absolute w-full top-14 block z-40" : "hidden"}`}>
             <div className="fixed h-screen w-screen top-0 left-0 block z-20" onClick={() => handleExpandSearchBar()}></div>
@@ -114,25 +114,29 @@ const NavBar = () => {
         </li>
         <li className="relative p-2 cursor-pointer" onClick={() => handleShow('wishlist')}>
           <button>
-            <span className='absolute w-5 h-5 bg-accent-700 rounded-full text-center right-0 top-0 text-white border-[2px] border-white font-bold text-xs'>{wishlistItemsCount}</span>
-            <p className="flex justify-center text-xl hover:text-primary-600"><i className={`bi ${wishlistItemsCount > 0 ? "bi-heart-fill" : "bi-heart"} duration-300`}></i></p>
+            <span className='absolute flex justify-center items-center w-4 h-5 px-2 md:px-0 md:w-5 md:h-5 bg-accent-700 rounded-full -right-1 md:right-0 -top-1 md:top-0 text-white border-[2px] border-white font-bold text-[10px] md:text-xs'>{wishlistItemsCount}</span>
+            <p className="flex justify-center text-base md:text-xl hover:text-primary-600"><i className={`bi ${wishlistItemsCount > 0 ? "bi-heart-fill" : "bi-heart"} duration-300`}></i></p>
           </button>
         </li>
         <li className="relative p-2 cursor-pointer" onClick={() => handleShow('cart')}>
           <button>
-            <span className='absolute w-5 h-5 bg-accent-700 rounded-full text-center right-0 top-0 text-white border-[2px] border-white font-bold text-xs'>{cartItemsCount}</span>
-            <p className="flex justify-center text-xl hover:text-primary-600"><i className={`bi ${cartItemsCount > 0 ? "bi-bag-fill" : "bi-bag"} duration-300`}></i></p>
+            <span className='absolute flex justify-center items-center w-4 h-5 px-2 md:px-0 md:w-5 md:h-5 bg-accent-700 rounded-full -right-1 md:right-0 -top-1 md:top-0 text-white border-[2px] border-white font-bold text-[10px] md:text-xs'>{cartItemsCount}</span>
+            <p className="flex justify-center text-base md:text-xl hover:text-primary-600"><i className={`bi ${cartItemsCount > 0 ? "bi-bag-fill" : "bi-bag"} duration-300`}></i></p>
           </button>
         </li>
         <li className="relative p-2 cursor-pointer">
-          <p className="flex justify-center text-2xl hover:text-primary-600"><i className={`bi bi-person`}></i></p>
+          <p className="flex justify-center text-base md:text-2xl hover:text-primary-600"><i className={`bi bi-person`}></i></p>
+        </li>
+        <li className={`lg:hidden relative p-2 ${nav && "absolute z-50 flex justify-center items-center rounded-full bg-white size-10"} cursor-pointer`} onClick={() => handleNav() & lockBodyScroll(!nav ? "active" : "")}>
+          <p className={`text-base md:text-xl transition-all duration-150`}><i className={`bi ${nav ? "bi-x-lg text-accent-600" : "bi-list"}`}></i></p>
         </li>
       </ul>
       {/* fullscreen menu ends here */}
 
-      <div onClick={() => handleNav() & lockBodyScroll(!nav ? "active" : "")} className="absolute right-5 flex justify-center items-center rounded-full bg-white size-10 cursor-pointer lg:hidden z-50">
-        <i className={`bi ${nav ? "bi-x-lg text-accent-600" : "bi-list"} text-xl transition-all duration-150`}></i>
-      </div>
+
+      {/* <div onClick={() => handleNav() & lockBodyScroll(!nav ? "active" : "")} className="absolute right-5 flex justify-center items-center rounded-full bg-white size-5 md:size-10 cursor-pointer lg:hidden z-50">
+        <i className={`bi ${nav ? "bi-x-lg text-accent-600" : "bi-list"} text-base md:text-xl transition-all duration-150`}></i>
+      </div> */}
 
 
         {/* mobile side menu */}

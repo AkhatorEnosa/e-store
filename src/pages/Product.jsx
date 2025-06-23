@@ -117,16 +117,20 @@ const Product = () => {
                   <i className="bi bi-star-fill text-primary-600"></i>
                   <i className="bi bi-star text-primary-600"></i>
                 </div>
-                <div className='w-full flex flex-col md:flex-row justify-between items-start gap-4'>
-                  <div className='w-full flex justify-between md:justify-center items-start gap-6'>
-                    <p className='text-lg md:text-2xl font-semibold'>{convertToUSD(getProduct?.price)}</p>
+                <div className='w-full flex flex-col sm:flex-row sm:justify-between items-start gap-6 sm:gap-4'>
+                  <div className='w-full sm:w-fit flex justify-between md:justify-start items-center sm:items-start gap-6'>
+                    <p className='text-2xl font-semibold'>{convertToUSD(getProduct?.price)}</p>
 
-                    <div className='flex flex-col justify-center items-center md:items-center gap-2 md:w-full'>
+                    <div className='min-w-[150px] w-[200px] flex flex-col justify-center items-center md:items-center gap-2 md:w-full'>
 
-                        <div className='w-[150px] grid grid-cols-3 justify-center items-center gap-2 border rounded-lg'>
-                            <i className={`flex justify-center items-center size-10 bi bi-dash-lg ${itemInCart?.quantity === 1 && "opacity-50 font-bold cursor-default"} col-span-1 w-full text-sm cursor-pointer`} onClick={() => handleNumMinus()}></i>
+                        <div className='w-full grid grid-cols-3 justify-center items-center gap-2 border rounded-lg'>
+                            <button>
+                              <i className={`flex justify-center items-center size-10 bi bi-dash-lg ${itemInCart?.quantity === 1 && "opacity-50 font-bold cursor-default"} col-span-1 w-full text-sm cursor-pointer`} onClick={() => handleNumMinus()}></i>
+                            </button>
                             <span className={`p-2 w-full h-fit text-center border-[1px] ${clicked === "add" ? "border-secondary-400 bg-secondary-50" : clicked === "minus" ? "border-accent-600 bg-accent-50" : "border-inherit/10 bg-gray-400/5"} rounded-md transition-all duration-150`}>{itemInCart?.quantity || 1}</span>
-                            <i className="bi bi-plus-lg col-span-1 w-full text-center text-sm cursor-pointer" onClick={() => handleNumAdd()}></i>
+                            <button>
+                              <i className="bi bi-plus-lg col-span-1 w-full text-center text-sm cursor-pointer" onClick={() => handleNumAdd()}></i>
+                            </button>
                         </div>
                         <p className={`text-[8px] text-center font-semibold ${clicked ? "text-accent-600" : "text-inherit"} transition-colors duration-150`}>{handleInfo()}</p>
                     </div>

@@ -7,7 +7,7 @@ const Wishlist = () => {
     const wishLength = wishlist?.length || 0;
   return (
     <div className={`w-screen h-screen ${show === 'wishlist' ? "flex" : "hidden"} flex-col justify-center items-center bg-black/50 fixed z-[100]`}>
-        <div className='w-[95%] lg:w-[80%] h-fit bg-white/95 shadow-lg  rounded-[1rem] flex flex-col justify-between items-center p-2 py-4 md:p-6'>
+        <div className='w-[95%] lg:w-[80%] max-h-[80%] bg-gray-100 shadow-lg  rounded-[1rem] flex flex-col justify-between items-center p-2 py-4 md:p-6'>
             <div className='w-full flex justify-between items-center mb-4 px-2'>
                 <h2 className='w-fit md:w-full tracking-tighter px-2 text-center text-xl md:text-3xl font-semibold'>You have {wishLength} wish{wishLength > 1 && "es"}</h2>
                 <div onClick={()=>handleShow('')} className="flex justify-center items-center rounded-full bg-white size-10 cursor-pointer">
@@ -18,7 +18,7 @@ const Wishlist = () => {
                 {
                     wishlist?.length > 0 ? 
                         <>
-                            <div className='col-span-3 w-full h-fit lg:h-full grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 md:p-4 rounded-lg overflow-y-scroll'>
+                            <div className='col-span-3 w-full h-fit lg:h-full grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 md:p-4 rounded-lg overflow-y-scroll'>
                                 {/* Cart items will be displayed here */}
                                 {
                                         wishlist.map((x) => (
