@@ -12,7 +12,22 @@ const Hero = ({  item }) => {
   const itemInCart = findItemInGroup(cart, item);
 
   return (
-    <div className="group relative w-full h-fit lg:h-screen grid grid-cols-7 py-14 lg:py-20 mt-6 lg:mt-16 sm:px-8 md:px-16 lg:px-32 gap-2 md:gap-8 justify-evenly items-center bg-gradient-to-l from-white to-[#f6f6f6]">
+    <motion.div 
+      initial={{ background: "linear-gradient(0deg, white, rgb(239 246 255 / 0.6))" }}
+      animate={{
+        background: [
+          "linear-gradient(0deg, white, rgba(255,202,27, 0.05))",
+          "linear-gradient(90deg, rgba(255,202,27, 0.05), white)"
+        ]
+      }}
+      transition={{
+        duration: 5,
+        repeat: Infinity,
+        repeatType: "reverse",
+        ease: "linear"
+      }}
+    
+      className="group relative w-full h-fit lg:h-screen grid grid-cols-7 py-14 lg:py-20 mt-6 lg:mt-16 sm:px-8 md:px-16 lg:px-32 gap-2 md:gap-8 justify-evenly items-center">
       <div className="absolute bg-gradient-to-l from-white to-primary-50/60 w-full h-full lg:opacity-0 z-40 duration-300"></div>
       <motion.div
         initial={{ opacity: 0, y: -50 }}
@@ -46,7 +61,7 @@ const Hero = ({  item }) => {
           </Navigator>
           <p className="h-fit flex items-center">
             <span className="h-fit line-through opacity-50 italic px-2 py-1">$189.95</span>
-            <b className="h-fit text-xl lg:text-4xl font-bold text-accent-600">{convertToUSD(price)}</b>
+            <b className="h-fit text-xl lg:text-4xl font-bold text-secondary-600">{convertToUSD(price)}</b>
           </p>
         </div>
         <p className="lg:py-5 lg:pr-2 text-xs md:text-sm lg:group-hover:text-base font-medium duration-300">
@@ -79,7 +94,7 @@ const Hero = ({  item }) => {
             src={image} alt="Product image" className="relative min-w-[450px] max-w-[90%] duration-300 z-40"/>
         </div>
       </motion.div>
-    </div>
+    </motion.div>
   )
 }
 

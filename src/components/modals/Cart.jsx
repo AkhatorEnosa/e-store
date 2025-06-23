@@ -1,7 +1,7 @@
 import React, { useContext, useMemo, useState } from 'react'
-import { AppContext } from '../context/AppContext';
-import Checkout from './Checkout';
-import ItemCard from './ItemCard';
+import { AppContext } from '../../context/AppContext';
+import Checkout from '../Checkout';
+import ItemCard from '../ItemCard';
 
 const Cart = () => {
     const { cart, show, handleShow, convertToUSD } = useContext(AppContext)

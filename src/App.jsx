@@ -12,9 +12,9 @@ import NavBar from './sections/NavBar';
 import NewProducts from './sections/NewProducts';
 import Sections from './sections/Sections';
 import { AppContext } from './context/AppContext';
-import Cart from './components/Cart';
+import Cart from './components/modals/Cart';
 import Loader from './components/Loader';
-import Wishlist from './components/Wishlist';
+import Wishlist from './components/modals/Wishlist';
 
 const Products = lazy(() => import('./pages/Products'));
 const Category = lazy(() => import('./pages/Category'));

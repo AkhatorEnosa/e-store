@@ -96,7 +96,7 @@ const MegaSales = () => {
           <h1 className="lg:text-7xl text-3xl tracking-tight font-extrabold text-center">
             Mega Shopping Fiesta
           </h1>
-          <p className='text-center lg:text-4xl text-2xl tracking-tight font-bold mt-4 capitalize text-primary-600 animate-pulse'>COMING SOON!!!!</p>
+          <p className='text-center lg:text-4xl text-2xl tracking-tight font-bold mt-4 capitalize text-secondary-600 animate-pulse'>COMING SOON!!!!</p>
           {/* <h1 className="mt-6 text-center lg:text-4xl text-2xl tracking-tight font-bold capitalize countdown text-accent-500">
             {countdown}
           </h1> */}

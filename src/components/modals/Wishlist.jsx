@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import { AppContext } from '../context/AppContext'
-import ProductCard from './ProductCard'
+import { AppContext } from '../../context/AppContext'
+import ProductCard from '../ProductCard'
 
 const Wishlist = () => {
     const { wishlist, show, handleShow } = useContext(AppContext)
