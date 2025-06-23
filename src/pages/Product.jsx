@@ -3,7 +3,7 @@ import Breadcrumbs from '../components/Breadcrumbs'
 import { AppContext } from '../context/AppContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from '../components/Button';
-import NewProductsCard from '../components/NewProductsCard';
+import ProductCard from '../components/ProductCard';
 
 const Product = () => {
     const { cart, wishlist, products, toggleItem, findItemInGroup, updateQuantity, convertToUSD, error} = useContext(AppContext);
@@ -154,7 +154,7 @@ const Product = () => {
           </h2>
           <div className='grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4'>
             {displayedProducts.map((item) => (
-              <NewProductsCard 
+              <ProductCard 
                 key={`${item.id}-${item.title}`} 
                 item={item}
               />

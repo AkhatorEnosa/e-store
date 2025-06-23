@@ -1,7 +1,7 @@
 import React, { useContext, useMemo, useState } from 'react'
-import Item from './Item';
 import { AppContext } from '../context/AppContext';
 import Checkout from './Checkout';
+import ItemCard from './ItemCard';
 
 const Cart = () => {
     const { cart, show, handleShow, convertToUSD } = useContext(AppContext)
@@ -41,7 +41,7 @@ const Cart = () => {
                                 {
                                         cart.map((x) => (
                                             // console.log(item)
-                                            <Item 
+                                            <ItemCard 
                                               key={x?.id}  // unique key
                                               item={x} 
                                             />

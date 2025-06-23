@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { AppContext } from '../context/AppContext';
-import NewProductsCard from '../components/NewProductsCard';
+import ProductCard from '../components/ProductCard';
 
 const Products = () => {
   const { products } = useContext(AppContext);
@@ -66,7 +66,7 @@ const Products = () => {
         </div>
         <div className='grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4'>
           {sortedProducts.map((item) => (
-            <NewProductsCard 
+            <ProductCard 
               key={`${item.id}-${item.title}`} 
               item={item}
             />

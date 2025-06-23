@@ -1,5 +1,5 @@
 import { useContext, useMemo } from 'react';
-import NewProductsCard from '../components/NewProductsCard';
+import NewProductsCard from '../components/ProductCard';
 import { AppContext } from '../context/AppContext';
 import Navigator from '../components/Navigator';
 import { ProductSlider } from '../components/ProductSlider';

@@ -3,7 +3,7 @@ import { AppContext } from '../context/AppContext';
 import Navigator from './Navigator';
 import { motion } from 'motion/react'
 
-const Item = ({ item = {} }) => {
+const ItemCard = ({ item = {} }) => {
   const { toggleItem, updateQuantity, convertToUSD, handleShow } = useContext(AppContext);
   
   const {
@@ -91,4 +91,4 @@ const Item = ({ item = {} }) => {
   );
 };
 
-export default Item;
+export default ItemCard;

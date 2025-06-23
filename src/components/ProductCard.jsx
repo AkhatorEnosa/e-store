@@ -3,7 +3,7 @@ import { AppContext } from '../context/AppContext';
 import Navigator from './Navigator';
 import { motion } from 'motion/react';
 
-const NewProductsCard = ({ item }) => {
+const ProductCard = ({ item }) => {
    const { cart, wishlist, toggleItem, convertToUSD, findItemInGroup, show } = useContext(AppContext);
   
   const { id, image, title, price, category, description } = item;
@@ -64,4 +64,4 @@ const NewProductsCard = ({ item }) => {
   );
 };
 
-export default NewProductsCard;
+export default ProductCard;

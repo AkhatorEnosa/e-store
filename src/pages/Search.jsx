@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../context/AppContext';
-import NewProductsCard from '../components/NewProductsCard';
 import { useNavigate, useParams } from 'react-router-dom';
+import ProductCard from '../components/ProductCard';
 
 const Search = () => {
     const { products } = useContext(AppContext);
@@ -77,7 +77,7 @@ const Search = () => {
           </div>
           <div className='grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4'>
             {foundItems.map((item) => (
-              <NewProductsCard 
+              <ProductCard 
                 key={`${item.id}-${item.title}`} 
                 item={item}
               />

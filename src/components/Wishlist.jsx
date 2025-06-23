@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { AppContext } from '../context/AppContext'
-import NewProductsCard from './NewProductsCard'
+import ProductCard from './ProductCard'
 
 const Wishlist = () => {
     const { wishlist, show, handleShow } = useContext(AppContext)
@@ -23,7 +23,7 @@ const Wishlist = () => {
                                 {
                                         wishlist.map((x) => (
                                             // console.log(item)
-                                            <NewProductsCard 
+                                            <ProductCard 
                                               key={x?.id}  // Add this unique key
                                               item={x}
                                             />

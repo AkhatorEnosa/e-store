@@ -21,7 +21,7 @@ const SectionsCard = ({ id, img, title, price }) => {
             </div>
             <div className='flex flex-col justify-center'>
                 <p className='text-xs md:text-sm mb-2 group-hover:text-accent-700 group-hover:underline'>{title}</p>
-                <div className='text-[10px] md:text-sm flex'>
+                <div className='text-[10px] flex'>
                     <i className="bi bi-star-fill text-secondary-600"></i>
                     <i className="bi bi-star-fill text-secondary-600"></i>
                     <i className="bi bi-star-fill text-secondary-600"></i>
