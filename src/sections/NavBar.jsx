@@ -75,7 +75,7 @@ const NavBar = () => {
             {/* search bar */}
             <button className="flex justify-center text-base md:text-xl" onClick={() => handleExpandSearchBar()}><i className={`bi bi-search hover:text-primary-600 ${expandSearchBar && "text-sm"} delay-75 duration-300`}></i></button>
             {/* search input */}
-            <input ref={inputRef} className={`${expandSearchBar ? "w-[150px] md:w-[200px] h-fit rounded-full px-3 text-xs md:text-base " : "w-0"} placeholder:text-black outline-none duration-300`} type="search" name="search" id="" placeholder="Search..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+            <input ref={inputRef} className={`${expandSearchBar ? "w-[150px] md:w-[200px] h-fit rounded-full px-3 text-xs md:text-base " : "w-0"} placeholder:text-black outline-none duration-300`} type="search" name="search" id="" placeholder="Search..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} autoComplete="off"/>
           </div>
           <div className={`${expandSearchBar ? "absolute w-full top-14 block z-40" : "hidden"}`}>
             <div className="fixed h-screen w-screen top-0 left-0 block z-20" onClick={() => handleExpandSearchBar()}></div>
