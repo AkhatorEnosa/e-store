@@ -1,0 +1,41 @@
+import React from 'react'
+
+const Checkout = () => {
+  return (
+    <div className='relative w-full h-fit lg:h-screen grid grid-cols-10 py-14 lg:py-20 mt-6 lg:mt-16 sm:px-8 md:px-16 lg:px-32 gap-2 md:gap-8 justify-evenly items-center p-10'>
+        {/* <div className='flex flex-col max-w-[450px] md:px-5 py-2 mb-5'>
+            <h3 className='text-md lg:text-lg font-semibold mb-4'>Checkout Summary</h3>
+            <p className='font-extralight text-[10px] md:text-sm'>Your order is being processed. Please wait while we prepare your items for shipping.</p>
+        </div> */}
+        <div className='w-full col-span-6'>
+            <h3 className='text-md lg:text-lg font-semibold mb-4'>Shipping Information</h3>
+            {/* Shipping form or details will go here */}
+            <form className='w-full flex flex-col gap-4'>
+                <div className='grid grid-cols-2 gap-4'>
+                    <input type="text" placeholder="Enter Firstname" className='p-2 border border-gray-300 rounded-lg focus:border-black outline-none placeholder:text-xs focus:placeholder:text-sm' required />
+                    <input type="text" placeholder="Enter Lastname" className='p-2 border border-gray-300 rounded-lg focus:border-black outline-none placeholder:text-xs focus:placeholder:text-sm' required />
+                </div>
+
+                <textarea rows={5} type="text" placeholder="Shipping Address" className='p-2 border border-gray-300 rounded-lg focus:border-black outline-none placeholder:text-xs focus:placeholder:text-sm resize-none' required/>
+
+                <div className='grid grid-cols-2 gap-4'>
+                    <input type="email" placeholder="Email Address" className='p-2 border border-gray-300 rounded-lg focus:border-black outline-none placeholder:text-xs focus:placeholder:text-sm' required />
+                    <input type="tel" placeholder="Phone Number" className='p-2 border border-gray-300 rounded-lg focus:border-black outline-none placeholder:text-xs focus:placeholder:text-sm' required />
+                </div>
+                <div className='grid grid-cols-3 gap-4'>
+                    <input type="text" placeholder="City" className='p-2 border border-gray-300 rounded-lg focus:border-black outline-none placeholder:text-xs focus:placeholder:text-sm' required />
+                    <input type="text" placeholder="State/Province" className='p-2 border border-gray-300 rounded-lg focus:border-black outline-none placeholder:text-xs focus:placeholder:text-sm' required />
+                    <input type="text" placeholder="Postal Code" className='p-2 border border-gray-300 rounded-lg focus:border-black outline-none placeholder:text-xs focus:placeholder:text-sm' required />
+                </div>
+                
+                <button className='flex justify-center items-center gap-2 px-10 py-4 w-full mt-4 font-semibold bg-secondary-600 hover:bg-secondary-700 text-white shadow-md rounded-lg duration-150' onClick={() => alert("Order confirmed")}>
+                    <i className='bi bi-check-circle-fill'></i> Confirm Shipping
+                </button>
+            </form>
+        </div>
+        <div className='w-full col-span-4 bg-gray-100'>Checkout</div>
+    </div>
+  )
+}
+
+export default Checkout

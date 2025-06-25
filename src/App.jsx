@@ -20,6 +20,7 @@ const Products = lazy(() => import('./pages/Products'));
 const Category = lazy(() => import('./pages/Category'));
 const Product = lazy(() => import('./pages/Product'));
 const Search = lazy(() => import('./pages/Search'));
+const Checkout = lazy(() => import('./pages/Checkout'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
@@ -70,6 +71,11 @@ function App() {
                 <Route path='/search/:query' element={
                   <Search />
                 } />
+                
+                <Route path='/checkout' element={
+                  <Checkout />
+                } />
+
                 <Route path="*" element={
                   <NotFound />
                 } />
