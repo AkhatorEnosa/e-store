@@ -1,6 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AppContext } from '../context/AppContext'
+import CheckoutCard from '../components/CheckoutCard'
 
 const Checkout = () => {
+    const { cart, show, handleShow, convertToUSD, taxPercentage } = useContext(AppContext)
+    // const [total, setTotal] = useState(0)
+
+    // useMemo(() => {
+    //     const sumPrices =  cart?.reduce((sum, item) => {
+    //         return sum + (item.price || 0);
+    //       }, 0);
+
+    //       setTotal(sumPrices)
+
+    //     //   console.log("cart", cart)
+    // }, [cart])
   return (
     <div className='relative w-full h-fit lg:h-screen grid grid-cols-10 py-14 lg:py-20 mt-6 lg:mt-16 sm:px-8 md:px-16 lg:px-32 gap-2 md:gap-8 justify-evenly items-center p-10'>
         {/* <div className='flex flex-col max-w-[450px] md:px-5 py-2 mb-5'>
@@ -11,7 +25,7 @@ const Checkout = () => {
             <h3 className='text-md lg:text-xl font-semibold mb-4'>Shipping Information</h3>
 
             {/* Shipping form or details will go here */}
-            <form className='w-full flex flex-col gap-4'>
+            <form className='w-full flex flex-col gap-6'>
                 <div className='grid grid-cols-2 gap-4'>
                     <div className='flex flex-col gap-1'>
                         <label htmlFor="firstname" className='text-xs font-semibold'>First Name</label>
@@ -108,7 +122,18 @@ const Checkout = () => {
                 </button>
             </form>
         </div>
-        <div className='w-full col-span-4 bg-gray-100'>Checkout</div>
+
+        <div className='w-full col-span-4 bg-gray-100'>
+            <div className='flex flex-col gap-4'>
+                {cart?.map((x, index) => (
+                    <CheckoutCard 
+                        key={index} // unique key
+                        item={x} 
+                        convertToUSD={convertToUSD}
+                    />
+                ))}
+            </div>
+        </div>
     </div>
   )
 }

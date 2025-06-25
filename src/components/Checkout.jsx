@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 
-const Checkout = ({convertToUSD, TaxPercentage, total}) => {
+const Checkout = ({convertToUSD, taxPercentage, total}) => {
     const { handleShow } = useContext(AppContext);
     const navigate = useNavigate();
     // const [submitting, setSubmitting] = useState(false)
@@ -60,11 +60,11 @@ const Checkout = ({convertToUSD, TaxPercentage, total}) => {
         </div>
         <div className='flex justify-between items-center mb-2'>
             <p>Tax:</p>
-            <p className='text-xs text-black/60'>{convertToUSD(TaxPercentage(total))} (7%)</p>
+            <p className='text-xs text-black/60'>{convertToUSD(taxPercentage(total))} (7%)</p>
         </div>
         <div className='flex justify-between items-center font-semibold mb-2 mt-6 border-t-[1px] border-[#342718]/10 pt-2'>
             <p>Total:</p>
-            <p>{convertToUSD(TaxPercentage(total) + total)}</p>
+            <p>{convertToUSD(taxPercentage(total) + total)}</p>
         </div>
         {/* <button className={`px-10 py-4 w-full lg:mt-4  font-semibold hover:bg-primary-600 ${submitting ? "bg-primary-600" : submitted ? "bg-secondary-600" : "bg-black"} text-white shadow-md rounded-lg duration-150`} onClick={handleSubmit}>
           <span className={`${submitting ? "animate-pulse" : "animate-none"} duration-300`}>{submitting ? "Placing Your Order" : submitted ? "Order Placed Successfully" : "Place Order"}</span>

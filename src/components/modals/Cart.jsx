@@ -4,7 +4,7 @@ import Checkout from '../Checkout';
 import ItemCard from '../ItemCard';
 
 const Cart = () => {
-    const { cart, show, handleShow, convertToUSD } = useContext(AppContext)
+    const { cart, show, handleShow, convertToUSD, taxPercentage } = useContext(AppContext)
     const [total, setTotal] = useState(0)
 
     useMemo(() => {
@@ -16,12 +16,6 @@ const Cart = () => {
 
         //   console.log("cart", cart)
     }, [cart])
-
-    const TaxPercentage = (x) => {
-        const taxRate = 0.07; // 7% tax rate
-        const result = (x * taxRate);
-        return result
-    }
 
   return ( 
     <div className={`w-screen h-screen ${show === 'cart' ? "flex" : "hidden"} flex-col justify-center items-center bg-black/50 fixed z-[100]`}>
@@ -51,7 +45,7 @@ const Cart = () => {
 
                             <Checkout 
                                 convertToUSD={convertToUSD} 
-                                TaxPercentage={TaxPercentage} 
+                                taxPercentage={taxPercentage} 
                                 total={total}
                             />
                         </> 

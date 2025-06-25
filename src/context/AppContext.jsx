@@ -159,6 +159,12 @@ export function AppProvider({ children }) {
     );
   };
 
+  const taxPercentage = (x) => {
+      const taxRate = 0.07; // 7% tax rate
+      const result = (x * taxRate);
+      return result
+  }
+
   // function shuffleArray(array) {
   //   for (let i = array.length - 1; i > 0; i--) {
   //     const j = Math.floor(Math.random() * (i + 1));
@@ -245,6 +251,7 @@ export function AppProvider({ children }) {
             // shuffleArray,
             formulateLinks,
             updateQuantity,
+            taxPercentage,
             fetchProducts,
             convertToUSD
         }}>

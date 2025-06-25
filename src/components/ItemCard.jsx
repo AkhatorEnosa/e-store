@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 import Navigator from './Navigator';
-import { motion } from 'motion/react'
+import { motion } from 'motion/react';
 
 const ItemCard = ({ item = {} }) => {
   const { toggleItem, updateQuantity, convertToUSD, handleShow } = useContext(AppContext);
