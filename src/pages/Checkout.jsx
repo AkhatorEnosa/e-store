@@ -1,22 +1,22 @@
-import React, { useContext } from 'react'
+import React, { useContext, useMemo, useState } from 'react'
 import { AppContext } from '../context/AppContext'
 import CheckoutCard from '../components/CheckoutCard'
 
 const Checkout = () => {
-    const { cart, show, handleShow, convertToUSD, taxPercentage } = useContext(AppContext)
-    // const [total, setTotal] = useState(0)
+    const { cart, convertToUSD, taxPercentage } = useContext(AppContext)
+    const [total, setTotal] = useState(0)
 
-    // useMemo(() => {
-    //     const sumPrices =  cart?.reduce((sum, item) => {
-    //         return sum + (item.price || 0);
-    //       }, 0);
+    useMemo(() => {
+        const sumPrices =  cart?.reduce((sum, item) => {
+            return sum + (item.price || 0);
+          }, 0);
 
-    //       setTotal(sumPrices)
+          setTotal(sumPrices)
 
-    //     //   console.log("cart", cart)
-    // }, [cart])
+        //   console.log("cart", cart)
+    }, [cart])
   return (
-    <div className='relative w-full h-fit lg:h-screen grid grid-cols-10 py-14 lg:py-20 mt-6 lg:mt-16 sm:px-8 md:px-16 lg:px-32 gap-2 md:gap-8 justify-evenly items-center p-10'>
+    <div className='relative w-full h-fit grid grid-cols-10 py-14 lg:py-20 mt-6 lg:mt-16 sm:px-8 md:px-16 lg:px-32 gap-2 md:gap-8 justify-evenly items-start p-10'>
         {/* <div className='flex flex-col max-w-[450px] md:px-5 py-2 mb-5'>
             <h3 className='text-md lg:text-lg font-semibold mb-4'>Checkout Summary</h3>
             <p className='font-extralight text-[10px] md:text-sm'>Your order is being processed. Please wait while we prepare your items for shipping.</p>
@@ -123,8 +123,9 @@ const Checkout = () => {
             </form>
         </div>
 
-        <div className='w-full col-span-4 bg-gray-100'>
-            <div className='flex flex-col gap-4'>
+        <div className='w-full col-span-4 px-4 py-5'>
+            <h3 className='text-md lg:text-xl font-semibold mb-4'>Order Summary</h3>
+            <div className='flex flex-col gap-2'>
                 {cart?.map((x, index) => (
                     <CheckoutCard 
                         key={index} // unique key
@@ -132,6 +133,20 @@ const Checkout = () => {
                         convertToUSD={convertToUSD}
                     />
                 ))}
+            </div>
+            <div className='mt-6 border-t-[1px] border-[#342718]/10 pt-2'>
+                <div className='flex justify-between items-center mb-2'>
+                    <p>Subtotal:</p>
+                    <p>{convertToUSD(cart?.reduce((sum, item) => sum + (item.price || 0), 0))}</p>
+                </div>
+                <div className='flex justify-between items-center mb-2'>
+                    <p>Tax:</p>
+                    <p className='text-xs text-black/60'>{convertToUSD(taxPercentage(total))} (7%)</p>
+                </div>
+                <div className='flex justify-between items-center font-semibold mb-2'>
+                    <p>Total:</p>
+                    <p>{convertToUSD(taxPercentage(total) + total)}</p>
+                </div>
             </div>
         </div>
     </div>
