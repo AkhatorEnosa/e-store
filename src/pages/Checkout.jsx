@@ -6,6 +6,7 @@ import { PaystackButton } from 'react-paystack';
 const Checkout = () => {
     const { cart, convertToUSD, taxPercentage } = useContext(AppContext)
     const [total, setTotal] = useState(0)
+    const [convertedTotal, setConvertedTotal] = useState(0);
     
     // one state to rule them all 
     const [formData, setFormData] = useState({
@@ -43,6 +44,9 @@ const Checkout = () => {
           }, 0);
 
           setTotal(sumPrices)
+            setConvertedTotal((convertToUSD(taxPercentage(sumPrices) + sumPrices)).substring(1, convertToUSD(taxPercentage(sumPrices) + sumPrices).length));
+
+            console.log(convertedTotal)
 
         //   console.log("cart", cart)
     }, [cart])
@@ -55,7 +59,7 @@ const Checkout = () => {
     const config = {
         reference: (new Date()).getTime().toString(),
         email: formData.email, // customer email
-        amount: convertToUSD(taxPercentage(total) + total) * 100, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
+        amount: Number(convertedTotal) * 1500 * 100, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
         publicKey: 'pk_test_619c9705a601e1ee2e86177a85ddd661feed44f9',
     };
     // you can call this function anything
