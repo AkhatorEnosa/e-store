@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 import Navigator from './Navigator';
 
-const CheckoutCard = ({ item = {} }) => {
+const CheckoutItemCard = ({ item = {} }) => {
   const { convertToUSD, handleShow } = useContext(AppContext);
   
   const {
@@ -26,7 +26,7 @@ const CheckoutCard = ({ item = {} }) => {
     className='w-full grid grid-cols-10 py-2 gap-4 justify-between items-center'>
 
       <div className='w-full col-span-7 h-full flex justify-start gap-2 items-center'>
-        <div className='min-w-[40px] w-[50px] h-[40px] p-1 border-[1px] flex justify-center items-center rounded-lg shadow overflow-hidden'>
+        <div className='min-w-[40px] w-[50px] h-[40px] p-1 border-[1px] flex justify-center items-center rounded-lg overflow-hidden'>
           <img src={image} alt={title} className="h-full w-full object-contain mix-blend-darken"/>
         </div>
 
@@ -52,4 +52,4 @@ const CheckoutCard = ({ item = {} }) => {
   )
 }
 
-export default CheckoutCard
+export default CheckoutItemCard

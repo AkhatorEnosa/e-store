@@ -1,10 +1,42 @@
-import React, { useContext, useMemo, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { AppContext } from '../context/AppContext'
-import CheckoutCard from '../components/CheckoutCard'
+import CheckoutItemCard from '../components/CheckoutItemCard'
+import { PaystackButton } from 'react-paystack';
+import { form } from 'motion/react-m';
 
 const Checkout = () => {
     const { cart, convertToUSD, taxPercentage } = useContext(AppContext)
     const [total, setTotal] = useState(0)
+    
+    // one state to rule them all 
+    const [formData, setFormData] = useState({
+        firstname: '',
+        lastname: '',
+        address: '',
+        email: '',
+        phone: '',
+        city: '',
+        state: '',
+        postal: ''
+    });
+
+    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  
+    // Check if all fields are filled whenever formData changes
+    useEffect(() => {
+      const allFieldsFilled = Object.values(formData).every(
+        field => field.trim() !== ''
+      );
+      setIsButtonDisabled(!allFieldsFilled);
+    }, [formData]);
+  
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    };
 
     useMemo(() => {
         const sumPrices =  cart?.reduce((sum, item) => {
@@ -15,6 +47,43 @@ const Checkout = () => {
 
         //   console.log("cart", cart)
     }, [cart])
+  
+    const getInputClass = () => {
+      return `p-2 border rounded-lg outline-none text-sm placeholder:text-xs focus:placeholder:text-sm border-gray-300 focus:border-black`
+    };
+
+  
+    const config = {
+        reference: (new Date()).getTime().toString(),
+        email: formData.email, // customer email
+        amount: total, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
+        publicKey: 'pk_test_619c9705a601e1ee2e86177a85ddd661feed44f9',
+    };
+    // you can call this function anything
+    const handlePaystackSuccessAction = (reference) => {
+      // Implementation for whatever you want to do with reference and after success call.
+      console.log(reference);
+      alert("Payment Successfull")
+    };
+
+    // you can call this function anything
+    const handlePaystackCloseAction = () => {
+      // implementation for  whatever you want to do when the Paystack dialog closed.
+      console.log('closed')
+    }
+
+    const componentProps = {
+        ...config,
+        text: 'Confirm Shipping',
+        disabled: isButtonDisabled ? true : false,
+        className: `flex justify-center items-center gap-2 px-10 py-4 w-full mt-4 font-semibold ${isButtonDisabled ? "bg-gray-300 hover:bg-gray-400" : "bg-secondary-600 hover:bg-secondary-700"} text-white shadow-md rounded-lg duration-150`,
+        children:  <i className='bi bi-check-circle-fill'></i>,
+        onSuccess: (reference) => handlePaystackSuccessAction(reference),
+        onClose: handlePaystackCloseAction,
+    };
+
+
+
   return (
     <div className='relative w-full h-fit grid grid-cols-10 py-14 lg:py-20 mt-6 lg:mt-16 sm:px-8 md:px-16 lg:px-32 gap-2 md:gap-8 justify-evenly items-start p-10'>
         {/* <div className='flex flex-col max-w-[450px] md:px-5 py-2 mb-5'>
@@ -25,15 +94,17 @@ const Checkout = () => {
             <h3 className='text-md lg:text-xl font-semibold mb-4'>Shipping Information</h3>
 
             {/* Shipping form or details will go here */}
-            <form className='w-full flex flex-col gap-6'>
+            <form className='w-full flex flex-col gap-6' onSubmit={(e) => e.preventDefault()}>
                 <div className='grid grid-cols-2 gap-4'>
                     <div className='flex flex-col gap-1'>
                         <label htmlFor="firstname" className='text-xs font-semibold'>First Name</label>
                         <input 
                             id="firstname"
+                            name="firstname"
                             type="text" 
                             placeholder="Enter Firstname" 
-                            className='p-2 border border-gray-300 rounded-lg focus:border-black outline-none placeholder:text-xs focus:placeholder:text-sm' 
+                            className={getInputClass()} 
+                            onChange={handleChange}
                             required 
                         />
                     </div>
@@ -41,9 +112,11 @@ const Checkout = () => {
                         <label htmlFor="lastname" className='text-xs font-semibold'>Last Name</label>
                         <input 
                             id="lastname"
+                            name="lastname"
                             type="text" 
                             placeholder="Enter Lastname" 
-                            className='p-2 border border-gray-300 rounded-lg focus:border-black outline-none placeholder:text-xs focus:placeholder:text-sm' 
+                            className={getInputClass()} 
+                            onChange={handleChange}
                             required 
                         />
                     </div>
@@ -53,10 +126,12 @@ const Checkout = () => {
                     <label htmlFor="address" className='text-xs font-semibold'>Shipping Address</label>
                     <textarea 
                         id="address"
+                        name="address"
                         rows={5} 
                         type="text" 
                         placeholder="Shipping Address" 
-                        className='p-2 border border-gray-300 rounded-lg focus:border-black outline-none placeholder:text-xs focus:placeholder:text-sm resize-none' 
+                        className={getInputClass()} 
+                        onChange={handleChange}
                         required
                     />
                 </div>
@@ -66,9 +141,11 @@ const Checkout = () => {
                         <label htmlFor="email" className='text-xs font-semibold'>Email Address</label>
                         <input 
                             id="email"
+                            name="email"
                             type="email" 
                             placeholder="Email Address" 
-                            className='p-2 border border-gray-300 rounded-lg focus:border-black outline-none placeholder:text-xs focus:placeholder:text-sm' 
+                            className={getInputClass()} 
+                            onChange={handleChange}
                             required 
                         />
                     </div>
@@ -76,9 +153,11 @@ const Checkout = () => {
                         <label htmlFor="phone" className='text-xs font-semibold'>Phone Number</label>
                         <input 
                             id="phone"
+                            name="phone"
                             type="tel" 
                             placeholder="Phone Number" 
-                            className='p-2 border border-gray-300 rounded-lg focus:border-black outline-none placeholder:text-xs focus:placeholder:text-sm' 
+                            className={getInputClass()} 
+                            onChange={handleChange}
                             required 
                         />
                     </div>
@@ -89,9 +168,11 @@ const Checkout = () => {
                         <label htmlFor="city" className='text-xs font-semibold'>City</label>
                         <input 
                             id="city"
+                            name="city"
                             type="text" 
                             placeholder="City" 
-                            className='p-2 border border-gray-300 rounded-lg focus:border-black outline-none placeholder:text-xs focus:placeholder:text-sm' 
+                            className={getInputClass()} 
+                            onChange={handleChange}
                             required 
                         />
                     </div>
@@ -99,9 +180,11 @@ const Checkout = () => {
                         <label htmlFor="state" className='text-xs font-semibold'>State/Province</label>
                         <input 
                             id="state"
+                            name="state"
                             type="text" 
                             placeholder="State/Province" 
-                            className='p-2 border border-gray-300 rounded-lg focus:border-black outline-none placeholder:text-xs focus:placeholder:text-sm' 
+                            className={getInputClass()} 
+                            onChange={handleChange}
                             required 
                         />
                     </div>
@@ -109,17 +192,18 @@ const Checkout = () => {
                         <label htmlFor="postal" className='text-xs font-semibold'>Postal Code</label>
                         <input 
                             id="postal"
+                            name="postal"
                             type="text" 
                             placeholder="Postal Code" 
-                            className='p-2 border border-gray-300 rounded-lg focus:border-black outline-none placeholder:text-xs focus:placeholder:text-sm' 
+                            className={getInputClass()} 
+                            onChange={handleChange}
                             required 
                         />
                     </div>
                 </div>
+
+                <PaystackButton {...componentProps} />
                 
-                <button className='flex justify-center items-center gap-2 px-10 py-4 w-full mt-4 font-semibold bg-secondary-600 hover:bg-secondary-700 text-white shadow-md rounded-lg duration-150' onClick={() => alert("Order confirmed")}>
-                    <i className='bi bi-check-circle-fill'></i> Confirm Shipping
-                </button>
             </form>
         </div>
 
@@ -127,14 +211,15 @@ const Checkout = () => {
             <h3 className='text-md lg:text-xl font-semibold mb-4'>Order Summary</h3>
             <div className='flex flex-col gap-2'>
                 {cart?.map((x, index) => (
-                    <CheckoutCard 
+                    <CheckoutItemCard
                         key={index} // unique key
                         item={x} 
                         convertToUSD={convertToUSD}
                     />
                 ))}
             </div>
-            <div className='mt-6 border-t-[1px] border-[#342718]/10 pt-2'>
+
+            <div className='mt-10 border-t-[1px] border-[#342718]/10 pt-2'>
                 <div className='flex justify-between items-center mb-2'>
                     <p>Subtotal:</p>
                     <p>{convertToUSD(cart?.reduce((sum, item) => sum + (item.price || 0), 0))}</p>
