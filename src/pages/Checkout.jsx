@@ -2,9 +2,11 @@ import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { AppContext } from '../context/AppContext'
 import CheckoutItemCard from '../components/CheckoutItemCard'
 import { PaystackButton } from 'react-paystack';
+import { useNavigate } from 'react-router-dom';
 
 const Checkout = () => {
     const { cart, convertToUSD, taxPercentage } = useContext(AppContext)
+    const navigate = useNavigate();
     const [total, setTotal] = useState(0)
     const [convertedTotal, setConvertedTotal] = useState(0);
     
@@ -21,6 +23,12 @@ const Checkout = () => {
     });
 
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+    
+
+        
+    useEffect(() => {
+        if ([...cart].length < 1) navigate(-1, { replace: true }); // Redirect if missing
+        }, [cart, navigate]);
   
     // Check if all fields are filled whenever formData changes
     useEffect(() => {
@@ -133,7 +141,7 @@ const Checkout = () => {
                         rows={5} 
                         type="text" 
                         placeholder="Shipping Address" 
-                        className={getInputClass()} 
+                        className={`${getInputClass()} resize-none`} 
                         onChange={handleChange}
                         required
                     />
