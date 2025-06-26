@@ -66,7 +66,7 @@ const Checkout = () => {
     const handlePaystackSuccessAction = (reference) => {
       // Implementation for whatever you want to do with reference and after success call.
       console.log(reference);
-      alert("Payment Successfull")
+      alert("Payment Successful")
     };
 
     // you can call this function anything
@@ -79,7 +79,7 @@ const Checkout = () => {
         ...config,
         text: 'Confirm Shipping',
         disabled: isButtonDisabled ? true : false,
-        className: `flex justify-center items-center gap-2 px-10 py-4 w-full mt-4 font-semibold ${isButtonDisabled ? "bg-gray-300 hover:bg-gray-400" : "bg-secondary-600 hover:bg-secondary-700"} text-white shadow-md rounded-lg duration-150`,
+        className: `flex justify-center items-center gap-2 px-10 py-4 w-full mt-10 lg:mt-4 font-semibold ${isButtonDisabled ? "bg-gray-300 hover:bg-gray-400" : "bg-secondary-600 hover:bg-secondary-700"} text-white shadow-md rounded-lg duration-150`,
         children:  <i className='bi bi-check-circle-fill'></i>,
         onSuccess: (reference) => handlePaystackSuccessAction(reference),
         onClose: handlePaystackCloseAction,
@@ -88,7 +88,7 @@ const Checkout = () => {
 
 
   return (
-    <div className='relative w-full h-fit grid grid-cols-10 py-14 lg:py-20 mt-6 lg:mt-16 sm:px-8 md:px-16 lg:px-32 gap-2 md:gap-8 justify-evenly items-start p-10'>
+    <div className='relative w-full h-fit grid gap-4 lg:grid-cols-10 py-14 lg:py-20 mt-6 lg:mt-16 px-3 sm:px-8 md:px-16 lg:px-32 lg:gap-2 md:gap-8 justify-evenly items-start'>
         {/* <div className='flex flex-col max-w-[450px] md:px-5 py-2 mb-5'>
             <h3 className='text-md lg:text-lg font-semibold mb-4'>Checkout Summary</h3>
             <p className='font-extralight text-[10px] md:text-sm'>Your order is being processed. Please wait while we prepare your items for shipping.</p>
@@ -204,15 +204,13 @@ const Checkout = () => {
                         />
                     </div>
                 </div>
-
-                <PaystackButton {...componentProps} />
                 
             </form>
         </div>
 
-        <div className='w-full col-span-4 px-4 py-5'>
+        <div className='w-full col-span-4 md:px-4 py-5'>
             <h3 className='text-md lg:text-xl font-semibold mb-4'>Order Summary</h3>
-            <div className='flex flex-col gap-2'>
+            <div className='flex flex-col gap-2 w-full h-80 overflow-y-scroll py-2'>
                 {cart?.map((x, index) => (
                     <CheckoutItemCard
                         key={index} // unique key
@@ -222,20 +220,26 @@ const Checkout = () => {
                 ))}
             </div>
 
-            <div className='mt-10 border-t-[1px] border-[#342718]/10 pt-2'>
+            <div className='mt-5 border-t-[1px] border-[#342718]/10 pt-2 text-sm'>
                 <div className='flex justify-between items-center mb-2'>
                     <p>Subtotal:</p>
-                    <p>{convertToUSD(cart?.reduce((sum, item) => sum + (item.price || 0), 0))}</p>
+                    <p>{convertToUSD(total)}</p>
+                </div>
+                <div className='flex justify-between items-center mb-2'>
+                    <p>Shipping:</p>
+                    <p className='text-xs text-black/60'>{convertToUSD(10)}</p>
                 </div>
                 <div className='flex justify-between items-center mb-2'>
                     <p>Tax:</p>
                     <p className='text-xs text-black/60'>{convertToUSD(taxPercentage(total))} (7%)</p>
                 </div>
-                <div className='flex justify-between items-center font-semibold mb-2'>
+                <div className='flex justify-between items-center font-semibold mt-4'>
                     <p>Total:</p>
-                    <p>{convertToUSD(taxPercentage(total) + total)}</p>
+                    <p>{convertToUSD(taxPercentage(total) + total + 10)}</p>
                 </div>
             </div>
+
+            <PaystackButton {...componentProps} />
         </div>
     </div>
   )
