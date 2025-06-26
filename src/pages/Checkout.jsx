@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { AppContext } from '../context/AppContext'
 import CheckoutItemCard from '../components/CheckoutItemCard'
 import { PaystackButton } from 'react-paystack';
-import { form } from 'motion/react-m';
 
 const Checkout = () => {
     const { cart, convertToUSD, taxPercentage } = useContext(AppContext)
@@ -56,7 +55,7 @@ const Checkout = () => {
     const config = {
         reference: (new Date()).getTime().toString(),
         email: formData.email, // customer email
-        amount: total, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
+        amount: convertToUSD(taxPercentage(total) + total) * 100, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
         publicKey: 'pk_test_619c9705a601e1ee2e86177a85ddd661feed44f9',
     };
     // you can call this function anything
