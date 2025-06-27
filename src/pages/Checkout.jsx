@@ -101,7 +101,7 @@ const Checkout = () => {
             <h3 className='text-md lg:text-lg font-semibold mb-4'>Checkout Summary</h3>
             <p className='font-extralight text-[10px] md:text-sm'>Your order is being processed. Please wait while we prepare your items for shipping.</p>
         </div> */}
-        <div className='w-full col-span-6 flex flex-col gap-5'>
+        <div className='w-full lg:col-span-6 flex flex-col gap-5'>
             <h3 className='text-md lg:text-xl font-semibold mb-4'>Shipping Information</h3>
 
             {/* Shipping form or details will go here */}
@@ -216,7 +216,7 @@ const Checkout = () => {
             </form>
         </div>
 
-        <div className='w-full col-span-4 md:px-4 py-5'>
+        <div className='w-full lg:col-span-4 md:px-4 py-5'>
             <h3 className='text-md lg:text-xl font-semibold mb-4'>Order Summary</h3>
             <div className='flex flex-col gap-2 w-full h-80 overflow-y-scroll py-2'>
                 {cart?.map((x, index) => (
