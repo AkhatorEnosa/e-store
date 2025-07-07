@@ -27,7 +27,9 @@ function App() {
   const { 
     products,
     loading,
-    error} = useContext(AppContext)
+    error,
+    errorMessage,
+  } = useContext(AppContext)
     
   if(!loading) {
     return (
@@ -80,8 +82,9 @@ function App() {
                   <NotFound />
                 } />
               </Routes> : 
-                <div className="px-9 md:px-16 lg:px-32 py-40">
-                  <p>Connect to the Internet and try again.</p>
+                <div className="w-full h-full flex flex-col justify-center items-center gap-10 px-9 md:px-16 lg:px-32 py-40">
+                  <i className="bi bi-cone-striped text-9xl md:text-[300px] animate-bounce"></i>
+                  <p className='font-bold text-lg'>{errorMessage}</p>
                 </div>
             }
               <Footer />

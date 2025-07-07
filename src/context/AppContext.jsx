@@ -13,6 +13,7 @@ export function AppProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [subtotal, setSubtotal] = useState(0);
 
   
@@ -22,6 +23,10 @@ export function AppProvider({ children }) {
       const savedCart = localStorage.getItem('cart');
       return savedCart ? JSON.parse(savedCart) : [];
     } catch (error) {
+      setError(error)
+      // If parsing fails, log the error and return an empty array
+      // This prevents the app from crashing due to JSON parsing errors
+      setErrorMessage('Failed to get your cart from storage. Please try again later.');
       console.error('Failed to parse cart from localStorage:', error);
       return []; // Fallback to empty array
     }
@@ -34,6 +39,9 @@ export function AppProvider({ children }) {
       return savedWishlist ? JSON.parse(savedWishlist) : [];
     } catch (error) {
       setError(error)
+      // If parsing fails, log the error and return an empty array
+      // This prevents the app from crashing due to JSON parsing errors
+      setErrorMessage('Failed to get your wishlist from storage. Please try again later.');
       console.error('Failed to parse wishlist from localStorage:', error);
       return []; // Fallback to empty array
     }
@@ -83,6 +91,7 @@ export function AppProvider({ children }) {
       console.log(error.message);
       // setProducts([])
       setError(true);
+      setErrorMessage('An error occurred while fetching data. Please try again later.');
       setLoading(false);
     } finally {
       setLoading(false);
@@ -231,6 +240,7 @@ export function AppProvider({ children }) {
             products, setProducts,
             loading, setLoading,
             error, setError,
+            errorMessage, setErrorMessage,
             subtotal, setSubtotal,
             cart, setCart,
             wishlist, setWishlist,
