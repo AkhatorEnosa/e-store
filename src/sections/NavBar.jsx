@@ -86,10 +86,10 @@ const NavBar = () => {
         </div>
 
 
-        <ul className='others flex w-full lg:w-fit h-fit text-sm justify-end items-center'>
+        <ul className='others relative flex w-full lg:w-fit h-fit text-sm justify-end items-center z-20'>
           <li className="relative flex flex-col justify-center items-center p-2 cursor-pointer">
             {/* search bar */}
-            <div className={`relative ${expandSearchBar && "border-[1px] border-black rounded-full pl-2"} py-1 justify-center items-center flex duration-300`}>
+            <div className={`relative ${expandSearchBar && "border-[1px] border-black rounded-full pl-2"} bg-white py-1 justify-center items-center flex duration-300`}>
               {/* search bar */}
               <button className="flex justify-center text-base md:text-xl" onClick={() => handleExpandSearchBar()}><i className={`bi bi-search hover:text-primary-600 ${expandSearchBar && "text-sm"} delay-75 duration-300`}></i></button>
               {/* search input */}
@@ -97,7 +97,7 @@ const NavBar = () => {
             </div>
             <div className={`${expandSearchBar ? "absolute w-full top-14 block z-40" : "hidden"}`}>
               <div className="fixed h-screen w-screen top-0 left-0 block z-20" onClick={() => handleExpandSearchBar()}></div>
-              <div className={`${searchQuery.length > 0 ? "flex flex-col gap-4" : "hidden"} w-[300px] lg:w-[350px] bg-white rounded-lg px-4 py-4 border-[1px] absolute bg-white shadow-lg z-50`}>
+              <div className={`${searchQuery.length > 0 ? "flex flex-col gap-4" : "hidden"} w-[300px] lg:w-[350px] rounded-lg px-4 py-4 border-[1px] absolute bg-white shadow-lg z-50`}>
                 {
                   searchResults.length > 5 ?
                     <>
@@ -153,7 +153,7 @@ const NavBar = () => {
       {/* fullscreen menu ends here */}
 
         {/* mobile side menu */}
-        <div className={`w-screen h-fit lg:hidden fixed ${nav ? "opacity-100" : "opacity-0"} top-0 py-6 px-6 flex justify-end z-[100]`}>
+        <div className={`w-screen h-fit lg:hidden fixed ${nav ? "opacity-100 z-[100]" : "opacity-0 z-0"} top-0 py-6 px-6 flex justify-end`}>
           <p className={`p-2 flex justify-center items-center rounded-full bg-white size-8 cursor-pointer z-[200]`} onClick={() => handleNav() & lockBodyScroll(!nav ? "active" : "")}>
             <p className={`text-base md:text-xl`}><i className={`bi ${nav ? "bi-x-lg text-accent-600 rotate-180" : "bi-list rotate-0"} duration-300`}></i></p>
           </p>
