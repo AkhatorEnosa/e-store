@@ -93,7 +93,7 @@ const Product = () => {
 
 
   return (
-    <div className='w-full h-fit flex flex-col gap-10 px-4 md:px-16 lg:px-32 z-30 py-20'>
+    <div className='w-full h-fit flex flex-col gap-10 px-4 md:px-16 lg:px-32 z-30 py-32'>
         <Breadcrumbs />
         <div className='w-full h-full flex flex-col md:grid md:grid-cols-3 lg:grid-cols-2 gap-6'>
             <div className={`group relative w-full h-[400px] md:h-fit lg:h-[500px] flex justify-center items-stretch border-[1px] bg-white p-10 col-span-1 rounded-xl overflow-hidden`}>

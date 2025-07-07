@@ -96,7 +96,7 @@ const Checkout = () => {
 
 
   return (
-    <div className='relative w-full h-fit grid gap-4 lg:grid-cols-10 py-14 lg:py-20 mt-6 lg:mt-16 px-3 sm:px-8 md:px-16 lg:px-32 lg:gap-2 md:gap-8 justify-evenly items-start'>
+    <div className='relative w-full h-fit grid gap-4 lg:grid-cols-10 py-32 px-3 sm:px-8 md:px-16 lg:px-32 lg:gap-2 md:gap-8 justify-evenly items-start'>
         {/* <div className='flex flex-col max-w-[450px] md:px-5 py-2 mb-5'>
             <h3 className='text-md lg:text-lg font-semibold mb-4'>Checkout Summary</h3>
             <p className='font-extralight text-[10px] md:text-sm'>Your order is being processed. Please wait while we prepare your items for shipping.</p>

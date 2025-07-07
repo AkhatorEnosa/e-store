@@ -49,12 +49,12 @@ const Category = () => {
   // Get the products to display
   // const displayedProducts = shuffleArray(products)
   return (
-    <section className='relative px-4 md:px-16 lg:px-32 z-30 py-20'>
+    <section className='relative px-4 md:px-16 lg:px-32 z-30 py-32'>
       {/* <div className='sticky top-0 flex justify-center items-center bg-accent-100 max-h-screen col-span-1'>
         side bar
       </div>  */}
       <div className="w-full flex flex-col">
-        <div className='w-full flex justify-between items-start gap-2 pt-5 md:pt-10'>
+        <div className='w-full flex justify-between items-start gap-2'>
           <div>
             <h2 className='font-semibold capitalize w-fit md:text-2xl'> {id} </h2>
             <p className='text-xs'>Explore our <span className='capitalize'>{id}</span> collection</p>
