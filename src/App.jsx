@@ -36,9 +36,7 @@ function App() {
       <Suspense fallback={<Loader />}>
         <Router>
           <div className="relative h-screen flex flex-col justify-between">
-            <div className="navbar-container">
-              <NavBar />
-            </div>
+            <NavBar />
               
             <Cart/>
             <Wishlist />
