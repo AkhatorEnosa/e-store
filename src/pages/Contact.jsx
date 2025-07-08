@@ -19,17 +19,17 @@ const Contact = () => {
                 <div className='col-span-10 md:col-span-6 flex flex-col gap-8'>
                     <div className='w-full flex flex-col gap-2'>
                         <label htmlFor="name" className='text-sm font-semibold'>Name</label>
-                        <input type="text" id='name' className='text-xs border-[1px] border-black/20 rounded-lg px-4 py-3 outline-none' placeholder='Your Name' required />
+                        <input type="text" id='name' className='p-2 border rounded-lg outline-none text-sm placeholder:text-xs focus:placeholder:text-sm border-gray-300 focus:border-black' placeholder='Your Name' required />
                     </div>
 
                     <div className='w-full flex flex-col gap-2'>
                         <label htmlFor="email" className='text-sm font-semibold'>Email</label>
-                        <input type="email" id='email' className='text-xs border-[1px] border-black/20 rounded-lg px-4 py-3 outline-none' placeholder='Your Email' required />
+                        <input type="email" id='email' className='p-2 border rounded-lg outline-none text-sm placeholder:text-xs focus:placeholder:text-sm border-gray-300 focus:border-black' placeholder='Your Email' required />
                     </div>
 
                     <div className='w-full flex flex-col gap-2'>
                         <label htmlFor="message" className='text-sm font-semibold'>Message</label>
-                        <textarea id='message' className='text-xs border-[1px] border-black/20 rounded-lg px-4 py-3 outline-none h-48 resize-none' placeholder='Your Message' required></textarea>
+                        <textarea id='message' className='p-2 border rounded-lg outline-none text-sm placeholder:text-xs focus:placeholder:text-sm border-gray-300 focus:border-black h-48 resize-none' placeholder='Your Message' required></textarea>
                     </div>
 
                     <Button 

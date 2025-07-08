@@ -97,7 +97,7 @@ const NavBar = () => {
             </div>
             <div className={`${expandSearchBar ? "absolute w-full top-14 block z-40" : "hidden"}`}>
               <div className="fixed h-screen w-screen top-0 left-0 block z-20" onClick={() => handleExpandSearchBar()}></div>
-              <div className={`${searchQuery.length > 0 ? "flex flex-col gap-4" : "hidden"} w-[300px] lg:w-[350px] rounded-lg px-4 py-4 border-[1px] absolute bg-white shadow-lg z-50`}>
+              <div className={`${searchQuery.length > 0 ? "flex flex-col" : "hidden"} w-[300px] lg:w-[350px] rounded-lg border-[1px] absolute bg-white shadow-lg z-50`}>
                 {
                   searchResults.length > 5 ?
                     <>
