@@ -10,26 +10,26 @@ const Contact = () => {
             <h1 className='relative text-5xl font-semibold z-20'>Contact Us</h1>
         </div>
 
-        <div className='w-full grid grid-cols-10 gap-10 px-20 py-10'>
+        <div className='relative w-full grid grid-cols-10 gap-10 px-20 py-10'>
             <form className='col-span-6 flex flex-col gap-10 bg-white'>
-                <div className='flex flex-col gap-2'>
+                <div className='w-full flex flex-col gap-2'>
                     <h2 className='text-2xl font-semibold'>Have a question?</h2>
-                    <p className='text-sm text-gray-500'>We are here to help you. Please fill out the form below and we will get back to you as soon as possible.</p>
+                    <p className='text-sm text-gray-500 w-[70%]'>We are here to help you. Please fill out the form below and we will get back to you as soon as possible.</p>
                 </div>
                 <div className='col-span-10 md:col-span-6 flex flex-col gap-8'>
                     <div className='w-full flex flex-col gap-2'>
                         <label htmlFor="name" className='text-sm font-semibold'>Name</label>
-                        <input type="text" id='name' className='border-[1px] border-black/20 rounded-lg px-4 py-3 outline-none' placeholder='Your Name' required />
+                        <input type="text" id='name' className='text-xs border-[1px] border-black/20 rounded-lg px-4 py-3 outline-none' placeholder='Your Name' required />
                     </div>
 
                     <div className='w-full flex flex-col gap-2'>
                         <label htmlFor="email" className='text-sm font-semibold'>Email</label>
-                        <input type="email" id='email' className='border-[1px] border-black/20 rounded-lg px-4 py-3 outline-none' placeholder='Your Email' required />
+                        <input type="email" id='email' className='text-xs border-[1px] border-black/20 rounded-lg px-4 py-3 outline-none' placeholder='Your Email' required />
                     </div>
 
                     <div className='w-full flex flex-col gap-2'>
                         <label htmlFor="message" className='text-sm font-semibold'>Message</label>
-                        <textarea id='message' className='border-[1px] border-black/20 rounded-lg px-4 py-3 outline-none h-48 resize-none' placeholder='Your Message' required></textarea>
+                        <textarea id='message' className='text-xs border-[1px] border-black/20 rounded-lg px-4 py-3 outline-none h-48 resize-none' placeholder='Your Message' required></textarea>
                     </div>
 
                     <Button 
@@ -42,7 +42,7 @@ const Contact = () => {
                 </div>
             </form>
 
-            <div className='h-fit col-span-4 flex flex-col gap-10 text-sm p-6 rounded-3xl bg-secondary-50'>
+            <div className='h-fit col-span-4 flex flex-col gap-10 text-sm p-6 rounded-3xl bg-secondary-50 border-[1px] border-secondary-400 border-dashed sticky top-5'>
                 <div className='flex flex-col gap-1'>
                     <h2 className='text-lg font-semibold'>Get in touch</h2>
                     <p className='text-gray-500 text-xs'>Feel free to reach out to us. Our team are working around the clock for you</p>
