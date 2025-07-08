@@ -16,7 +16,7 @@ const NavBar = () => {
   // change class of topNavRef if body is scrolled to 200px
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 200) {
+      if (window.scrollY > 800) {
         topNavRef.current.classList.add('fixed', 'top-0', 'bg-white', 'shadow');
       } else {
         topNavRef.current.classList.remove('fixed', 'top-0', 'bg-white', 'shadow');
@@ -62,7 +62,7 @@ const NavBar = () => {
 
   return (
     <nav className='absolute w-full flex justify-between items-center z-[100]'>
-      <div ref={topNavRef} className="w-full px-6 py-4 mb-4 flex justify-between items-center gap-4 lg:gap-10">
+      <div ref={topNavRef} className="w-full px-6 py-4 mb-4 flex justify-between items-center gap-4 lg:gap-10 ease-in-out duration-300">
         <div className="w-fit lg:w-full flex justify-left items-center gap-10 " onClick={() => setExpandSearchBar(false)}>
           {/* logo */}
           <div className="logo text-black text-5xl font-extrabold items-center">
