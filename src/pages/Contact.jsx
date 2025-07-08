@@ -50,9 +50,8 @@ const Contact = () => {
 
             <motion.div
                 initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-                viewport={{ amount: 0.2 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
                 className='h-fit col-span-4 flex flex-col gap-10 text-sm p-6 rounded-3xl bg-secondary-50 border-[1px] border-secondary-400 border-dashed sticky top-5'
             >
                 <div className='flex flex-col gap-1'>
