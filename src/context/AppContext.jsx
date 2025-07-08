@@ -192,7 +192,7 @@ export function AppProvider({ children }) {
         url: '/products', title: 'all'
       },
       {
-         url: '/', title: 'contact' 
+         url: '/contact-us', title: 'contact' 
       }
     ]
   

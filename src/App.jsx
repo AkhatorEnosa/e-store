@@ -19,6 +19,7 @@ import Wishlist from './components/modals/Wishlist';
 const Products = lazy(() => import('./pages/Products'));
 const Category = lazy(() => import('./pages/Category'));
 const Product = lazy(() => import('./pages/Product'));
+const Contact = lazy(() => import('./pages/Contact'));
 const Search = lazy(() => import('./pages/Search'));
 const Checkout = lazy(() => import('./pages/Checkout'));
 const NotFound = lazy(() => import('./pages/NotFound'));
@@ -66,6 +67,10 @@ function App() {
 
                 <Route path='/products' element={
                   <Products />
+                } />
+
+                <Route path='/contact-us' element={
+                  <Contact />
                 } />
 
                 <Route path='/search/:query' element={

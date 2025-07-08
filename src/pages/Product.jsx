@@ -140,6 +140,7 @@ const Product = () => {
                     <Button 
                         title={itemInCart ? "Remove from Cart" : "Add to Cart"}
                         operation={itemInCart}
+                        icon={true}
                         handleClick={() => toggleItem('cart', getProduct)}
                         variants={"text-sm"}
                     />

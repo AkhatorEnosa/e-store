@@ -70,6 +70,7 @@ const Hero = ({  item }) => {
         <Button 
           title={itemInCart ? "Item in Cart" : "Add to Cart"}
           operation={itemInCart}
+          icon={true}
           handleClick={() => toggleItem('cart', item)}
         />
       </motion.div>
