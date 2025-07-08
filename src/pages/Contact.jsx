@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from '../components/Button'
+import {motion} from 'motion/react'
 
 const Contact = () => {
   return (
@@ -11,7 +12,12 @@ const Contact = () => {
         </div>
 
         <div className='relative w-full grid grid-cols-10 gap-10 px-20 py-10'>
-            <form className='col-span-6 flex flex-col gap-10 bg-white'>
+            <motion.form 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+                viewport={{ amount: 0.2 }}
+                className='col-span-6 flex flex-col gap-10 bg-white'>
                 <div className='w-full flex flex-col gap-2'>
                     <h2 className='text-2xl font-semibold'>Have a question?</h2>
                     <p className='text-sm text-gray-500 w-[70%]'>We are here to help you. Please fill out the form below and we will get back to you as soon as possible.</p>
@@ -40,9 +46,15 @@ const Contact = () => {
                         handleClick={() => alert('Message sent!')}
                     />
                 </div>
-            </form>
+            </motion.form>
 
-            <div className='h-fit col-span-4 flex flex-col gap-10 text-sm p-6 rounded-3xl bg-secondary-50 border-[1px] border-secondary-400 border-dashed sticky top-5'>
+            <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                viewport={{ amount: 0.2 }}
+                className='h-fit col-span-4 flex flex-col gap-10 text-sm p-6 rounded-3xl bg-secondary-50 border-[1px] border-secondary-400 border-dashed sticky top-5'
+            >
                 <div className='flex flex-col gap-1'>
                     <h2 className='text-lg font-semibold'>Get in touch</h2>
                     <p className='text-gray-500 text-xs'>Feel free to reach out to us. Our team are working around the clock for you</p>
@@ -76,7 +88,7 @@ const Contact = () => {
                         <p className='text-gray-500'>contact-us@soozeer.com</p>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </div>
     </section>
   )

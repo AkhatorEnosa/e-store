@@ -23,8 +23,6 @@ const SearchItem = ({ item = {} }) => {
         initial={{ opacity: 0, y: -10 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.2, ease: "easeInOut" }}
-        viewport={{ amount: 0.2 }}
-        layout
       
       className='w-full flex gap-2 justify-start items-start bg-white hover:bg-secondary-50/50 rounded-md p-4 transition-all duration-150 ease-in-out'>
           <div className='min-w-[30px] w-[60px] h-[40px] flex justify-center items-center overflow-hidden'>
