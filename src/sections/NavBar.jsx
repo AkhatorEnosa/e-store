@@ -61,7 +61,7 @@ const NavBar = () => {
   , [debouncedSearchInput]);
 
   return (
-    <nav className='absolute w-full flex justify-between items-center z-[100]'>
+    <nav className='absolute top-0 w-full flex justify-between items-center z-[100]'>
       <div ref={topNavRef} className="w-full px-6 py-4 mb-4 flex justify-between items-center gap-4 lg:gap-10 ease-in-out duration-300">
         <div className="w-fit lg:w-full flex justify-left items-center gap-10 " onClick={() => setExpandSearchBar(false)}>
           {/* logo */}
@@ -89,7 +89,7 @@ const NavBar = () => {
         <ul className='others relative flex w-full lg:w-fit h-fit text-sm justify-end items-center z-20'>
           <li className="relative flex flex-col justify-center items-center p-2 cursor-pointer">
             {/* search bar */}
-            <div className={`relative ${expandSearchBar && "border-[1px] border-black rounded-full pl-2"} bg-white py-1 justify-center items-center flex duration-300`}>
+            <div className={`relative ${expandSearchBar && "border-[1px] border-black rounded-full pl-2"} py-1 justify-center items-center flex duration-300`}>
               {/* search bar */}
               <button className="flex justify-center text-base md:text-xl" onClick={() => handleExpandSearchBar()}><i className={`bi bi-search hover:text-primary-600 ${expandSearchBar && "text-sm"} delay-75 duration-300`}></i></button>
               {/* search input */}

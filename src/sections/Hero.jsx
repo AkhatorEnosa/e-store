@@ -27,8 +27,8 @@ const Hero = ({  item }) => {
         ease: "linear"
       }}
     
-      className="group relative w-full h-fit lg:min-h-screen grid grid-cols-7 py-20 lg:py-0 mt-0 sm:px-8 md:px-16 lg:px-32 gap-2 md:gap-8 justify-evenly items-center">
-      <div className="absolute bg-gradient-to-l from-white to-primary-50/60 w-full h-full lg:opacity-0 z-40 duration-300"></div>
+      className="group relative w-full h-fit flex flex-col-reverse lg:min-h-screen lg:grid grid-cols-7 mt-20 lg:mt-0 py-20 lg:py-0 mt-0 sm:px-8 md:px-16 lg:px-32 gap-2 md:gap-8 justify-evenly items-center">
+      {/* <div className="absolute bg-gradient-to-l from-white to-primary-50/60 w-full h-full lg:opacity-0 z-40 duration-300"></div> */}
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -86,7 +86,7 @@ const Hero = ({  item }) => {
           repeat: Infinity, // Loop forever
           ease: "easeInOut" 
         }}
-        className="absolute top-32 lg:top-auto right-0 lg:z-50 group-hover:z-30 z-30">
+        className="lg:absolute lg:top-32 lg:top-auto right-0 lg:z-50 group-hover:z-30 z-30">
         <div className="w-full h-full flex items-center">
           <motion.img
             initial={{ opacity: 0, y: 50, rotate: -12 }}
