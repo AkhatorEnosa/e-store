@@ -17,9 +17,9 @@ const NavBar = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 800) {
-        topNavRef.current.classList.add('fixed', 'top-0', 'bg-white', 'shadow');
+        topNavRef.current.classList.add('fixed', 'top-0', 'bg-white', 'shadow', 'z-[200]');
       } else {
-        topNavRef.current.classList.remove('fixed', 'top-0', 'bg-white', 'shadow');
+        topNavRef.current.classList.remove('fixed', 'top-0', 'bg-white', 'shadow', 'z-[200]');
       }
     };
     window.addEventListener('scroll', handleScroll);
