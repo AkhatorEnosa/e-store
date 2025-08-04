@@ -155,7 +155,7 @@ const NavBar = () => {
         {/* mobile side menu */}
         <div className={`w-screen h-fit lg:hidden fixed ${nav ? "opacity-100 z-[100]" : "opacity-0 z-0"} top-0 py-6 px-6 flex justify-end`}>
           <p className={`p-2 flex justify-center items-center rounded-full bg-white size-8 cursor-pointer z-[200]`} onClick={() => handleNav() & lockBodyScroll(!nav ? "active" : "")}>
-            <p className={`text-base md:text-xl`}><i className={`bi ${nav ? "bi-x-lg text-accent-600 rotate-180" : "bi-list rotate-0"} duration-300`}></i></p>
+            <span className={`text-base md:text-xl`}><i className={`bi ${nav ? "bi-x-lg text-accent-600 rotate-180" : "bi-list rotate-0"} duration-300`}></i></span>
           </p>
         </div>
 

@@ -43,7 +43,7 @@ const MegaSales = () => {
   }, []);
 
   return (
-    <div className="relative w-full flex justify-center align-middle bg-[#f7f5ed] items-center px-10 lg:px-20 shadow-sm z-30 overflow-clip">
+    <div className="relative w-full flex justify-center align-middle bg-[#f7f5ed]/50 items-center px-10 lg:px-20 shadow-sm z-30 overflow-clip">
       <motion.div
           // initial={{ opacity: 0, x: -50 }}
           // whileInView={{ opacity: 1, x: 0 }}
@@ -90,13 +90,16 @@ const MegaSales = () => {
           viewport={{ amount: 0.2 }}
           
           className="flex flex-col ml-10 py-8 z-50">
-          <p className="md:text-base text-xs text-center">
+          <p className="md:text-base text-xs text-center bg-[#f7f5ed]/50">
             THE BIGGEST SALE OF THE YEAR
           </p>
-          <h1 className="lg:text-7xl text-3xl tracking-tight font-extrabold text-center">
+          <h1 className="lg:text-7xl text-3xl tracking-tight font-extrabold text-center bg-[#f7f5ed]/50">
             Mega Shopping Fiesta
           </h1>
-          <p className='text-center lg:text-4xl text-2xl tracking-tight font-bold mt-4 capitalize text-secondary-600 animate-pulse'>COMING SOON!!!!</p>
+          <p className='relative text-center lg:text-4xl text-2xl tracking-tight font-bold mt-4 capitalize text-secondary-600'>
+            <span className='absolute left-0 w-full h-full bg-[#f7f5ed]/50'></span>
+            <span className='animate-pulse'>COMING SOON!!!!</span>
+          </p>
           {/* <h1 className="mt-6 text-center lg:text-4xl text-2xl tracking-tight font-bold capitalize countdown text-accent-500">
             {countdown}
           </h1> */}

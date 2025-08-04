@@ -120,7 +120,7 @@ export const ProductSlider = ({ products }) => {
     >
       {/* Marquee Container */}
       <div 
-        className='flex w-max lg:grid-cols-3 gap-2 pl-14'
+        className='flex w-max lg:grid-cols-3 gap-2 md:pl-14'
       >
         {/* <div className='grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4'> */}
         {/* Double the products for seamless looping */}

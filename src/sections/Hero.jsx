@@ -27,7 +27,7 @@ const Hero = ({  item }) => {
         ease: "linear"
       }}
     
-      className="group relative w-full h-fit flex flex-col-reverse lg:min-h-screen lg:grid grid-cols-7 mt-20 lg:mt-0 py-20 lg:py-0 mt-0 sm:px-8 md:px-16 lg:px-32 gap-2 md:gap-8 justify-evenly items-center">
+      className="group relative w-full h-fit flex flex-col-reverse lg:min-h-screen lg:grid grid-cols-7 mt-20 lg:mt-0 py-20 lg:py-0 px-4 md:px-16 lg:px-32 gap-2 md:gap-8 justify-evenly items-center">
       {/* <div className="absolute bg-gradient-to-l from-white to-primary-50/60 w-full h-full lg:opacity-0 z-40 duration-300"></div> */}
       <motion.div
         initial={{ opacity: 0, y: -50 }}
@@ -55,7 +55,7 @@ const Hero = ({  item }) => {
             url={`/products/${id}`}
             variants={'mr-8 cursor-pointer duration-150 hover:text-accent-700'}
           >
-            <h1 className="w-fit text-5xl lg:text-8xl font-black tracking-tighter">
+            <h1 className="w-fit text-3xl md:text-5xl lg:text-8xl font-black tracking-tighter">
               {title}
             </h1>
           </Navigator>
@@ -86,13 +86,13 @@ const Hero = ({  item }) => {
           repeat: Infinity, // Loop forever
           ease: "easeInOut" 
         }}
-        className="lg:absolute lg:top-32 lg:top-auto right-0 lg:z-50 group-hover:z-30 z-30">
+        className="lg:absolute lg:top-56 right-0 lg:z-50 group-hover:z-30 z-30">
         <div className="w-full h-full flex items-center">
           <motion.img
-            initial={{ opacity: 0, y: 50, rotate: -12 }}
+            initial={{ opacity: 0, y: 50, rotate: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            src={image} alt="Product image" className="relative min-w-[450px] max-w-[90%] duration-300 z-40"/>
+            src={image} alt="Product image" className="relative md:min-w-[450px] max-w-[90%] duration-300 z-40"/>
         </div>
       </motion.div>
     </motion.div>
