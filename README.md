@@ -4,7 +4,7 @@ A clean, responsive **online store** (e-commerce frontend) built with **React**,
 
 Live Demo: [https://shaup.netlify.app](https://shaup.netlify.app)
 
-# Screenshots
+## Screenshots
 
 Hero![E-Store Hero](https://res.cloudinary.com/dgmpx8acb/image/upload/v1772435010/Screenshot_2026-03-02_at_08.00.44_biljfv.png)
 
